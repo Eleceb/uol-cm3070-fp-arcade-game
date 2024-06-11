@@ -56,11 +56,11 @@
     <Analyzer Include="F:\Visual Studio\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Pixel Spaceships for SHMUP\Demo\Ship.cs" />
+    <Compile Include="Assets\Arts\Pixel Spaceships for SHMUP\Demo\Ship.cs" />
     <Compile Include="Assets\Scripts\Player spaceship\SpaceshipController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Pixel Spaceships for SHMUP\_Readme.txt" />
+    <None Include="Assets\Arts\Pixel Spaceships for SHMUP\_Readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
