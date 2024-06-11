@@ -6,18 +6,48 @@ using UnityEngine;
 public class SpaceshipController : MonoBehaviour
 {
     [SerializeField] Transform[] thursters;
+    [SerializeField] Sprite[] colorModes;
+    [SerializeField] GameObject changeColorEffect;
     [SerializeField] float accelerationForce, turningTorque, dragCoefficient;
 
     private float currentRotationAngle;
+    private SpriteRenderer sr;
     private Rigidbody2D rb2d;
 
     // Start is called before the first frame update
     void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.R))
+        {
+            // Instantiate the changeColorEffect prefab at the player's position
+            GameObject colorEffect = Instantiate(changeColorEffect, transform.position, Quaternion.identity);
+            Destroy(colorEffect, 0.2f);
+
+            sr.sprite = colorModes[0];
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            // Instantiate the changeColorEffect prefab at the player's position
+            GameObject colorEffect = Instantiate(changeColorEffect, transform.position, Quaternion.identity);
+            Destroy(colorEffect, 0.2f);
+
+            sr.sprite = colorModes[1];
+        }
+        else if (Input.GetKey(KeyCode.F))
+        {
+            // Instantiate the changeColorEffect prefab at the player's position
+            GameObject colorEffect = Instantiate(changeColorEffect, transform.position, Quaternion.identity);
+            Destroy(colorEffect, 0.2f);
+
+            sr.sprite = colorModes[2];
+        }
+    }
     void FixedUpdate()
     {
         currentRotationAngle = Mathf.Deg2Rad * transform.eulerAngles.z;

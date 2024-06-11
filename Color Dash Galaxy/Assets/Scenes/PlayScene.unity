@@ -279,8 +279,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 535860165
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4dba3b4ece0220f45be6d94daab3ec8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -348,6 +348,12 @@ MonoBehaviour:
   - {fileID: 2135117264}
   - {fileID: 1886156298}
   - {fileID: 2060761104}
+  colorModes:
+  - {fileID: 21300000, guid: 4dba3b4ece0220f45be6d94daab3ec8e, type: 3}
+  - {fileID: 21300000, guid: eae028bb81d76f8418adf241f7c71b24, type: 3}
+  - {fileID: 21300000, guid: cd11bf308cdcecd429b8bd7581bab581, type: 3}
+  changeColorEffect: {fileID: 3954605369685049540, guid: 5439ebf7b7e50fc4f818cfd22d3dc4ea,
+    type: 3}
   accelerationForce: 10
   turningTorque: 0.1
   dragCoefficient: 10
@@ -829,7 +835,17 @@ PrefabInstance:
     - target: {fileID: 4579768676443945079, guid: 37336802e0fc49c4bbfa9c4a509dea08,
         type: 3}
       propertyPath: m_Name
-      value: Particle System
+      value: Star particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579768676443945080, guid: 37336802e0fc49c4bbfa9c4a509dea08,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579768676443945080, guid: 37336802e0fc49c4bbfa9c4a509dea08,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 748563159
       objectReference: {fileID: 0}
     - target: {fileID: 4579768676443945082, guid: 37336802e0fc49c4bbfa9c4a509dea08,
         type: 3}
