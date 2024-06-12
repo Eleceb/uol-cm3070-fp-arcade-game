@@ -281,7 +281,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 535860165
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4dba3b4ece0220f45be6d94daab3ec8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -352,6 +352,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4dba3b4ece0220f45be6d94daab3ec8e, type: 3}
   - {fileID: 21300000, guid: eae028bb81d76f8418adf241f7c71b24, type: 3}
   - {fileID: 21300000, guid: cd11bf308cdcecd429b8bd7581bab581, type: 3}
+  colorBullets:
+  - {fileID: 6628727092727254540, guid: c6fb69c1759d15b449106497102cbb1f, type: 3}
+  - {fileID: 4363948218466955633, guid: d10ff711c4e25a14faf680a21a4bcef2, type: 3}
+  - {fileID: 2572483529904719632, guid: b7deba8fcc485c24ea00fded6b2c8700, type: 3}
   changeColorEffect: {fileID: 3954605369685049540, guid: 5439ebf7b7e50fc4f818cfd22d3dc4ea,
     type: 3}
   accelerationForce: 10

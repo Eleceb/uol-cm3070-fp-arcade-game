@@ -1,16 +1,16 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class SpaceshipController : MonoBehaviour
 {
     [SerializeField] Transform[] thursters;
     [SerializeField] Sprite[] colorModes;
+    [SerializeField] GameObject[] colorBullets;
     [SerializeField] GameObject changeColorEffect;
     [SerializeField] float accelerationForce, turningTorque, dragCoefficient;
 
     private float currentRotationAngle;
+    private int currentColorMode;
     private SpriteRenderer sr;
     private Rigidbody2D rb2d;
 
@@ -29,7 +29,7 @@ public class SpaceshipController : MonoBehaviour
             GameObject colorEffect = Instantiate(changeColorEffect, transform.position, Quaternion.identity);
             Destroy(colorEffect, 0.2f);
 
-            sr.sprite = colorModes[0];
+            StartCoroutine(ChangeColorMode(0.2f, 0));
         }
         else if (Input.GetKey(KeyCode.E))
         {
@@ -37,7 +37,7 @@ public class SpaceshipController : MonoBehaviour
             GameObject colorEffect = Instantiate(changeColorEffect, transform.position, Quaternion.identity);
             Destroy(colorEffect, 0.2f);
 
-            sr.sprite = colorModes[1];
+            StartCoroutine(ChangeColorMode(0.2f, 1));
         }
         else if (Input.GetKey(KeyCode.F))
         {
@@ -45,17 +45,32 @@ public class SpaceshipController : MonoBehaviour
             GameObject colorEffect = Instantiate(changeColorEffect, transform.position, Quaternion.identity);
             Destroy(colorEffect, 0.2f);
 
-            sr.sprite = colorModes[2];
+            StartCoroutine(ChangeColorMode(0.2f, 2));
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            GameObject colorBullet = Instantiate(
+                colorBullets[currentColorMode], 
+                transform.position, 
+                Quaternion.Euler(0, 0, transform.eulerAngles.z)
+            );
+
+            BulletManager bulletManager = colorBullet.GetComponent<BulletManager>();
+            bulletManager.SetBulletShootingAngle(currentRotationAngle);
         }
     }
+    
     void FixedUpdate()
     {
         currentRotationAngle = Mathf.Deg2Rad * transform.eulerAngles.z;
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
-            rb2d.AddForce(new Vector2(-accelerationForce * Mathf.Sin(currentRotationAngle),
-                accelerationForce * Mathf.Cos(currentRotationAngle)));
+            rb2d.AddForce(new Vector2(
+                -accelerationForce * Mathf.Sin(currentRotationAngle),
+                accelerationForce * Mathf.Cos(currentRotationAngle)
+            ));
 
             thursters[0].gameObject.SetActive(true);
         }
@@ -66,8 +81,10 @@ public class SpaceshipController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
-            rb2d.AddForce(new Vector2(accelerationForce * Mathf.Sin(currentRotationAngle),
-                -accelerationForce * Mathf.Cos(currentRotationAngle)));
+            rb2d.AddForce(new Vector2(
+                accelerationForce * Mathf.Sin(currentRotationAngle),
+                -accelerationForce * Mathf.Cos(currentRotationAngle)
+            ));
 
             thursters[3].gameObject.SetActive(true);
             thursters[4].gameObject.SetActive(true);
@@ -100,5 +117,12 @@ public class SpaceshipController : MonoBehaviour
         {
             thursters[2].gameObject.SetActive(false);
         }
+    }
+
+    IEnumerator ChangeColorMode(float delay, int mode)
+    {
+        yield return new WaitForSeconds(delay);
+        currentColorMode = mode;
+        sr.sprite = colorModes[currentColorMode];
     }
 }

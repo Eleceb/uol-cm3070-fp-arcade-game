@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Arts\Pixel Spaceships for SHMUP\Demo\Ship.cs" />
+    <Compile Include="Assets\Scripts\Player spaceship\BulletManager.cs" />
     <Compile Include="Assets\Scripts\Player spaceship\SpaceshipController.cs" />
   </ItemGroup>
   <ItemGroup>
