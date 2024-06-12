@@ -23,32 +23,27 @@ public class SpaceshipController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            // Instantiate the changeColorEffect prefab at the player's position
-            GameObject colorEffect = Instantiate(changeColorEffect, transform.position, Quaternion.identity);
-            Destroy(colorEffect, 0.2f);
+            currentColorMode++;
 
-            StartCoroutine(ChangeColorMode(0.2f, 0));
+            if (currentColorMode == colorModes.Length)
+            {
+                currentColorMode = 0;
+            }
+
+            ChangeColorMode(0.2f, currentColorMode);
         }
-        else if (Input.GetKey(KeyCode.E))
+        /*else if (Input.GetKeyDown(KeyCode.E))
         {
-            // Instantiate the changeColorEffect prefab at the player's position
-            GameObject colorEffect = Instantiate(changeColorEffect, transform.position, Quaternion.identity);
-            Destroy(colorEffect, 0.2f);
-
-            StartCoroutine(ChangeColorMode(0.2f, 1));
+            ChangeColorMode(0.2f, 1);
         }
-        else if (Input.GetKey(KeyCode.F))
+        else if (Input.GetKeyDown(KeyCode.F))
         {
-            // Instantiate the changeColorEffect prefab at the player's position
-            GameObject colorEffect = Instantiate(changeColorEffect, transform.position, Quaternion.identity);
-            Destroy(colorEffect, 0.2f);
+            ChangeColorMode(0.2f, 2);
+        }*/
 
-            StartCoroutine(ChangeColorMode(0.2f, 2));
-        }
-
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject colorBullet = Instantiate(
                 colorBullets[currentColorMode], 
@@ -119,7 +114,21 @@ public class SpaceshipController : MonoBehaviour
         }
     }
 
-    IEnumerator ChangeColorMode(float delay, int mode)
+    void ChangeColorMode(float delay, int mode)
+    {
+        // Instantiate the changeColorEffect prefab at the player's position
+        GameObject colorEffect = Instantiate(
+            changeColorEffect,
+            transform.position,
+            Quaternion.identity,
+            transform
+        );
+        Destroy(colorEffect, 0.2f);
+
+        StartCoroutine(ChangeSprite(delay, mode));
+    }
+
+    IEnumerator ChangeSprite(float delay, int mode)
     {
         yield return new WaitForSeconds(delay);
         currentColorMode = mode;
