@@ -350,14 +350,16 @@ MonoBehaviour:
   - {fileID: 2060761104}
   colorModes:
   - {fileID: 21300000, guid: 4dba3b4ece0220f45be6d94daab3ec8e, type: 3}
-  - {fileID: 21300000, guid: eae028bb81d76f8418adf241f7c71b24, type: 3}
+  - {fileID: 21300000, guid: 42162fd902736e04db79996c4a8a92b0, type: 3}
   - {fileID: 21300000, guid: cd11bf308cdcecd429b8bd7581bab581, type: 3}
   colorBullets:
   - {fileID: 6628727092727254540, guid: c6fb69c1759d15b449106497102cbb1f, type: 3}
   - {fileID: 4363948218466955633, guid: d10ff711c4e25a14faf680a21a4bcef2, type: 3}
   - {fileID: 2572483529904719632, guid: b7deba8fcc485c24ea00fded6b2c8700, type: 3}
-  changeColorEffect: {fileID: 3954605369685049540, guid: 5439ebf7b7e50fc4f818cfd22d3dc4ea,
-    type: 3}
+  changeColorEffects:
+  - {fileID: 3954605369685049540, guid: 4536b01d70066404fa668c42574a1222, type: 3}
+  - {fileID: 3954605369685049540, guid: 5439ebf7b7e50fc4f818cfd22d3dc4ea, type: 3}
+  - {fileID: 3954605369685049540, guid: 338675d97ce6fcb41b71ac7eca56a2f5, type: 3}
   accelerationForce: 10
   turningTorque: 0.1
   dragCoefficient: 10

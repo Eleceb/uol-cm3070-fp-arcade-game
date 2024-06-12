@@ -6,7 +6,7 @@ public class SpaceshipController : MonoBehaviour
     [SerializeField] Transform[] thursters;
     [SerializeField] Sprite[] colorModes;
     [SerializeField] GameObject[] colorBullets;
-    [SerializeField] GameObject changeColorEffect;
+    [SerializeField] GameObject[] changeColorEffects;
     [SerializeField] float accelerationForce, turningTorque, dragCoefficient;
 
     private float currentRotationAngle;
@@ -117,13 +117,13 @@ public class SpaceshipController : MonoBehaviour
     void ChangeColorMode(float delay, int mode)
     {
         // Instantiate the changeColorEffect prefab at the player's position
-        GameObject colorEffect = Instantiate(
-            changeColorEffect,
+        GameObject changeColorEffect = Instantiate(
+            changeColorEffects[mode],
             transform.position,
             Quaternion.identity,
             transform
         );
-        Destroy(colorEffect, 0.2f);
+        Destroy(changeColorEffect, 0.2f);
 
         StartCoroutine(ChangeSprite(delay, mode));
     }
