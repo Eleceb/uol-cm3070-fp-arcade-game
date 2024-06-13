@@ -3,11 +3,17 @@ using UnityEngine;
 
 public class SpaceshipController : MonoBehaviour
 {
+    [System.Serializable]
+    public class ThrusterInformation
+    {
+        public Vector3[] positions, rotations;
+    }
+
     [SerializeField] Transform[] thursters;
+    [SerializeField] ThrusterInformation[] thrusterInformation;
     [SerializeField] Sprite[] colorModes;
-    [SerializeField] GameObject[] colorBullets;
-    [SerializeField] GameObject[] changeColorEffects;
-    [SerializeField] float accelerationForce, turningTorque, dragCoefficient;
+    [SerializeField] GameObject[] colorBullets, changeColorEffects;
+    [SerializeField] float accelerationForce, turningTorque, dragCoefficient, bulletOffsetMultiplier;
 
     private float currentRotationAngle;
     private int currentColorMode;
@@ -45,9 +51,11 @@ public class SpaceshipController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Vector2 bulletOffset = new Vector2(-Mathf.Sin(currentRotationAngle), Mathf.Cos(currentRotationAngle)) * bulletOffsetMultiplier;
+
             GameObject colorBullet = Instantiate(
-                colorBullets[currentColorMode], 
-                transform.position, 
+                colorBullets[currentColorMode],
+                transform.position + (Vector3)bulletOffset,
                 Quaternion.Euler(0, 0, transform.eulerAngles.z)
             );
 
@@ -81,8 +89,26 @@ public class SpaceshipController : MonoBehaviour
                 -accelerationForce * Mathf.Cos(currentRotationAngle)
             ));
 
-            thursters[3].gameObject.SetActive(true);
-            thursters[4].gameObject.SetActive(true);
+            if (((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && 
+                    (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))) ||
+                !(Input.GetKey(KeyCode.LeftArrow) || 
+                    Input.GetKey(KeyCode.A) || 
+                    Input.GetKey(KeyCode.RightArrow) || 
+                    Input.GetKey(KeyCode.D)))
+            {
+                thursters[3].gameObject.SetActive(true);
+                thursters[4].gameObject.SetActive(true);
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+            {
+                thursters[3].gameObject.SetActive(true);
+                thursters[4].gameObject.SetActive(false);
+            }
+            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            {
+                thursters[3].gameObject.SetActive(false);
+                thursters[4].gameObject.SetActive(true);
+            }
         }
         else
         {
@@ -95,22 +121,28 @@ public class SpaceshipController : MonoBehaviour
         {
             rb2d.AddTorque(turningTorque);
 
-            thursters[1].gameObject.SetActive(true);
+            if (!Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.S))
+                thursters[2].gameObject.SetActive(true);
+            else
+                thursters[2].gameObject.SetActive(false);
         }
         else
         {
-            thursters[1].gameObject.SetActive(false);
+            thursters[2].gameObject.SetActive(false);
         }
 
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             rb2d.AddTorque(-turningTorque);
 
-            thursters[2].gameObject.SetActive(true);
+            if (!Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.S))
+                thursters[1].gameObject.SetActive(true);
+            else
+                thursters[1].gameObject.SetActive(false);
         }
         else
         {
-            thursters[2].gameObject.SetActive(false);
+            thursters[1].gameObject.SetActive(false);
         }
     }
 
@@ -133,5 +165,11 @@ public class SpaceshipController : MonoBehaviour
         yield return new WaitForSeconds(delay);
         currentColorMode = mode;
         sr.sprite = colorModes[currentColorMode];
+
+        for (int i = 0; i < thursters.Length; i++)
+        {
+            thursters[i].localPosition = thrusterInformation[currentColorMode].positions[i];
+            thursters[i].localRotation = Quaternion.Euler(thrusterInformation[currentColorMode].rotations[i]);
+        }
     }
 }
