@@ -4,7 +4,7 @@ using UnityEngine;
 public class SpaceshipController : MonoBehaviour
 {
     [System.Serializable]
-    public class ThrusterInformation
+    private class ThrusterInformation
     {
         public Vector3[] positions, rotations;
     }
@@ -38,16 +38,8 @@ public class SpaceshipController : MonoBehaviour
                 currentColorMode = 0;
             }
 
-            ChangeColorMode(0.2f, currentColorMode);
+            ChangeColorMode(0.2f);
         }
-        /*else if (Input.GetKeyDown(KeyCode.E))
-        {
-            ChangeColorMode(0.2f, 1);
-        }
-        else if (Input.GetKeyDown(KeyCode.F))
-        {
-            ChangeColorMode(0.2f, 2);
-        }*/
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -59,8 +51,7 @@ public class SpaceshipController : MonoBehaviour
                 Quaternion.Euler(0, 0, transform.eulerAngles.z)
             );
 
-            BulletManager bulletManager = colorBullet.GetComponent<BulletManager>();
-            bulletManager.SetBulletShootingAngle(currentRotationAngle);
+            colorBullet.GetComponent<BulletManager>().SetBulletShootingAngle(currentRotationAngle);
         }
     }
     
@@ -146,24 +137,22 @@ public class SpaceshipController : MonoBehaviour
         }
     }
 
-    void ChangeColorMode(float delay, int mode)
+    void ChangeColorMode(float delay)
     {
         // Instantiate the changeColorEffect prefab at the player's position
         GameObject changeColorEffect = Instantiate(
-            changeColorEffects[mode],
+            changeColorEffects[currentColorMode],
             transform.position,
             Quaternion.identity,
             transform
         );
         Destroy(changeColorEffect, 0.2f);
 
-        StartCoroutine(ChangeSprite(delay, mode));
+        Invoke("ChangeSprite", delay);
     }
 
-    IEnumerator ChangeSprite(float delay, int mode)
+    void ChangeSprite()
     {
-        yield return new WaitForSeconds(delay);
-        currentColorMode = mode;
         sr.sprite = colorModes[currentColorMode];
 
         for (int i = 0; i < thursters.Length; i++)

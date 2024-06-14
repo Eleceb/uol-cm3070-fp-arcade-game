@@ -889,11 +889,11 @@ MonoBehaviour:
     - {x: -0.239, y: 0.101, z: 0}
     - {x: 0.239, y: 0.101, z: 0}
     rotations:
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 15.039, w: 0}
-    - {x: 0, y: 0, z: -15.039, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 15.039}
+    - {x: 0, y: 0, z: -15.039}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
   - positions:
     - {x: 0, y: -0.568, z: 0}
     - {x: -0.335, y: -0.116, z: 0}
@@ -901,11 +901,11 @@ MonoBehaviour:
     - {x: -0.207, y: 0.186, z: 0}
     - {x: 0.207, y: 0.186, z: 0}
     rotations:
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0.941, w: 0}
-    - {x: 0, y: 0, z: -0.941, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0.941}
+    - {x: 0, y: 0, z: -0.941}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
   - positions:
     - {x: 0, y: -0.568, z: 0}
     - {x: -0.319, y: -0.191, z: 0}
@@ -913,11 +913,11 @@ MonoBehaviour:
     - {x: -0.264, y: 0.101, z: 0}
     - {x: 0.264, y: 0.101, z: 0}
     rotations:
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 22.871, w: 0}
-    - {x: 0, y: 0, z: -22.871, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 22.871}
+    - {x: 0, y: 0, z: -22.871}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
   colorModes:
   - {fileID: 21300000, guid: 4dba3b4ece0220f45be6d94daab3ec8e, type: 3}
   - {fileID: 21300000, guid: 42162fd902736e04db79996c4a8a92b0, type: 3}
@@ -2111,6 +2111,16 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.m_Scale.z
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579768676443945081, guid: 37336802e0fc49c4bbfa9c4a509dea08,
+        type: 3}
+      propertyPath: RotationBySpeedModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579768676443945081, guid: 37336802e0fc49c4bbfa9c4a509dea08,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4579768676443945082, guid: 37336802e0fc49c4bbfa9c4a509dea08,
         type: 3}
