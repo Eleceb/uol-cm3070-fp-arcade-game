@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SpaceshipController : MonoBehaviour
 {
+    public int currentColorMode;
+
     [System.Serializable]
     private class ThrusterInformation
     {
@@ -16,7 +18,6 @@ public class SpaceshipController : MonoBehaviour
     [SerializeField] float accelerationForce, turningTorque, dragCoefficient, bulletOffsetMultiplier;
 
     private float currentRotationAngle;
-    private int currentColorMode;
     private SpriteRenderer sr;
     private Rigidbody2D rb2d;
 
@@ -51,6 +52,7 @@ public class SpaceshipController : MonoBehaviour
                 Quaternion.Euler(0, 0, transform.eulerAngles.z)
             );
 
+            colorBullet.GetComponent<BulletManager>().bulletColorMode = currentColorMode;
             colorBullet.GetComponent<BulletManager>().SetBulletShootingAngle(currentRotationAngle);
         }
     }

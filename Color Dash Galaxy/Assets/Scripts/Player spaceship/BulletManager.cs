@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
+    public int bulletColorMode;
+
     [SerializeField] float bulletSpeed;
 
     private float bulletShootingAngle;
