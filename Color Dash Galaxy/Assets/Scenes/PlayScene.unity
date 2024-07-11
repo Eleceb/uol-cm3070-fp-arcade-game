@@ -2499,11 +2499,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpaceJunkObject
       objectReference: {fileID: 0}
-    - target: {fileID: 7101630805131872220, guid: 79ce21d6630074644b065bd3732a85bb,
-        type: 3}
-      propertyPath: speed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7101630805131872221, guid: 79ce21d6630074644b065bd3732a85bb,
         type: 3}
       propertyPath: m_RootOrder
