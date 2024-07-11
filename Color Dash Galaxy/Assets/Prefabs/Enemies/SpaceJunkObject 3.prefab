@@ -98,6 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   appearSide: 0
+  spacejunkExplosion: {fileID: 8858619576811986319, guid: b47127f2f6b731448a47908d1c941c79,
+    type: 3}
 --- !u!50 &7101630805131872222
 Rigidbody2D:
   serializedVersion: 4

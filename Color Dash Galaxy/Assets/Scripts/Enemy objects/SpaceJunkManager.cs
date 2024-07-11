@@ -14,7 +14,7 @@ public class SpaceJunkManager : MonoBehaviour
 
     Camera mainCamera;
 
-    Coroutine flyingCoroutineRef;
+    [SerializeField] GameObject spacejunkExplosion;
 
     // Start is called before the first frame update
     void Start()
@@ -96,7 +96,28 @@ public class SpaceJunkManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "BoundaryDestroyer" || collision.tag == "Bullet" && collision.GetComponent<BulletManager>().bulletColorMode == junkColor) {
+        CheckCollision(collision);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        CheckCollision(collision);
+    }
+
+    private void CheckCollision(Collider2D collision)
+    {
+        if (collision.tag == "BoundaryDestroyer" || collision.tag == "Bullet" && collision.GetComponent<BulletManager>().bulletColorMode == junkColor)
+        {
+            Destroy(collision.gameObject);
+
+            GameObject explosionEffect = Instantiate(
+                spacejunkExplosion,
+                transform.position,
+                Quaternion.identity
+            );
+
+            Destroy(explosionEffect, 1f);
+
             Destroy(gameObject);
         }
         else if (collision.tag == "Player" && collision.GetComponent<SpaceshipController>().currentColorMode != junkColor)
