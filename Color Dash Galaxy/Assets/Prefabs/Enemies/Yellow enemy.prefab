@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1195211069737510205}
   - component: {fileID: 5463098929707553191}
   - component: {fileID: 526741292316715507}
+  - component: {fileID: 1572440338}
   m_Layer: 0
   m_Name: Yellow enemy
   m_TagString: Untagged
@@ -69,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1105421197
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9ba53741a9d866a4e9987513ff0e7314, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -141,3 +142,30 @@ PolygonCollider2D:
       - {x: -0.48214865, y: -0.41014868}
       - {x: 0.4929042, y: -0.4138838}
       - {x: 0.4941206, y: -0.27665138}
+--- !u!114 &1572440338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8095368212471330168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa64ce7242769444ab95f4a76051f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialSpeed: 3
+  rotationSpeed: 100
+  appearSide: 1
+  thisColor: 2
+  spacejunkSpreadAngleOneSide: 45
+  shootingInterval: 2
+  spaceJunks:
+  - {fileID: 7101630805131872219, guid: 550ff29d86687f7449f41911a956632b, type: 3}
+  - {fileID: 7101630805131872219, guid: de73b90c452bf9749bdd5fd74b863e63, type: 3}
+  - {fileID: 7101630805131872219, guid: e971925d7b7946342803a9027e593563, type: 3}
+  - {fileID: 7101630805131872219, guid: 6c202cdb11d3f8c40956fef1168cfea7, type: 3}
+  - {fileID: 7101630805131872219, guid: 47621acb604dbb8459efe548be4e4d4c, type: 3}
+  - {fileID: 7101630805131872219, guid: 79ce21d6630074644b065bd3732a85bb, type: 3}
+  spaceshipExplosion: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
+    type: 3}

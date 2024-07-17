@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class EnemySpaceshipManager : MonoBehaviour
 {
-    public float initialSpeed;
+    public float initialSpeed, rotationSpeed;
     public int appearSide; // 0: Right, 1: Down; 2: Left; 3: Up.
     public int thisColor;
+
+    Transform playerTransform;
 
     float flyingDirection, stoppingCoordinate;
     float speed, stoppingTimeElapsed, stoppingLerpDuration = 0.5f;
@@ -15,16 +17,24 @@ public class EnemySpaceshipManager : MonoBehaviour
 
     Camera mainCamera;
 
-    [SerializeField] GameObject spacejunkExplosion;
+    [SerializeField] float spacejunkSpreadAngleOneSide, shootingInterval;
+    [SerializeField] GameObject[] spaceJunks;
+    [SerializeField] GameObject spaceshipExplosion;
+
+    GameObject spaceJunkShotOut;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
         CalculateStoppingPoint();
 
         PickFlyingDirection();
 
         speed = initialSpeed;
+
+        StartCoroutine(BehaviorCoroutine());
     }
 
     private void CalculateStoppingPoint()
@@ -81,45 +91,67 @@ public class EnemySpaceshipManager : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, flyingDirection * Mathf.Rad2Deg + 270f);
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator BehaviorCoroutine()
     {
-        switch (appearSide)
-        {
-            case 0:
-                if (transform.position.x < stoppingCoordinate)
-                {
-                    speed = Mathf.Lerp(initialSpeed, 0f, stoppingTimeElapsed / stoppingLerpDuration);
-                    stoppingTimeElapsed += Time.deltaTime;
-                }
-                break;
-            case 1:
-                if (transform.position.y < stoppingCoordinate)
-                    KeepFlying();
-                break;
-            case 2:
-                if (transform.position.x < stoppingCoordinate)
-                    KeepFlying();
-                break;
-            case 3:
-                if (transform.position.y > stoppingCoordinate)
-                    KeepFlying();
-                break;
+        // Travel and stop
+        while (speed > 0) {
+            switch (appearSide)
+            {
+                case 0:
+                    if (transform.position.x < stoppingCoordinate)
+                        DecelerateAndStop();
+                    break;
+                case 1:
+                    if (transform.position.y > stoppingCoordinate)
+                        DecelerateAndStop();
+                    break;
+                case 2:
+                    if (transform.position.x > stoppingCoordinate)
+                        DecelerateAndStop();
+                    break;
+                case 3:
+                    if (transform.position.y < stoppingCoordinate)
+                        DecelerateAndStop();
+                    break;
+            }
+
+            // Keep flying
+            transform.position = new Vector2(
+                transform.position.x + speed * Mathf.Cos(flyingDirection) * Time.deltaTime,
+                transform.position.y + speed * Mathf.Sin(flyingDirection) * Time.deltaTime
+            );
+
+            // Wait for next frame
+            yield return null;
         }
 
-        Debug.Log(speed);
+        // Rotate towards player
+        if (playerTransform) // Avoid error when the player is already destroyed
+        {
+            float targetAngle = Mathf.Atan2(playerTransform.position.y - transform.position.y, playerTransform.position.x - transform.position.x) * Mathf.Rad2Deg + 270f;
+            Quaternion targetQuaternion = Quaternion.Euler(new Vector3(0, 0, targetAngle));
+            while (transform.rotation.z != targetQuaternion.z)
+            {
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetQuaternion, rotationSpeed * Time.deltaTime);
+                yield return null;
+            }
+        }
 
-        transform.position = new Vector2(
-            transform.position.x + speed * Mathf.Cos(flyingDirection) * Time.deltaTime,
-            transform.position.y + speed * Mathf.Sin(flyingDirection) * Time.deltaTime
-        );
+        // Keep shooting spacejunks
+        while (true)
+        {
+            spaceJunkShotOut = Instantiate(spaceJunks[Random.Range(0, spaceJunks.Length)], transform.position, transform.rotation);
+            spaceJunkShotOut.GetComponent<SpaceJunkManager>().isFromShip = true;
+            spaceJunkShotOut.GetComponent<SpaceJunkManager>().parentShipShootAngle = (transform.eulerAngles.z - 270f + Random.Range(-spacejunkSpreadAngleOneSide, spacejunkSpreadAngleOneSide)) * Mathf.Deg2Rad;
+            spaceJunkShotOut.GetComponent<SpaceJunkManager>().junkColor = thisColor;
+            yield return new WaitForSeconds(shootingInterval);
+        }
     }
 
-    private void KeepFlying() {
-        transform.position = new Vector2(
-            transform.position.x + speed * Mathf.Cos(flyingDirection) * Time.deltaTime,
-            transform.position.y + speed * Mathf.Sin(flyingDirection) * Time.deltaTime
-        );
+    private void DecelerateAndStop()
+    {
+        speed = Mathf.Lerp(initialSpeed, 0f, stoppingTimeElapsed / stoppingLerpDuration);
+        stoppingTimeElapsed += Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -139,7 +171,7 @@ public class EnemySpaceshipManager : MonoBehaviour
             Destroy(collision.gameObject);
 
             GameObject explosionEffect = Instantiate(
-                spacejunkExplosion,
+                spaceshipExplosion,
                 transform.position,
                 Quaternion.identity
             );
@@ -150,6 +182,12 @@ public class EnemySpaceshipManager : MonoBehaviour
         }
         else if (collision.tag == "Player" && collision.GetComponent<SpaceshipController>().currentColorMode != thisColor)
         {
+            GameObject explosionEffect = Instantiate(
+                spaceshipExplosion,
+                collision.transform.position,
+                Quaternion.identity
+            );
+            Destroy(explosionEffect, 1f);
             Destroy(collision.gameObject);
         }
     }

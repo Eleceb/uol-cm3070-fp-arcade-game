@@ -1,20 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpaceJunkManager : MonoBehaviour
 {
-    public float speed;
+    public float speed, parentShipShootAngle;
     public int appearSide; // 0: Right, 1: Down; 2: Left; 3: Up.
+    public bool isFromShip;
+    public int junkColor;
 
     float flyingDirection;
-    int junkColor;
 
     SpriteRenderer spriteRenderer;
 
     Camera mainCamera;
 
-    [SerializeField] GameObject spacejunkExplosion;
+    [SerializeField] GameObject spacejunkExplosion, playerExplosion;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +29,11 @@ public class SpaceJunkManager : MonoBehaviour
 
     private void PickColor()
     {
-        // Randomly pick a color for the spacejunk
-        junkColor = Random.Range(0, 3);
+        if (!isFromShip)
+        {
+            // Randomly pick a color for the spacejunk
+            junkColor = Random.Range(0, 3);
+        }
         switch (junkColor)
         {
             case 0:
@@ -48,41 +50,48 @@ public class SpaceJunkManager : MonoBehaviour
 
     private void PickFlyingDirection()
     {
-        if (mainCamera == null)
-            mainCamera = Camera.main;
-        
-        Vector3[] corners = new Vector3[4];
-
-        corners[0] = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, mainCamera.nearClipPlane)); // Bottom-left
-        corners[1] = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, mainCamera.nearClipPlane)); // Bottom-right
-        corners[2] = mainCamera.ViewportToWorldPoint(new Vector3(0, 1, mainCamera.nearClipPlane)); // Top-left
-        corners[3] = mainCamera.ViewportToWorldPoint(new Vector3(1, 1, mainCamera.nearClipPlane)); // Top-right
-
-        switch (appearSide)
+        if (isFromShip)
         {
-            case 0: // Appear on right side
-                flyingDirection = Random.Range(0, 0.999f) < (corners[2].y - transform.position.y) / (corners[2].y - corners[0].y) ? 
-                    Random.Range(Mathf.Atan2(corners[2].y - transform.position.y, corners[2].x - transform.position.x), Mathf.PI) : 
-                    Random.Range(-Mathf.PI, Mathf.Atan2(corners[0].y - transform.position.y, corners[0].x - transform.position.x));
-                break;
-            case 1: // Appear on down side
-                flyingDirection = Random.Range(
-                    Mathf.Atan2(corners[3].y - transform.position.y, corners[3].x - transform.position.x), 
-                    Mathf.Atan2(corners[2].y - transform.position.y, corners[2].x - transform.position.x)
-                );
-                break;
-            case 2: // Appear on left side
-                flyingDirection = Random.Range(
-                    Mathf.Atan2(corners[1].y - transform.position.y, corners[1].x - transform.position.x), 
-                    Mathf.Atan2(corners[3].y - transform.position.y, corners[3].x - transform.position.x)
-                );
-                break;
-            case 3: // Appear on up side
-                flyingDirection = Random.Range(
-                    Mathf.Atan2(corners[0].y - transform.position.y, corners[0].x - transform.position.x), 
-                    Mathf.Atan2(corners[1].y - transform.position.y, corners[1].x - transform.position.x)
-                );
-                break;
+            flyingDirection = parentShipShootAngle;
+        }
+        else
+        {
+            if (mainCamera == null)
+                mainCamera = Camera.main;
+
+            Vector3[] corners = new Vector3[4];
+
+            corners[0] = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, mainCamera.nearClipPlane)); // Bottom-left
+            corners[1] = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, mainCamera.nearClipPlane)); // Bottom-right
+            corners[2] = mainCamera.ViewportToWorldPoint(new Vector3(0, 1, mainCamera.nearClipPlane)); // Top-left
+            corners[3] = mainCamera.ViewportToWorldPoint(new Vector3(1, 1, mainCamera.nearClipPlane)); // Top-right
+
+            switch (appearSide)
+            {
+                case 0: // Appear on right side
+                    flyingDirection = Random.Range(0, 0.999f) < (corners[2].y - transform.position.y) / (corners[2].y - corners[0].y) ?
+                        Random.Range(Mathf.Atan2(corners[2].y - transform.position.y, corners[2].x - transform.position.x), Mathf.PI) :
+                        Random.Range(-Mathf.PI, Mathf.Atan2(corners[0].y - transform.position.y, corners[0].x - transform.position.x));
+                    break;
+                case 1: // Appear on down side
+                    flyingDirection = Random.Range(
+                        Mathf.Atan2(corners[3].y - transform.position.y, corners[3].x - transform.position.x),
+                        Mathf.Atan2(corners[2].y - transform.position.y, corners[2].x - transform.position.x)
+                    );
+                    break;
+                case 2: // Appear on left side
+                    flyingDirection = Random.Range(
+                        Mathf.Atan2(corners[1].y - transform.position.y, corners[1].x - transform.position.x),
+                        Mathf.Atan2(corners[3].y - transform.position.y, corners[3].x - transform.position.x)
+                    );
+                    break;
+                case 3: // Appear on up side
+                    flyingDirection = Random.Range(
+                        Mathf.Atan2(corners[0].y - transform.position.y, corners[0].x - transform.position.x),
+                        Mathf.Atan2(corners[1].y - transform.position.y, corners[1].x - transform.position.x)
+                    );
+                    break;
+            }
         }
     }
 
@@ -106,7 +115,7 @@ public class SpaceJunkManager : MonoBehaviour
 
     private void CheckCollision(Collider2D collision)
     {
-        if (collision.tag == "BoundaryDestroyer" || collision.tag == "Bullet" && collision.GetComponent<BulletManager>().bulletColorMode == junkColor)
+        if (collision.tag == "Bullet" && collision.GetComponent<BulletManager>().bulletColorMode == junkColor)
         {
             Destroy(collision.gameObject);
 
@@ -122,7 +131,17 @@ public class SpaceJunkManager : MonoBehaviour
         }
         else if (collision.tag == "Player" && collision.GetComponent<SpaceshipController>().currentColorMode != junkColor)
         {
+            GameObject explosionEffect = Instantiate(
+                playerExplosion,
+                collision.transform.position,
+                Quaternion.identity
+            );
+            Destroy(explosionEffect, 1f);
             Destroy(collision.gameObject);
+        }
+        else if (collision.tag == "BoundaryDestroyer")
+        {
+            Destroy(gameObject);
         }
     }
 }
