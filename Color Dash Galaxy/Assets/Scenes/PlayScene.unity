@@ -488,7 +488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 626093438}
   - component: {fileID: 626093439}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1036,7 +1036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1236139551}
   - component: {fileID: 1236139552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1340,7 +1340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1291610757}
   - component: {fileID: 1291610758}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2077,7 +2077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1579739726}
   - component: {fileID: 1579739727}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2167,6 +2167,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f56e52f682e86745be9c8779599757e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1926574094}
+  spacejunks:
+  - {fileID: 7101630805131872219, guid: 550ff29d86687f7449f41911a956632b, type: 3}
+  - {fileID: 7101630805131872219, guid: de73b90c452bf9749bdd5fd74b863e63, type: 3}
+  - {fileID: 7101630805131872219, guid: e971925d7b7946342803a9027e593563, type: 3}
+  - {fileID: 7101630805131872219, guid: 6c202cdb11d3f8c40956fef1168cfea7, type: 3}
+  - {fileID: 7101630805131872219, guid: 47621acb604dbb8459efe548be4e4d4c, type: 3}
+  - {fileID: 7101630805131872219, guid: 79ce21d6630074644b065bd3732a85bb, type: 3}
+  enemySpaceships:
+  - {fileID: 6869805776380894066, guid: d92a1a0837bcc334588ec3806df55ea7, type: 3}
+  - {fileID: 1541813836526721602, guid: f74c566b15e0c004d84546f3fa93f739, type: 3}
+  - {fileID: 8095368212471330168, guid: 775297fbe52cd974b8dbafa92e0f5ee8, type: 3}
+  enemiesAppearLinesOnESWNsides: {x: 10.6, y: -6.7, z: -10.6, w: 6.7}
+  randomizedEnemiesPositionsLeftRightUpDown: {x: 8.85, y: -4.95, z: -8.85, w: 4.95}
+  gameDifficulty: 0
 --- !u!1 &1742698992
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,6 +2808,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yellow enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8095368212471330168, guid: 775297fbe52cd974b8dbafa92e0f5ee8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8913585037925498810, guid: 775297fbe52cd974b8dbafa92e0f5ee8,
         type: 3}
       propertyPath: m_RootOrder
@@ -2917,6 +2937,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6869805776380894066, guid: d92a1a0837bcc334588ec3806df55ea7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d92a1a0837bcc334588ec3806df55ea7, type: 3}
 --- !u!1001 &6261240657041991512
@@ -2930,6 +2955,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Blue enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541813836526721602, guid: f74c566b15e0c004d84546f3fa93f739,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1541813836526721604, guid: f74c566b15e0c004d84546f3fa93f739,
         type: 3}
@@ -3000,6 +3030,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpaceJunkObject
       objectReference: {fileID: 0}
+    - target: {fileID: 7101630805131872219, guid: 79ce21d6630074644b065bd3732a85bb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7101630805131872220, guid: 79ce21d6630074644b065bd3732a85bb,
         type: 3}
       propertyPath: appearSide
@@ -3013,12 +3048,12 @@ PrefabInstance:
     - target: {fileID: 7101630805131872221, guid: 79ce21d6630074644b065bd3732a85bb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.2
+      value: -10.42
       objectReference: {fileID: 0}
     - target: {fileID: 7101630805131872221, guid: 79ce21d6630074644b065bd3732a85bb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7101630805131872221, guid: 79ce21d6630074644b065bd3732a85bb,
         type: 3}

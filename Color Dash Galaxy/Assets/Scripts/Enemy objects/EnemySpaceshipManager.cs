@@ -4,34 +4,40 @@ using UnityEngine;
 
 public class EnemySpaceshipManager : MonoBehaviour
 {
-    public float initialSpeed, rotationSpeed;
+    public float rotationSpeed;
     public int appearSide; // 0: Right, 1: Down; 2: Left; 3: Up.
     public int thisColor;
 
     Transform playerTransform;
 
-    float flyingDirection, stoppingCoordinate;
+    float initialSpeed, flyingDirection, stoppingCoordinate;
     float speed, stoppingTimeElapsed, stoppingLerpDuration = 0.5f;
+    float shootingInterval;
 
     float[] stoppingPointScreenPortionMinMax = new float[] {0.1f, 0.9f};
 
     Camera mainCamera;
 
-    [SerializeField] float spacejunkSpreadAngleOneSide, shootingInterval;
+    [SerializeField] float spacejunkSpreadAngleOneSide;
     [SerializeField] GameObject[] spaceJunks;
     [SerializeField] GameObject spaceshipExplosion;
 
     GameObject spaceJunkShotOut;
 
+    LevelsManager levelManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        levelManager = FindObjectOfType<LevelsManager>();
+
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         CalculateStoppingPoint();
 
         PickFlyingDirection();
 
+        initialSpeed = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minJunkSpd"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxJunkSpd"]);
         speed = initialSpeed;
 
         StartCoroutine(BehaviorCoroutine());
@@ -128,11 +134,14 @@ public class EnemySpaceshipManager : MonoBehaviour
         // Rotate towards player
         if (playerTransform) // Avoid error when the player is already destroyed
         {
+            float turningTime = 0; // For setting the max time limit allow the rotation to happen
+
             float targetAngle = Mathf.Atan2(playerTransform.position.y - transform.position.y, playerTransform.position.x - transform.position.x) * Mathf.Rad2Deg + 270f;
             Quaternion targetQuaternion = Quaternion.Euler(new Vector3(0, 0, targetAngle));
-            while (transform.rotation.z != targetQuaternion.z)
+            while (transform.rotation.z != targetQuaternion.z && turningTime <= 2.5f)
             {
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetQuaternion, rotationSpeed * Time.deltaTime);
+                turningTime += Time.deltaTime;
                 yield return null;
             }
         }
@@ -140,11 +149,13 @@ public class EnemySpaceshipManager : MonoBehaviour
         // Keep shooting spacejunks
         while (true)
         {
+            shootingInterval = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minEnemyShootingPeriod"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxEnemyShootingPeriod"]);
+            yield return new WaitForSeconds(shootingInterval);
+
             spaceJunkShotOut = Instantiate(spaceJunks[Random.Range(0, spaceJunks.Length)], transform.position, transform.rotation);
             spaceJunkShotOut.GetComponent<SpaceJunkManager>().isFromShip = true;
             spaceJunkShotOut.GetComponent<SpaceJunkManager>().parentShipShootAngle = (transform.eulerAngles.z - 270f + Random.Range(-spacejunkSpreadAngleOneSide, spacejunkSpreadAngleOneSide)) * Mathf.Deg2Rad;
             spaceJunkShotOut.GetComponent<SpaceJunkManager>().junkColor = thisColor;
-            yield return new WaitForSeconds(shootingInterval);
         }
     }
 

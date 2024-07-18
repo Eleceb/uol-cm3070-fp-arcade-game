@@ -2,12 +2,12 @@
 
 public class SpaceJunkManager : MonoBehaviour
 {
-    public float speed, parentShipShootAngle;
+    public float parentShipShootAngle;
     public int appearSide; // 0: Right, 1: Down; 2: Left; 3: Up.
     public bool isFromShip;
     public int junkColor;
 
-    float flyingDirection;
+    float speed, flyingDirection;
 
     SpriteRenderer spriteRenderer;
 
@@ -15,9 +15,15 @@ public class SpaceJunkManager : MonoBehaviour
 
     [SerializeField] GameObject spacejunkExplosion, playerExplosion;
 
+    LevelsManager levelManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        levelManager = FindObjectOfType<LevelsManager>();
+
+        speed = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minEnemyShipSpd"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxEnemyShipSpd"]);
+
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));

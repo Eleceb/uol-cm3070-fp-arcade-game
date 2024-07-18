@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7101630805131872220}
   - component: {fileID: 7101630805131872222}
   - component: {fileID: 1988593047581044487}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpaceJunkObject 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,8 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 144e473690854b5488e8b3f1bf14fb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  parentShipShootAngle: 0
   appearSide: 0
+  isFromShip: 0
+  junkColor: 0
   spacejunkExplosion: {fileID: 8858619576811986319, guid: b47127f2f6b731448a47908d1c941c79,
     type: 3}
   playerExplosion: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
