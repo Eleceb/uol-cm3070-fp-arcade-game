@@ -19,7 +19,7 @@ public class EnemySpaceshipManager : MonoBehaviour
     Camera mainCamera;
 
     [SerializeField] float spacejunkSpreadAngleOneSide;
-    [SerializeField] GameObject[] spaceJunks;
+    [SerializeField] GameObject spaceJunk;
     [SerializeField] GameObject spaceshipExplosion;
 
     GameObject spaceJunkShotOut;
@@ -37,7 +37,7 @@ public class EnemySpaceshipManager : MonoBehaviour
 
         PickFlyingDirection();
 
-        initialSpeed = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minJunkSpd"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxJunkSpd"]);
+        initialSpeed = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minEnemyShipSpd"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxEnemyShipSpd"]);
         speed = initialSpeed;
 
         StartCoroutine(BehaviorCoroutine());
@@ -152,7 +152,7 @@ public class EnemySpaceshipManager : MonoBehaviour
             shootingInterval = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minEnemyShootingPeriod"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxEnemyShootingPeriod"]);
             yield return new WaitForSeconds(shootingInterval);
 
-            spaceJunkShotOut = Instantiate(spaceJunks[Random.Range(0, spaceJunks.Length)], transform.position, transform.rotation);
+            spaceJunkShotOut = Instantiate(spaceJunk, transform.position, transform.rotation);
             spaceJunkShotOut.GetComponent<SpaceJunkManager>().isFromShip = true;
             spaceJunkShotOut.GetComponent<SpaceJunkManager>().parentShipShootAngle = (transform.eulerAngles.z - 270f + Random.Range(-spacejunkSpreadAngleOneSide, spacejunkSpreadAngleOneSide)) * Mathf.Deg2Rad;
             spaceJunkShotOut.GetComponent<SpaceJunkManager>().junkColor = thisColor;

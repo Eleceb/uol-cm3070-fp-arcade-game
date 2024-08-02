@@ -154,18 +154,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa64ce7242769444ab95f4a76051f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 3
   rotationSpeed: 100
   appearSide: 1
   thisColor: 2
   spacejunkSpreadAngleOneSide: 45
-  shootingInterval: 2
-  spaceJunks:
-  - {fileID: 7101630805131872219, guid: 550ff29d86687f7449f41911a956632b, type: 3}
-  - {fileID: 7101630805131872219, guid: de73b90c452bf9749bdd5fd74b863e63, type: 3}
-  - {fileID: 7101630805131872219, guid: e971925d7b7946342803a9027e593563, type: 3}
-  - {fileID: 7101630805131872219, guid: 6c202cdb11d3f8c40956fef1168cfea7, type: 3}
-  - {fileID: 7101630805131872219, guid: 47621acb604dbb8459efe548be4e4d4c, type: 3}
-  - {fileID: 7101630805131872219, guid: 79ce21d6630074644b065bd3732a85bb, type: 3}
+  spaceJunk: {fileID: 7101630805131872219, guid: 79ce21d6630074644b065bd3732a85bb,
+    type: 3}
   spaceshipExplosion: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}

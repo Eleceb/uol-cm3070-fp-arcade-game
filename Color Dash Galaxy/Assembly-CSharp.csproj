@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Arts\Pixel Spaceships for SHMUP\Demo\Ship.cs" />
+    <Compile Include="Assets\Scripts\Enemy objects\BossManager.cs" />
     <Compile Include="Assets\Scripts\Enemy objects\EnemySpaceshipManager.cs" />
     <Compile Include="Assets\Scripts\Enemy objects\SpaceJunkManager.cs" />
     <Compile Include="Assets\Scripts\LevelsManager.cs" />

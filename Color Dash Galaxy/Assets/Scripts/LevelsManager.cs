@@ -5,13 +5,15 @@ using UnityEngine;
 public class LevelsManager : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    [SerializeField] GameObject[] spacejunks;
+    [SerializeField] GameObject spacejunk;
     [SerializeField] GameObject[] enemySpaceships;
+    [SerializeField] GameObject boss;
 
     [SerializeField] Vector4 enemiesAppearLinesOnESWNsides, randomizedEnemiesPositionsLeftRightUpDown;
 
     int enemyAppearSide;
     Vector2 enemyAppearPosition;
+    float[] bossVerticalAppearancePositionRange = new float[] { -2.5f, 2.5f };
 
     public enum GameDifficulty
     {
@@ -26,7 +28,7 @@ public class LevelsManager : MonoBehaviour
         ["Easy"] = new Dictionary<string, float>
         {
             ["junkTime"] = 30,
-            ["bossAppearingTime"] = 150, // Boss will spawn at 2:30 after level begun
+            ["bossAppearingTime"] = 40, // Boss will spawn at 2:30 after level begun
             ["minJunkPeriod"] = 1,
             ["maxJunkPeriod"] = 2,
             ["minEnemyShipPeriod"] = 2,
@@ -39,8 +41,9 @@ public class LevelsManager : MonoBehaviour
             ["maxEnemyShipSpd"] = 5,
             ["minEnemyShootingPeriod"] = 0.5f,
             ["maxEnemyShootingPeriod"] = 3,
-            ["bossHP"] = 100,
-            ["bossShootingPeriod"] = 100,
+            ["bossPartHP"] = 100,
+            ["minBossShootingPeriod"] = 0.5f,
+            ["maxBossShootingPeriod"] = 3,
         },
         ["Normal"] = new Dictionary<string, float>
         {
@@ -58,8 +61,9 @@ public class LevelsManager : MonoBehaviour
             ["maxEnemyShipSpd"] = 20,
             ["minEnemyShootingPeriod"] = 10,
             ["maxEnemyShootingPeriod"] = 20,
-            ["bossHP"] = 100,
-            ["bossShootingPeriod"] = 100,
+            ["bossPartHP"] = 100,
+            ["minBossShootingPeriod"] = 0.5f,
+            ["maxBossShootingPeriod"] = 3,
         },
         ["Hard"] = new Dictionary<string, float>
         {
@@ -77,8 +81,9 @@ public class LevelsManager : MonoBehaviour
             ["maxEnemyShipSpd"] = 20,
             ["minEnemyShootingPeriod"] = 10,
             ["maxEnemyShootingPeriod"] = 20,
-            ["bossHP"] = 100,
-            ["bossShootingPeriod"] = 100,
+            ["bossPartHP"] = 100,
+            ["minBossShootingPeriod"] = 0.5f,
+            ["maxBossShootingPeriod"] = 3,
         },
     };
 
@@ -95,6 +100,7 @@ public class LevelsManager : MonoBehaviour
 
         SpaceJunkManager spaceJunkManager;
         EnemySpaceshipManager enemySpaceshipManager;
+        BossManager bossManager;
 
         // Generate only space junks
         while (timePassed < levelParameters[gameDifficulty.ToString()]["junkTime"])
@@ -103,7 +109,7 @@ public class LevelsManager : MonoBehaviour
             yield return new WaitForSeconds(nextEnemyAppearTime);
 
             PickEnemyAppearPosition();
-            spaceJunkManager = Instantiate(spacejunks[Random.Range(0, spacejunks.Length)], enemyAppearPosition, Quaternion.identity).GetComponent<SpaceJunkManager>();
+            spaceJunkManager = Instantiate(spacejunk, enemyAppearPosition, Quaternion.identity).GetComponent<SpaceJunkManager>();
             spaceJunkManager.appearSide = enemyAppearSide;
 
             timePassed += nextEnemyAppearTime;
@@ -130,12 +136,16 @@ public class LevelsManager : MonoBehaviour
                 yield return new WaitForSeconds(nextEnemyAppearTime);
 
                 PickEnemyAppearPosition();
-                spaceJunkManager = Instantiate(spacejunks[Random.Range(0, spacejunks.Length)], enemyAppearPosition, Quaternion.identity).GetComponent<SpaceJunkManager>();
+                spaceJunkManager = Instantiate(spacejunk, enemyAppearPosition, Quaternion.identity).GetComponent<SpaceJunkManager>();
                 spaceJunkManager.appearSide = enemyAppearSide;
             }
 
             timePassed += nextEnemyAppearTime;
         }
+
+        PickBossAppearPosition();
+        bossManager = Instantiate(boss, enemyAppearPosition, Quaternion.identity).GetComponent<BossManager>();
+        bossManager.appearSide = enemyAppearSide;
     }
 
     private void PickEnemyAppearPosition()
@@ -155,6 +165,21 @@ public class LevelsManager : MonoBehaviour
                 break;
             case 3: // North side
                 enemyAppearPosition = new Vector2(Random.Range(randomizedEnemiesPositionsLeftRightUpDown.z, randomizedEnemiesPositionsLeftRightUpDown.w), enemiesAppearLinesOnESWNsides.w);
+                break;
+        }
+    }
+
+    private void PickBossAppearPosition()
+    {
+        enemyAppearSide = Random.Range(0, 1) > 0.5 ? 0 : 2;
+
+        switch (enemyAppearSide)
+        {
+            case 0: // East side
+                enemyAppearPosition = new Vector2(enemiesAppearLinesOnESWNsides.x, Random.Range(bossVerticalAppearancePositionRange[0], bossVerticalAppearancePositionRange[1]));
+                break;
+            case 2: // West side
+                enemyAppearPosition = new Vector2(enemiesAppearLinesOnESWNsides.z, Random.Range(bossVerticalAppearancePositionRange[0], bossVerticalAppearancePositionRange[1]));
                 break;
         }
     }

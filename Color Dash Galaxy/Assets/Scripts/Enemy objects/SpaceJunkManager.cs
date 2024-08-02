@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class SpaceJunkManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class SpaceJunkManager : MonoBehaviour
     Camera mainCamera;
 
     [SerializeField] GameObject spacejunkExplosion, playerExplosion;
+    [SerializeField] Sprite[] spaceJunkSpritesRed, spaceJunkSpritesBlue, spaceJunkSpritesYellow;
 
     LevelsManager levelManager;
 
@@ -22,7 +24,7 @@ public class SpaceJunkManager : MonoBehaviour
     {
         levelManager = FindObjectOfType<LevelsManager>();
 
-        speed = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minEnemyShipSpd"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxEnemyShipSpd"]);
+        speed = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minJunkSpd"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxJunkSpd"]);
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -43,14 +45,27 @@ public class SpaceJunkManager : MonoBehaviour
         switch (junkColor)
         {
             case 0:
-                spriteRenderer.color = new Color(1f, 0f, 0f, 1f);
+                spriteRenderer.sprite = spaceJunkSpritesRed[Random.Range(0, spaceJunkSpritesRed.Length)];
                 break;
             case 1:
-                spriteRenderer.color = new Color(0.255f, 0.761f, 0.965f, 1f);
+                spriteRenderer.sprite = spaceJunkSpritesBlue[Random.Range(0, spaceJunkSpritesBlue.Length)];
                 break;
             case 2:
-                spriteRenderer.color = new Color(0.965f, 0.584f, 0.031f, 1f);
+                spriteRenderer.sprite = spaceJunkSpritesYellow[Random.Range(0, spaceJunkSpritesYellow.Length)];
                 break;
+        }
+
+        // Make the polygon collider fit the shape of the randomly picked sprite
+        PolygonCollider2D pc2D = GetComponent<PolygonCollider2D>();
+
+        Physics2D.SyncTransforms(); // Ensure the physics system is up to date
+        pc2D.pathCount = spriteRenderer.sprite.GetPhysicsShapeCount();
+
+        for (int i = 0; i < pc2D.pathCount; i++)
+        {
+            List<Vector2> path = new List<Vector2>();
+            spriteRenderer.sprite.GetPhysicsShape(i, path);
+            pc2D.SetPath(i, path.ToArray());
         }
     }
 
