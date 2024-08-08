@@ -41,9 +41,11 @@ public class LevelsManager : MonoBehaviour
             ["maxEnemyShipSpd"] = 5,
             ["minEnemyShootingPeriod"] = 0.5f,
             ["maxEnemyShootingPeriod"] = 3,
-            ["bossPartHP"] = 100,
-            ["minBossShootingPeriod"] = 0.5f,
-            ["maxBossShootingPeriod"] = 3,
+            ["bossPartHP"] = 5,
+            ["minBossShootingPeriod"] = 100f,
+            ["maxBossShootingPeriod"] = 300f,
+            ["minBossMovementPeriod"] = 7.5f,
+            ["maxBossMovementPeriod"] = 15f,
         },
         ["Normal"] = new Dictionary<string, float>
         {
@@ -64,6 +66,8 @@ public class LevelsManager : MonoBehaviour
             ["bossPartHP"] = 100,
             ["minBossShootingPeriod"] = 0.5f,
             ["maxBossShootingPeriod"] = 3,
+            ["minBossMovementPeriod"] = 7.5f,
+            ["maxBossMovementPeriod"] = 15f,
         },
         ["Hard"] = new Dictionary<string, float>
         {
@@ -84,6 +88,8 @@ public class LevelsManager : MonoBehaviour
             ["bossPartHP"] = 100,
             ["minBossShootingPeriod"] = 0.5f,
             ["maxBossShootingPeriod"] = 3,
+            ["minBossMovementPeriod"] = 7.5f,
+            ["maxBossMovementPeriod"] = 15f,
         },
     };
 

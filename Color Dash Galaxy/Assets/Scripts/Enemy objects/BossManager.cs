@@ -1,7 +1,9 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class BossManager : MonoBehaviour
 {
@@ -9,9 +11,9 @@ public class BossManager : MonoBehaviour
 
     Transform playerTransform;
 
-    float initialSpeed, flyingDirection, stoppingCoordinate;
-    float speed, stoppingTimeElapsed, stoppingLerpDuration = 0.5f;
-    float shootingInterval;
+    float initialSpeed, stoppingCoordinate;
+    float speed, stoppingTimeElapsed, stoppingLerpDuration = 2f;
+    float shootingInterval, movingInterval;
 
     float[] stoppingPointScreenPortionMinMax = new float[] { 0.35f, 0.65f };
 
@@ -21,7 +23,9 @@ public class BossManager : MonoBehaviour
     Vector3 stoppedPosition;
     float stoppedTime;
 
-    Camera mainCamera;
+    float transFormScale;
+
+    public List<int> bossRemainingColor = new List<int> {0, 1, 2};
 
     [SerializeField] float spacejunkSpreadAngleOneSide;
     [SerializeField] GameObject spaceJunk;
@@ -37,6 +41,8 @@ public class BossManager : MonoBehaviour
         levelManager = FindObjectOfType<LevelsManager>();
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
+        transFormScale = transform.localScale.x;
 
         CalculateStoppingPoint();
 
@@ -75,9 +81,79 @@ public class BossManager : MonoBehaviour
 
         stoppedPosition = transform.position;
         stoppedTime = Time.time;
-        hasStopped = true;
+        StartCoroutine(HoverUpDownCoroutine());
+        StartCoroutine(MoveLeftRightCoroutine());
 
+        // Start deploying spacejunks
+        while (true)
+        {
+            shootingInterval = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minBossShootingPeriod"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxBossShootingPeriod"]);
+            yield return new WaitForSeconds(shootingInterval);
 
+            spaceJunkShotOut = Instantiate(spaceJunk, transform.position, transform.rotation);
+            spaceJunkShotOut.GetComponent<SpaceJunkManager>().isFromShip = true;
+            spaceJunkShotOut.GetComponent<SpaceJunkManager>().parentShipShootAngle = Mathf.Atan2(playerTransform.position.y - transform.position.y, playerTransform.position.x - transform.position.x);
+            spaceJunkShotOut.GetComponent<SpaceJunkManager>().junkColor = bossRemainingColor[Random.Range(0, bossRemainingColor.Count)];
+        }
+    }
+
+    private IEnumerator HoverUpDownCoroutine()
+    {
+        while (true)
+        {
+            transform.position = new Vector2(transform.position.x, stoppedPosition.y + amplitude * Mathf.Sin((Time.time - stoppedTime) * frequency));
+            yield return null;
+        }
+    }
+
+    private IEnumerator MoveLeftRightCoroutine()
+    {
+        float residueDistanceAfterReachingTargetX = initialSpeed * stoppingLerpDuration / 2f;
+
+        while (true)
+        {
+            movingInterval = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minBossMovementPeriod"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxBossMovementPeriod"]);
+            yield return new WaitForSeconds(movingInterval);
+
+            if (transform.position.x >= 0)
+            {
+                float xTargetCoordinate = Random.Range(-7f, 0f);
+                transform.localScale = new Vector2(-transFormScale, transFormScale);
+                stoppingTimeElapsed = 0;
+                while (transform.position.x > xTargetCoordinate)
+                {
+                    AccelerateToInitailSpeed();
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector2(xTargetCoordinate, transform.position.y), speed * Time.deltaTime);
+                    yield return null;
+                }
+                stoppingTimeElapsed = 0;
+                while (speed > 0)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector2(xTargetCoordinate - residueDistanceAfterReachingTargetX, transform.position.y), speed * Time.deltaTime);
+                    DecelerateAndStop();
+                    yield return null;
+                }
+            }
+            else
+            {
+                float xTargetCoordinate = Random.Range(0f, 7f);
+                transform.localScale = new Vector2(transFormScale, transFormScale);
+                stoppingTimeElapsed = 0;
+                while (transform.position.x < xTargetCoordinate)
+                {
+                    AccelerateToInitailSpeed();
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector2(xTargetCoordinate, transform.position.y), speed * Time.deltaTime);
+                    yield return null;
+                }
+                stoppingTimeElapsed = 0;
+                while (speed > 0)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector2(xTargetCoordinate + residueDistanceAfterReachingTargetX, transform.position.y), speed * Time.deltaTime);
+                    DecelerateAndStop();
+                    yield return null;
+                }
+            }
+        }
     }
 
     private void DecelerateAndStop()
@@ -86,16 +162,14 @@ public class BossManager : MonoBehaviour
         stoppingTimeElapsed += Time.deltaTime;
     }
 
+    private void AccelerateToInitailSpeed()
+    {
+        speed = Mathf.Lerp(0f, initialSpeed, stoppingTimeElapsed / stoppingLerpDuration);
+        stoppingTimeElapsed += Time.deltaTime;
+    }
+
     private void CalculateStoppingPoint()
     {
         stoppingCoordinate = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(stoppingPointScreenPortionMinMax[0], stoppingPointScreenPortionMinMax[1]), 0, Camera.main.nearClipPlane)).x;
-    }
-
-    private void LateUpdate()
-    {
-        if (hasStopped)
-        {
-            transform.position = stoppedPosition + Vector3.up * amplitude * Mathf.Sin((Time.time - stoppedTime) * frequency);
-        }
     }
 }

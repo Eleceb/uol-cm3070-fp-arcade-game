@@ -46,11 +46,14 @@ TagManager:
   - name: Background
     uniqueID: 748563159
     locked: 0
+  - name: Spacejunks
+    uniqueID: 1493054829
+    locked: 0
   - name: Enemy spaceships
     uniqueID: 3189546099
     locked: 0
-  - name: Spacejunks
-    uniqueID: 1493054829
+  - name: Boss
+    uniqueID: 436940697
     locked: 0
   - name: Player
     uniqueID: 535860165
