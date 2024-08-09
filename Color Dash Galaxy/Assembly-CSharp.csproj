@@ -57,6 +57,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Arts\Pixel Spaceships for SHMUP\Demo\Ship.cs" />
+    <Compile Include="Assets\Arts\Unity UI Samples\Scripts\ActiveStateToggler.cs" />
+    <Compile Include="Assets\Arts\Unity UI Samples\Scripts\ApplicationManager.cs" />
+    <Compile Include="Assets\Arts\Unity UI Samples\Scripts\ChangeColor.cs" />
+    <Compile Include="Assets\Arts\Unity UI Samples\Scripts\DragMe.cs" />
+    <Compile Include="Assets\Arts\Unity UI Samples\Scripts\DragPanel.cs" />
+    <Compile Include="Assets\Arts\Unity UI Samples\Scripts\DropMe.cs" />
+    <Compile Include="Assets\Arts\Unity UI Samples\Scripts\PanelManager.cs" />
+    <Compile Include="Assets\Arts\Unity UI Samples\Scripts\ResizePanel.cs" />
+    <Compile Include="Assets\Arts\Unity UI Samples\Scripts\ScrollDetailTexture.cs" />
+    <Compile Include="Assets\Arts\Unity UI Samples\Scripts\ShowSliderValue.cs" />
+    <Compile Include="Assets\Arts\Unity UI Samples\Scripts\TiltWindow.cs" />
     <Compile Include="Assets\Scripts\Enemy objects\BossManager.cs" />
     <Compile Include="Assets\Scripts\Enemy objects\EnemySpaceshipManager.cs" />
     <Compile Include="Assets\Scripts\Enemy objects\IndividualBossPart.cs" />
@@ -64,9 +75,13 @@
     <Compile Include="Assets\Scripts\LevelsManager.cs" />
     <Compile Include="Assets\Scripts\Player spaceship\BulletManager.cs" />
     <Compile Include="Assets\Scripts\Player spaceship\SpaceshipController.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenuScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Arts\Pixel Spaceships for SHMUP\_Readme.txt" />
+    <None Include="Assets\Arts\Unity UI Samples\Textures and Sprites\SF UI\Background\LICENSE.txt" />
+    <None Include="Assets\Arts\Unity UI Samples\Materials\UI-Default-No-Alpha.shader" />
+    <None Include="Assets\Arts\Unity UI Samples\Fonts\Jupiter\LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

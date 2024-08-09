@@ -8,9 +8,9 @@ public class IndividualBossPart : MonoBehaviour
 
     [SerializeField] int thisColor;
 
-    [SerializeField] Sprite bwSprite;
-
     [SerializeField] GameObject playerExplosion, bossExplosionEffect;
+
+    Animator animator;
 
     LevelsManager levelManager;
 
@@ -20,6 +20,8 @@ public class IndividualBossPart : MonoBehaviour
         levelManager = FindObjectOfType<LevelsManager>();
 
         thisPartHP = (int)levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["bossPartHP"];
+
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -55,7 +57,11 @@ public class IndividualBossPart : MonoBehaviour
 
                     Destroy(explosionEffect, 1f);
 
-                    GetComponent<SpriteRenderer>().sprite = bwSprite;
+                    animator.Play("BW");
+                }
+                else
+                {
+                    animator.Play("WhiteFlash");
                 }
             }
         }

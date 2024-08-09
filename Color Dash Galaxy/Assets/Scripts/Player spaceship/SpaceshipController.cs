@@ -30,7 +30,7 @@ public class SpaceshipController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             currentColorMode++;
 
@@ -42,7 +42,7 @@ public class SpaceshipController : MonoBehaviour
             ChangeColorMode(0.2f);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             Vector2 bulletOffset = new Vector2(-Mathf.Sin(currentRotationAngle), Mathf.Cos(currentRotationAngle)) * bulletOffsetMultiplier;
 
