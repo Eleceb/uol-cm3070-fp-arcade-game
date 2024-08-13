@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelsManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class LevelsManager : MonoBehaviour
     [SerializeField] GameObject boss;
 
     [SerializeField] Vector4 enemiesAppearLinesOnESWNsides, randomizedEnemiesPositionsLeftRightUpDown;
+
+    [SerializeField] GameObject gameOverMenu, winMenu;
+    [SerializeField] Button gameOverMenuDefaultButton, winMenuDefaultButton;
 
     int enemyAppearSide;
     Vector2 enemyAppearPosition;
@@ -22,6 +26,8 @@ public class LevelsManager : MonoBehaviour
         Hard
     }
     public GameDifficulty gameDifficulty;
+
+    public bool isBossDestroyed;
 
     public Dictionary<string, Dictionary<string, float>> levelParameters = new Dictionary<string, Dictionary<string, float>>()
     {
@@ -96,6 +102,20 @@ public class LevelsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        switch (PlayerPrefs.GetInt("Difficulty", 0)) { 
+            case 0:
+                gameDifficulty = GameDifficulty.Easy; 
+                break;
+            case 1:
+                gameDifficulty = GameDifficulty.Normal;
+                break;
+            case 2:
+                gameDifficulty = GameDifficulty.Hard;
+                break;
+        }
+
+        AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume", 1);
+
         StartCoroutine(SpawnEnemies());
     }
 
@@ -194,5 +214,33 @@ public class LevelsManager : MonoBehaviour
     {
         float spaceShipP = (levelParameters[gameDifficulty.ToString()]["maxEnemyShipProbability"] - levelParameters[gameDifficulty.ToString()]["minEnemyShipProbability"]) / (levelParameters[gameDifficulty.ToString()]["bossAppearingTime"] - levelParameters[gameDifficulty.ToString()]["junkTime"]) * (t - levelParameters[gameDifficulty.ToString()]["junkTime"]) + levelParameters[gameDifficulty.ToString()]["minEnemyShipProbability"];
         return Random.Range(0f, 1f) < spaceShipP;
+    }
+
+    public void GameOver()
+    {
+        Invoke("GameOverActions", 1f);
+    }
+
+    private void GameOverActions()
+    {
+        gameOverMenu.SetActive(true);
+
+        gameOverMenuDefaultButton.Select();
+
+        StopAllCoroutines();
+    }
+
+    public void WinGame()
+    {
+        Invoke("WinGameActions", 2f);
+    }
+    private void WinGameActions()
+    {
+        Debug.Log("BBB");
+        winMenu.SetActive(true);
+
+        winMenuDefaultButton.Select();
+
+        StopAllCoroutines();
     }
 }

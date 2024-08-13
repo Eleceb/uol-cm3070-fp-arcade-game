@@ -21,6 +21,7 @@ public class EnemySpaceshipManager : MonoBehaviour
     [SerializeField] float spacejunkSpreadAngleOneSide;
     [SerializeField] GameObject spaceJunk;
     [SerializeField] GameObject spaceshipExplosion;
+    [SerializeField] Transform[] thursters;
 
     GameObject spaceJunkShotOut;
 
@@ -99,6 +100,16 @@ public class EnemySpaceshipManager : MonoBehaviour
 
     private IEnumerator BehaviorCoroutine()
     {
+        if (thursters.Length == 3)
+        {
+            thursters[0].gameObject.SetActive(true);
+        }
+        else if (thursters.Length == 4)
+        {
+            thursters[0].gameObject.SetActive(true);
+            thursters[3].gameObject.SetActive(true);
+        }
+
         // Travel and stop
         while (speed > 0) {
             switch (appearSide)
@@ -163,6 +174,16 @@ public class EnemySpaceshipManager : MonoBehaviour
     {
         speed = Mathf.Lerp(initialSpeed, 0f, stoppingTimeElapsed / stoppingLerpDuration);
         stoppingTimeElapsed += Time.deltaTime;
+
+        if (thursters.Length == 3)
+        {
+            thursters[0].gameObject.SetActive(false);
+        }
+        else if (thursters.Length == 4)
+        {
+            thursters[0].gameObject.SetActive(false);
+            thursters[3].gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -187,6 +208,14 @@ public class EnemySpaceshipManager : MonoBehaviour
                 Quaternion.identity
             );
 
+            gameObject.tag = "Untagged";
+
+            // Check win condition
+            if (levelManager.isBossDestroyed && GameObject.FindGameObjectWithTag("EnemiesMustBeGoneBeforeWin") == null)
+            {
+                levelManager.WinGame();
+            }
+
             Destroy(explosionEffect, 1f);
 
             Destroy(gameObject);
@@ -200,6 +229,8 @@ public class EnemySpaceshipManager : MonoBehaviour
             );
             Destroy(explosionEffect, 1f);
             Destroy(collision.gameObject);
+
+            levelManager.GameOver();
         }
     }
 }

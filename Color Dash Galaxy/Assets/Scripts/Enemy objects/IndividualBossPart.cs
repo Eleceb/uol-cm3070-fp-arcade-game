@@ -48,16 +48,34 @@ public class IndividualBossPart : MonoBehaviour
                 {
                     // Make boss cannot fire the spacejunk of this color
                     GetComponentInParent<BossManager>().bossRemainingColor.Remove(thisColor);
-
-                    GameObject explosionEffect = Instantiate(
-                        bossExplosionEffect,
-                        transform.position,
-                        Quaternion.identity
-                    );
-
-                    Destroy(explosionEffect, 1f);
-
                     animator.Play("BW");
+
+                    if (GetComponentInParent<BossManager>().bossRemainingColor.Count > 0)
+                    {
+                        GameObject explosionEffect = Instantiate(
+                            bossExplosionEffect,
+                            transform.position,
+                            Quaternion.identity
+                        );
+
+                        Destroy(explosionEffect, 1f);
+                    }
+                    else
+                    {
+                        levelManager.isBossDestroyed = true;
+
+                        Debug.Log("AAA");
+
+                        // Play boss explosion effects
+
+                        transform.parent.tag = "Untagged";
+
+                        // Check win condition
+                        if (levelManager.isBossDestroyed && GameObject.FindGameObjectsWithTag("EnemiesMustBeGoneBeforeWin").Length == 0)
+                        {
+                            levelManager.WinGame();
+                        }
+                    }
                 }
                 else
                 {
@@ -65,7 +83,7 @@ public class IndividualBossPart : MonoBehaviour
                 }
             }
         }
-        else if (collision.tag == "Player" && collision.GetComponent<SpaceshipController>().currentColorMode != thisColor)
+        else if (collision.tag == "Player" && !levelManager.isBossDestroyed)
         {
             GameObject explosionEffect = Instantiate(
                 playerExplosion,
@@ -74,6 +92,8 @@ public class IndividualBossPart : MonoBehaviour
             );
             Destroy(explosionEffect, 1f);
             Destroy(collision.gameObject);
+
+            levelManager.GameOver();
         }
     }
 }

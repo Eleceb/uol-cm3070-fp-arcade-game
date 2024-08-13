@@ -159,6 +159,8 @@ public class SpaceJunkManager : MonoBehaviour
             );
             Destroy(explosionEffect, 1f);
             Destroy(collision.gameObject);
+
+            levelManager.GameOver();
         }
         else if (collision.tag == "BoundaryDestroyer")
         {

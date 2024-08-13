@@ -127,10 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisColor: 0
-  normalSprite: {fileID: 21300000, guid: 5809f5c23739f394cb51b0570db104cd, type: 3}
-  bwSprite: {fileID: 21300000, guid: 0266a1a4805db054c83092d6eb203962, type: 3}
-  whiteSpriteWhenDamaged: {fileID: 21300000, guid: 10b77215941883a4d8c3d1864150d41d,
-    type: 3}
   playerExplosion: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}
   bossExplosionEffect: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
@@ -281,10 +277,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisColor: 1
-  normalSprite: {fileID: 21300000, guid: 93c965c64dd942b49abd00cdb0bbe846, type: 3}
-  bwSprite: {fileID: 21300000, guid: 0266a1a4805db054c83092d6eb203962, type: 3}
-  whiteSpriteWhenDamaged: {fileID: 21300000, guid: 10b77215941883a4d8c3d1864150d41d,
-    type: 3}
   playerExplosion: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}
   bossExplosionEffect: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
@@ -322,7 +314,7 @@ GameObject:
   - component: {fileID: 5546640200929224010}
   m_Layer: 8
   m_Name: Boss enemy
-  m_TagString: Untagged
+  m_TagString: EnemiesMustBeGoneBeforeWin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -561,10 +553,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisColor: 2
-  normalSprite: {fileID: 21300000, guid: 0b1ca7dc57f44d640aa681605c814024, type: 3}
-  bwSprite: {fileID: 21300000, guid: 0266a1a4805db054c83092d6eb203962, type: 3}
-  whiteSpriteWhenDamaged: {fileID: 21300000, guid: 10b77215941883a4d8c3d1864150d41d,
-    type: 3}
   playerExplosion: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}
   bossExplosionEffect: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
