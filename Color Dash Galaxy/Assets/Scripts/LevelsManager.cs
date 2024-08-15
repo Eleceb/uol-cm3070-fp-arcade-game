@@ -14,10 +14,13 @@ public class LevelsManager : MonoBehaviour
 
     [SerializeField] GameObject gameOverMenu, winMenu;
     [SerializeField] Button gameOverMenuDefaultButton, winMenuDefaultButton;
+    [SerializeField] Text scoreText;
 
     int enemyAppearSide;
     Vector2 enemyAppearPosition;
     float[] bossVerticalAppearancePositionRange = new float[] { -2.5f, 2.5f };
+
+    public int score;
 
     public enum GameDifficulty
     {
@@ -48,8 +51,8 @@ public class LevelsManager : MonoBehaviour
             ["minEnemyShootingPeriod"] = 0.5f,
             ["maxEnemyShootingPeriod"] = 3,
             ["bossPartHP"] = 5,
-            ["minBossShootingPeriod"] = 100f,
-            ["maxBossShootingPeriod"] = 300f,
+            ["minBossShootingPeriod"] = 1f,
+            ["maxBossShootingPeriod"] = 2f,
             ["minBossMovementPeriod"] = 7.5f,
             ["maxBossMovementPeriod"] = 15f,
         },
@@ -113,6 +116,8 @@ public class LevelsManager : MonoBehaviour
                 gameDifficulty = GameDifficulty.Hard;
                 break;
         }
+
+        score = 0;
 
         AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume", 1);
 
@@ -223,6 +228,8 @@ public class LevelsManager : MonoBehaviour
 
     private void GameOverActions()
     {
+        scoreText.gameObject.SetActive(false);
+
         gameOverMenu.SetActive(true);
 
         gameOverMenuDefaultButton.Select();
@@ -230,17 +237,25 @@ public class LevelsManager : MonoBehaviour
         StopAllCoroutines();
     }
 
-    public void WinGame()
+    public void WinGame(float timeDelay)
     {
-        Invoke("WinGameActions", 2f);
+        Invoke("WinGameActions", timeDelay);
     }
     private void WinGameActions()
     {
-        Debug.Log("BBB");
+        scoreText.gameObject.SetActive(false);
+
         winMenu.SetActive(true);
 
         winMenuDefaultButton.Select();
 
         StopAllCoroutines();
+    }
+
+    public void UpdateScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+
+        scoreText.text = "Score: " + score.ToString();
     }
 }

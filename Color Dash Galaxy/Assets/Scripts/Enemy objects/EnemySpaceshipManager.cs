@@ -8,6 +8,8 @@ public class EnemySpaceshipManager : MonoBehaviour
     public int appearSide; // 0: Right, 1: Down; 2: Left; 3: Up.
     public int thisColor;
 
+    [SerializeField] int enemyShipScore;
+
     Transform playerTransform;
 
     float initialSpeed, flyingDirection, stoppingCoordinate;
@@ -18,7 +20,7 @@ public class EnemySpaceshipManager : MonoBehaviour
 
     Camera mainCamera;
 
-    [SerializeField] float spacejunkSpreadAngleOneSide;
+    [SerializeField] float spacejunkSpreadAngleOneSide, bulletOffsetMultiplier;
     [SerializeField] GameObject spaceJunk;
     [SerializeField] GameObject spaceshipExplosion;
     [SerializeField] Transform[] thursters;
@@ -163,7 +165,8 @@ public class EnemySpaceshipManager : MonoBehaviour
             shootingInterval = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minEnemyShootingPeriod"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxEnemyShootingPeriod"]);
             yield return new WaitForSeconds(shootingInterval);
 
-            spaceJunkShotOut = Instantiate(spaceJunk, transform.position, transform.rotation);
+            Vector2 bulletOffset = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * transform.eulerAngles.z), Mathf.Cos(Mathf.Deg2Rad * transform.eulerAngles.z)) * bulletOffsetMultiplier;
+            spaceJunkShotOut = Instantiate(spaceJunk, transform.position + (Vector3)bulletOffset, transform.rotation);
             spaceJunkShotOut.GetComponent<SpaceJunkManager>().isFromShip = true;
             spaceJunkShotOut.GetComponent<SpaceJunkManager>().parentShipShootAngle = (transform.eulerAngles.z - 270f + Random.Range(-spacejunkSpreadAngleOneSide, spacejunkSpreadAngleOneSide)) * Mathf.Deg2Rad;
             spaceJunkShotOut.GetComponent<SpaceJunkManager>().junkColor = thisColor;
@@ -198,27 +201,33 @@ public class EnemySpaceshipManager : MonoBehaviour
 
     private void CheckCollision(Collider2D collision)
     {
-        if (collision.tag == "BoundaryDestroyer" || collision.tag == "Bullet" && collision.GetComponent<BulletManager>().bulletColorMode == thisColor)
+        if (collision.tag == "BoundaryDestroyer" || collision.tag == "Bullet")
         {
             Destroy(collision.gameObject);
 
-            GameObject explosionEffect = Instantiate(
-                spaceshipExplosion,
-                transform.position,
-                Quaternion.identity
-            );
-
-            gameObject.tag = "Untagged";
-
-            // Check win condition
-            if (levelManager.isBossDestroyed && GameObject.FindGameObjectWithTag("EnemiesMustBeGoneBeforeWin") == null)
+            if (collision.GetComponent<BulletManager>().bulletColorMode == thisColor)
             {
-                levelManager.WinGame();
+
+                levelManager.UpdateScore(enemyShipScore);
+
+                GameObject explosionEffect = Instantiate(
+                    spaceshipExplosion,
+                    transform.position,
+                    Quaternion.identity
+                );
+
+                gameObject.tag = "Untagged";
+
+                // Check win condition
+                if (levelManager.isBossDestroyed && GameObject.FindGameObjectWithTag("EnemiesMustBeGoneBeforeWin") == null)
+                {
+                    levelManager.WinGame(2f);
+                }
+
+                Destroy(explosionEffect, 1f);
+
+                Destroy(gameObject);
             }
-
-            Destroy(explosionEffect, 1f);
-
-            Destroy(gameObject);
         }
         else if (collision.tag == "Player" && collision.GetComponent<SpaceshipController>().currentColorMode != thisColor)
         {

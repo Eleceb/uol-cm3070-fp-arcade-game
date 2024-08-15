@@ -1,11 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InGameMenus : MonoBehaviour
 {
+    [SerializeField] Text finalScoreText;
+
+    LevelsManager levelManager;
+
+    private void OnEnable()
+    {
+        levelManager = FindObjectOfType<LevelsManager>();
+        finalScoreText.text = "Final Score: " + levelManager.score.ToString();
+    }
+
     public void PlayAgainButtonPressed()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

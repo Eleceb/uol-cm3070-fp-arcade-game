@@ -129,8 +129,15 @@ MonoBehaviour:
   thisColor: 0
   playerExplosion: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}
-  bossExplosionEffect: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
+  bossPartExplosionEffect: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}
+  bossExplosionEffect: {fileID: 6517472731406131884, guid: 1d350bef61d73544eaac76cb91d0913d,
+    type: 3}
+  bossFinalExplosionEffect: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
+    type: 3}
+  bossPartHitScore: 100
+  bossPartDestroyedScore: 500
+  bossDestroyedScore: 1000
 --- !u!95 &3575310559639618000
 Animator:
   serializedVersion: 3
@@ -279,8 +286,15 @@ MonoBehaviour:
   thisColor: 1
   playerExplosion: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}
-  bossExplosionEffect: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
+  bossPartExplosionEffect: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}
+  bossExplosionEffect: {fileID: 6517472731406131884, guid: 1d350bef61d73544eaac76cb91d0913d,
+    type: 3}
+  bossFinalExplosionEffect: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
+    type: 3}
+  bossPartHitScore: 100
+  bossPartDestroyedScore: 500
+  bossDestroyedScore: 1000
 --- !u!95 &7751807835665842461
 Animator:
   serializedVersion: 3
@@ -422,7 +436,7 @@ MonoBehaviour:
   appearSide: 0
   bossRemainingColor: 000000000100000002000000
   spacejunkSpreadAngleOneSide: 0
-  spaceJunk: {fileID: 7101630805131872219, guid: 79ce21d6630074644b065bd3732a85bb,
+  spaceJunk: {fileID: 7101630805131872219, guid: aa3adb63febc30d40b5c16a83156423f,
     type: 3}
   spaceshipExplosion: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}
@@ -555,8 +569,15 @@ MonoBehaviour:
   thisColor: 2
   playerExplosion: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}
-  bossExplosionEffect: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
+  bossPartExplosionEffect: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}
+  bossExplosionEffect: {fileID: 6517472731406131884, guid: 1d350bef61d73544eaac76cb91d0913d,
+    type: 3}
+  bossFinalExplosionEffect: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
+    type: 3}
+  bossPartHitScore: 100
+  bossPartDestroyedScore: 500
+  bossDestroyedScore: 1000
 --- !u!95 &4125440612232688867
 Animator:
   serializedVersion: 3

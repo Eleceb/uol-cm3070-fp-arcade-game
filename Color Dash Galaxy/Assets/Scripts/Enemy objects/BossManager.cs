@@ -90,10 +90,13 @@ public class BossManager : MonoBehaviour
             shootingInterval = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minBossShootingPeriod"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxBossShootingPeriod"]);
             yield return new WaitForSeconds(shootingInterval);
 
-            spaceJunkShotOut = Instantiate(spaceJunk, transform.position, transform.rotation);
-            spaceJunkShotOut.GetComponent<SpaceJunkManager>().isFromShip = true;
-            spaceJunkShotOut.GetComponent<SpaceJunkManager>().parentShipShootAngle = Mathf.Atan2(playerTransform.position.y - transform.position.y, playerTransform.position.x - transform.position.x);
-            spaceJunkShotOut.GetComponent<SpaceJunkManager>().junkColor = bossRemainingColor[Random.Range(0, bossRemainingColor.Count)];
+            if (playerTransform)
+            {
+                spaceJunkShotOut = Instantiate(spaceJunk, transform.position, transform.rotation);
+                spaceJunkShotOut.GetComponent<SpaceJunkManager>().isFromShip = true;
+                spaceJunkShotOut.GetComponent<SpaceJunkManager>().parentShipShootAngle = Mathf.Atan2(playerTransform.position.y - transform.position.y, playerTransform.position.x - transform.position.x);
+                spaceJunkShotOut.GetComponent<SpaceJunkManager>().junkColor = bossRemainingColor[Random.Range(0, bossRemainingColor.Count)];
+            }
         }
     }
 

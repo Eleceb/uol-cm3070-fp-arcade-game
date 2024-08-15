@@ -160,8 +160,10 @@ MonoBehaviour:
   rotationSpeed: 100
   appearSide: 1
   thisColor: 2
+  enemyShipScore: 200
   spacejunkSpreadAngleOneSide: 45
-  spaceJunk: {fileID: 7101630805131872219, guid: 79ce21d6630074644b065bd3732a85bb,
+  bulletOffsetMultiplier: 0.5
+  spaceJunk: {fileID: 7101630805131872219, guid: 50534717d797b7b4489107ee70ef6bec,
     type: 3}
   spaceshipExplosion: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}

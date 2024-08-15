@@ -8,6 +8,8 @@ public class SpaceJunkManager : MonoBehaviour
     public bool isFromShip;
     public int junkColor;
 
+    [SerializeField] int spaceJunkScore;
+
     float speed, flyingDirection;
 
     SpriteRenderer spriteRenderer;
@@ -74,6 +76,7 @@ public class SpaceJunkManager : MonoBehaviour
         if (isFromShip)
         {
             flyingDirection = parentShipShootAngle;
+            transform.eulerAngles = new Vector3(0f, 0f, parentShipShootAngle * Mathf.Rad2Deg - 90f);
         }
         else
         {
@@ -136,19 +139,25 @@ public class SpaceJunkManager : MonoBehaviour
 
     private void CheckCollision(Collider2D collision)
     {
-        if (collision.tag == "Bullet" && collision.GetComponent<BulletManager>().bulletColorMode == junkColor)
+        if (collision.tag == "Bullet")
         {
             Destroy(collision.gameObject);
 
-            GameObject explosionEffect = Instantiate(
-                spacejunkExplosion,
-                transform.position,
-                Quaternion.identity
-            );
+            if (collision.GetComponent<BulletManager>().bulletColorMode == junkColor)
+            {
 
-            Destroy(explosionEffect, 1f);
+                levelManager.UpdateScore(spaceJunkScore);
 
-            Destroy(gameObject);
+                GameObject explosionEffect = Instantiate(
+                    spacejunkExplosion,
+                    transform.position,
+                    Quaternion.identity
+                );
+
+                Destroy(explosionEffect, 1f);
+
+                Destroy(gameObject);
+            }
         }
         else if (collision.tag == "Player" && collision.GetComponent<SpaceshipController>().currentColorMode != junkColor)
         {
