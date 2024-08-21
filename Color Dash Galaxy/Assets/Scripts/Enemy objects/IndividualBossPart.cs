@@ -6,13 +6,15 @@ public class IndividualBossPart : MonoBehaviour
 {
     int thisPartHP;
 
-    [SerializeField] int thisColor;
+    public int thisColor;
+
+    public List<Sprite> bossPartSprites;
 
     [SerializeField] GameObject playerExplosion, bossPartExplosionEffect, bossExplosionEffect, bossFinalExplosionEffect;
 
     [SerializeField] int bossPartHitScore, bossPartDestroyedScore, bossDestroyedScore;
 
-    Animator animator;
+    //Animator animator;
 
     LevelsManager levelManager;
 
@@ -23,7 +25,7 @@ public class IndividualBossPart : MonoBehaviour
 
         thisPartHP = (int)levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["bossPartHP"];
 
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,7 +52,7 @@ public class IndividualBossPart : MonoBehaviour
                 {
                     // Make boss cannot fire the spacejunk of this color
                     GetComponentInParent<BossManager>().bossRemainingColor.Remove(thisColor);
-                    animator.Play("BW");
+                    //animator.Play("BW");
 
                     if (GetComponentInParent<BossManager>().bossRemainingColor.Count > 0)
                     {
@@ -93,7 +95,7 @@ public class IndividualBossPart : MonoBehaviour
                 }
                 else
                 {
-                    animator.Play("WhiteFlash");
+                    //animator.Play("WhiteFlash");
                     levelManager.UpdateScore(bossPartHitScore);
                 }
             }

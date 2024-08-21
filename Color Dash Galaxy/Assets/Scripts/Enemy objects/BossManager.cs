@@ -35,6 +35,8 @@ public class BossManager : MonoBehaviour
 
     LevelsManager levelManager;
 
+    [SerializeField] List<GameObject> bossParts;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +50,8 @@ public class BossManager : MonoBehaviour
 
         initialSpeed = levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minEnemyShipSpd"];
         speed = initialSpeed;
+
+        RandomBossColor();
 
         StartCoroutine(BehaviorCoroutine());
     }
@@ -174,5 +178,23 @@ public class BossManager : MonoBehaviour
     private void CalculateStoppingPoint()
     {
         stoppingCoordinate = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(stoppingPointScreenPortionMinMax[0], stoppingPointScreenPortionMinMax[1]), 0, Camera.main.nearClipPlane)).x;
+    }
+
+    private void RandomBossColor()
+    {
+        List<int> usedIndexes = new List<int>();
+
+        foreach (GameObject part in bossParts)
+        {
+            int index;
+            do
+            {
+                index = Random.Range(0, part.GetComponent<IndividualBossPart>().bossPartSprites.Count);
+            } while (usedIndexes.Contains(index));
+
+            usedIndexes.Add(index);
+            part.GetComponent<IndividualBossPart>().thisColor = index;
+            part.GetComponent<SpriteRenderer>().sprite = part.GetComponent<IndividualBossPart>().bossPartSprites[index];
+        }
     }
 }
