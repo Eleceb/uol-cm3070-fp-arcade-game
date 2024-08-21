@@ -16,6 +16,8 @@ public class IndividualBossPart : MonoBehaviour
 
     [SerializeField] float flashTime;
 
+    [SerializeField] Material grayscaleMaterial;
+
     SpriteRenderer spriteRenderer;
 
     LevelsManager levelManager;
@@ -56,7 +58,7 @@ public class IndividualBossPart : MonoBehaviour
 
                     // Make boss cannot fire the spacejunk of this color
                     GetComponentInParent<BossManager>().bossRemainingColor.Remove(thisColor);
-                    //animator.Play("BW");
+                    spriteRenderer.material = grayscaleMaterial;
 
                     if (GetComponentInParent<BossManager>().bossRemainingColor.Count > 0)
                     {

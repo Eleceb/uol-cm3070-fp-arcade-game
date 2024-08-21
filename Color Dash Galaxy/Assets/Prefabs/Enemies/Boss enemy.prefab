@@ -142,6 +142,7 @@ MonoBehaviour:
   bossPartDestroyedScore: 500
   bossDestroyedScore: 1000
   flashTime: 0.25
+  grayscaleMaterial: {fileID: 2100000, guid: 16db9aa0e87da234ba31b905e72094b0, type: 2}
 --- !u!1 &7893607394064594892
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +285,7 @@ MonoBehaviour:
   bossPartDestroyedScore: 500
   bossDestroyedScore: 1000
   flashTime: 0.25
+  grayscaleMaterial: {fileID: 2100000, guid: 16db9aa0e87da234ba31b905e72094b0, type: 2}
 --- !u!1 &8095368212471330168
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,3 +558,4 @@ MonoBehaviour:
   bossPartDestroyedScore: 500
   bossDestroyedScore: 1000
   flashTime: 0.25
+  grayscaleMaterial: {fileID: 2100000, guid: 16db9aa0e87da234ba31b905e72094b0, type: 2}
