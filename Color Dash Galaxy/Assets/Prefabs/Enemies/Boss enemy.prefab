@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 768852785009604395}
   - component: {fileID: 8753942226203993099}
   - component: {fileID: 1392870361410681118}
-  - component: {fileID: 3575310559639618000}
   m_Layer: 8
   m_Name: Red part
   m_TagString: Untagged
@@ -52,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d39a8fea743e1934ba70cd8cd79864fa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -142,25 +141,7 @@ MonoBehaviour:
   bossPartHitScore: 100
   bossPartDestroyedScore: 500
   bossDestroyedScore: 1000
---- !u!95 &3575310559639618000
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7075220823360714690}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 46edef72369e16049bcbed1072f4d730, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  flashTime: 0.25
 --- !u!1 &7893607394064594892
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +154,6 @@ GameObject:
   - component: {fileID: 7997753904972227393}
   - component: {fileID: 5361281363620325053}
   - component: {fileID: 7283254841334463441}
-  - component: {fileID: 7751807835665842461}
   m_Layer: 8
   m_Name: Blue part
   m_TagString: Untagged
@@ -213,7 +193,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d39a8fea743e1934ba70cd8cd79864fa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -303,25 +283,7 @@ MonoBehaviour:
   bossPartHitScore: 100
   bossPartDestroyedScore: 500
   bossDestroyedScore: 1000
---- !u!95 &7751807835665842461
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7893607394064594892}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 87e38cce9236a9f4c95994d2eb14cd39, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  flashTime: 0.25
 --- !u!1 &8095368212471330168
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +426,6 @@ GameObject:
   - component: {fileID: 3223900385858243202}
   - component: {fileID: 2946853919463142189}
   - component: {fileID: 3046462374424460412}
-  - component: {fileID: 4125440612232688867}
   m_Layer: 8
   m_Name: Yellow part
   m_TagString: Untagged
@@ -504,7 +465,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d39a8fea743e1934ba70cd8cd79864fa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -594,22 +555,4 @@ MonoBehaviour:
   bossPartHitScore: 100
   bossPartDestroyedScore: 500
   bossDestroyedScore: 1000
---- !u!95 &4125440612232688867
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8203848014242530754}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e060a2c7c66aa094bad0daf5b89829aa, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  flashTime: 0.25
