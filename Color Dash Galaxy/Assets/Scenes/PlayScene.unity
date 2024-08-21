@@ -533,6 +533,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 768852785009604395, guid: c5e3df402e07aa14996367c7cafb550c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ecc8d76ea34e745439f9e543582337de,
+        type: 3}
     - target: {fileID: 1392870361410681118, guid: c5e3df402e07aa14996367c7cafb550c,
         type: 3}
       propertyPath: flashTime
@@ -547,6 +553,16 @@ PrefabInstance:
         type: 3}
       propertyPath: flashTime
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663547235976057326, guid: c5e3df402e07aa14996367c7cafb550c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663547235976057326, guid: c5e3df402e07aa14996367c7cafb550c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8095368212471330168, guid: c5e3df402e07aa14996367c7cafb550c,
         type: 3}
@@ -1955,8 +1971,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1117919011}
-  - component: {fileID: 1117919015}
   - component: {fileID: 1117919012}
+  - component: {fileID: 1117919015}
   - component: {fileID: 1117919013}
   - component: {fileID: 1117919014}
   m_Layer: 0

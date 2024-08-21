@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7101630805131872219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.1, y: -0.2, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -107,11 +107,11 @@ MonoBehaviour:
   playerExplosion: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}
   spaceJunkSpritesRed:
-  - {fileID: 21300000, guid: 1374d70e483aeba4e994750a367eefa2, type: 3}
+  - {fileID: 21300000, guid: daa114809fecdf44da257305d99bafb8, type: 3}
   spaceJunkSpritesBlue:
-  - {fileID: 21300000, guid: 7fd88a7e628f4a64c82195edb9ba5cdc, type: 3}
+  - {fileID: 21300000, guid: cf8cfa28f96961b40a18cd85595f5d35, type: 3}
   spaceJunkSpritesYellow:
-  - {fileID: 21300000, guid: 1081e0a38f958da4e9c6b68d7a72b010, type: 3}
+  - {fileID: 21300000, guid: 94816c1c17513ed4b959b6c45ba9cac6, type: 3}
 --- !u!50 &7101630805131872222
 Rigidbody2D:
   serializedVersion: 4
