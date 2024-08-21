@@ -149,12 +149,29 @@ public class EnemySpaceshipManager : MonoBehaviour
         {
             float turningTime = 0; // For setting the max time limit allow the rotation to happen
 
+            /*float previousRotation = transform.rotation.z;*/
+
             float targetAngle = Mathf.Atan2(playerTransform.position.y - transform.position.y, playerTransform.position.x - transform.position.x) * Mathf.Rad2Deg + 270f;
             Quaternion targetQuaternion = Quaternion.Euler(new Vector3(0, 0, targetAngle));
+
             while (transform.rotation.z != targetQuaternion.z && turningTime <= 2.5f)
             {
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetQuaternion, rotationSpeed * Time.deltaTime);
                 turningTime += Time.deltaTime;
+
+                /*if (previousRotation < transform.rotation.z)
+                {
+                    thursters[1].gameObject.SetActive(true);
+                }
+                else if (previousRotation > transform.rotation.z)
+                {
+                    thursters[2].gameObject.SetActive(true);
+                }
+                else
+                {
+                    thursters[1].gameObject.SetActive(false);
+                    thursters[2].gameObject.SetActive(false);
+                }*/
                 yield return null;
             }
         }
