@@ -149,32 +149,41 @@ public class EnemySpaceshipManager : MonoBehaviour
         {
             float turningTime = 0; // For setting the max time limit allow the rotation to happen
 
-            /*float previousRotation = transform.rotation.z;*/
-
             float targetAngle = Mathf.Atan2(playerTransform.position.y - transform.position.y, playerTransform.position.x - transform.position.x) * Mathf.Rad2Deg + 270f;
             Quaternion targetQuaternion = Quaternion.Euler(new Vector3(0, 0, targetAngle));
+
+            float previousEulerAngleZ = transform.rotation.eulerAngles.z;
 
             while (transform.rotation.z != targetQuaternion.z && turningTime <= 2.5f)
             {
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetQuaternion, rotationSpeed * Time.deltaTime);
                 turningTime += Time.deltaTime;
 
-                /*if (previousRotation < transform.rotation.z)
+                if (Mathf.Abs(transform.rotation.eulerAngles.z - previousEulerAngleZ) < 180f)
                 {
-                    thursters[1].gameObject.SetActive(true);
+                    if (transform.rotation.eulerAngles.z > previousEulerAngleZ)
+                    {
+                        thursters[1].gameObject.SetActive(true);
+                    }
+                    else if (transform.rotation.eulerAngles.z < previousEulerAngleZ)
+                    {
+                        thursters[2].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        thursters[1].gameObject.SetActive(false);
+                        thursters[2].gameObject.SetActive(false);
+                    }
                 }
-                else if (previousRotation > transform.rotation.z)
-                {
-                    thursters[2].gameObject.SetActive(true);
-                }
-                else
-                {
-                    thursters[1].gameObject.SetActive(false);
-                    thursters[2].gameObject.SetActive(false);
-                }*/
+
+                previousEulerAngleZ = transform.rotation.eulerAngles.z;
+
                 yield return null;
             }
         }
+
+        thursters[1].gameObject.SetActive(false);
+        thursters[2].gameObject.SetActive(false);
 
         // Keep shooting spacejunks
         while (true)

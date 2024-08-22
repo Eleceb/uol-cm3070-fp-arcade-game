@@ -37,7 +37,7 @@ public class LevelsManager : MonoBehaviour
         ["Easy"] = new Dictionary<string, float>
         {
             ["junkTime"] = 30,
-            ["bossAppearingTime"] = 40, // Boss will spawn at 2:30 after level begun
+            ["bossAppearingTime"] = 150, // Boss will spawn at 2:30 after level begun
             ["minJunkPeriod"] = 1,
             ["maxJunkPeriod"] = 2,
             ["minEnemyShipPeriod"] = 2,
