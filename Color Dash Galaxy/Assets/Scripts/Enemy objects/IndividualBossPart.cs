@@ -18,6 +18,8 @@ public class IndividualBossPart : MonoBehaviour
 
     [SerializeField] Material grayscaleMaterial;
 
+    Animator animator;
+
     SpriteRenderer spriteRenderer;
 
     LevelsManager levelManager;
@@ -28,6 +30,8 @@ public class IndividualBossPart : MonoBehaviour
         levelManager = FindObjectOfType<LevelsManager>();
 
         thisPartHP = (int)levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["bossPartHP"];
+
+        animator = GetComponent<Animator>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -54,7 +58,7 @@ public class IndividualBossPart : MonoBehaviour
 
                 if (thisPartHP <= 0)
                 {
-                    StartCoroutine(DamageFlash());
+                    animator.Play("DamageFlashAnimation");
 
                     // Make boss cannot fire the spacejunk of this color
                     GetComponentInParent<BossManager>().bossRemainingColor.Remove(thisColor);
@@ -101,7 +105,7 @@ public class IndividualBossPart : MonoBehaviour
                 }
                 else
                 {
-                    StartCoroutine(DamageFlash());
+                    animator.Play("DamageFlashAnimation");
                     levelManager.UpdateScore(bossPartHitScore);
                 }
             }
@@ -132,21 +136,5 @@ public class IndividualBossPart : MonoBehaviour
         Destroy(transform.parent.gameObject);
 
         Destroy(bigExplosion, 1f);
-    }
-
-    private IEnumerator DamageFlash()
-    {
-        float currentFlashAmount = 0f;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < flashTime)
-        {
-            elapsedTime += Time.deltaTime;
-
-            currentFlashAmount = Mathf.Lerp(0.03f, 0f, (elapsedTime / flashTime));
-            spriteRenderer.material.SetFloat("_FlashAmount", currentFlashAmount);
-
-            yield return null;
-        }
     }
 }

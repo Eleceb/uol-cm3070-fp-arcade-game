@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 768852785009604395}
   - component: {fileID: 8753942226203993099}
   - component: {fileID: 1392870361410681118}
+  - component: {fileID: 6886440126927462391}
   m_Layer: 8
   m_Name: Red part
   m_TagString: Untagged
@@ -143,6 +144,25 @@ MonoBehaviour:
   bossDestroyedScore: 1000
   flashTime: 0.25
   grayscaleMaterial: {fileID: 2100000, guid: 16db9aa0e87da234ba31b905e72094b0, type: 2}
+--- !u!95 &6886440126927462391
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075220823360714690}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 122837093a3d0f144b1e2be6f7dc58d6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7893607394064594892
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +175,7 @@ GameObject:
   - component: {fileID: 7997753904972227393}
   - component: {fileID: 5361281363620325053}
   - component: {fileID: 7283254841334463441}
+  - component: {fileID: 2566200772525167489}
   m_Layer: 8
   m_Name: Blue part
   m_TagString: Untagged
@@ -286,6 +307,25 @@ MonoBehaviour:
   bossDestroyedScore: 1000
   flashTime: 0.25
   grayscaleMaterial: {fileID: 2100000, guid: 16db9aa0e87da234ba31b905e72094b0, type: 2}
+--- !u!95 &2566200772525167489
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7893607394064594892}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 122837093a3d0f144b1e2be6f7dc58d6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8095368212471330168
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +468,7 @@ GameObject:
   - component: {fileID: 3223900385858243202}
   - component: {fileID: 2946853919463142189}
   - component: {fileID: 3046462374424460412}
+  - component: {fileID: 5734774665127793486}
   m_Layer: 8
   m_Name: Yellow part
   m_TagString: Untagged
@@ -559,3 +600,22 @@ MonoBehaviour:
   bossDestroyedScore: 1000
   flashTime: 0.25
   grayscaleMaterial: {fileID: 2100000, guid: 16db9aa0e87da234ba31b905e72094b0, type: 2}
+--- !u!95 &5734774665127793486
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8203848014242530754}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 122837093a3d0f144b1e2be6f7dc58d6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
