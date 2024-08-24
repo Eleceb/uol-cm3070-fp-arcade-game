@@ -3570,10 +3570,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5233928532942618505, guid: c5e3df402e07aa14996367c7cafb550c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163851492032544632, guid: c5e3df402e07aa14996367c7cafb550c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537706343079346200, guid: c5e3df402e07aa14996367c7cafb550c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8095368212471330168, guid: c5e3df402e07aa14996367c7cafb550c,
         type: 3}
       propertyPath: m_Name
       value: Boss enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095368212471330168, guid: c5e3df402e07aa14996367c7cafb550c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8913585037925498810, guid: c5e3df402e07aa14996367c7cafb550c,
         type: 3}
@@ -3583,12 +3603,12 @@ PrefabInstance:
     - target: {fileID: 8913585037925498810, guid: c5e3df402e07aa14996367c7cafb550c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.08
+      value: 10.86
       objectReference: {fileID: 0}
     - target: {fileID: 8913585037925498810, guid: c5e3df402e07aa14996367c7cafb550c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 8913585037925498810, guid: c5e3df402e07aa14996367c7cafb550c,
         type: 3}
