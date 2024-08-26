@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1657083335326722894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1657083335326722928}
+  - component: {fileID: 1386336951926641196}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1657083335326722928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657083335326722894}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1386336951926641196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657083335326722894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3060654a4bb0554a9de812762d2b9c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 0}
+  bossMusic: {fileID: 0}
+  winMusic: {fileID: 0}
+  gameOverMusic: {fileID: 0}
+  shootingSound: {fileID: 8300000, guid: 2afbfc20c20cca944a1b188692d375ef, type: 3}
+  changeColorSound: {fileID: 8300000, guid: c3709ee9d1462de4a8bd4c77549f415f, type: 3}
+  explosionSound: {fileID: 0}
+  explodingSound: {fileID: 8300000, guid: 80db8eef9be3c534e9a11539a39d5aef, type: 3}
+  bigExplosionSound: {fileID: 8300000, guid: c533afb7555b9404c937b6e79d80d513, type: 3}
+  bossGetHitSound: {fileID: 0}
+  buttonSelectSound: {fileID: 0}
+  buttonPressSound: {fileID: 0}

@@ -68,6 +68,7 @@
     <Compile Include="Assets\Arts\Unity UI Samples\Scripts\ScrollDetailTexture.cs" />
     <Compile Include="Assets\Arts\Unity UI Samples\Scripts\ShowSliderValue.cs" />
     <Compile Include="Assets\Arts\Unity UI Samples\Scripts\TiltWindow.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Enemy objects\BossManager.cs" />
     <Compile Include="Assets\Scripts\Enemy objects\EnemySpaceshipManager.cs" />
     <Compile Include="Assets\Scripts\Enemy objects\IndividualBossPart.cs" />

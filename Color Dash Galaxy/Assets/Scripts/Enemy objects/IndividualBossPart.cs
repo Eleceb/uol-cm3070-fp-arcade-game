@@ -63,6 +63,7 @@ public class IndividualBossPart : MonoBehaviour
                     // Make boss cannot fire the spacejunk of this color
                     GetComponentInParent<BossManager>().bossRemainingColor.Remove(thisColor);
                     spriteRenderer.material = grayscaleMaterial;
+                    spriteRenderer.sprite = bossPartSprites[0];
 
                     if (GetComponentInParent<BossManager>().bossRemainingColor.Count > 0)
                     {
@@ -90,6 +91,8 @@ public class IndividualBossPart : MonoBehaviour
                             transform.parent.position,
                             Quaternion.identity
                         );
+
+                        AudioManager.Instance.PlayExplodingSound();
 
                         Destroy(explosionEffect, 5f);
                         Invoke("DestroyBossObject", 5f);
@@ -132,6 +135,9 @@ public class IndividualBossPart : MonoBehaviour
             Quaternion.identity
         );
         bigExplosion.transform.localScale = new Vector2 ( 4f, 4f );
+
+        AudioManager.Instance.StopExplodingSound();
+        AudioManager.Instance.PlaySound(AudioManager.Instance.bigExplosionSound);
 
         Destroy(transform.parent.gameObject);
 

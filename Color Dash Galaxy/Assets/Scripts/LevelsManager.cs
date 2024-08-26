@@ -177,6 +177,8 @@ public class LevelsManager : MonoBehaviour
         PickBossAppearPosition();
         bossManager = Instantiate(boss, enemyAppearPosition, Quaternion.identity).GetComponent<BossManager>();
         bossManager.appearSide = enemyAppearSide;
+
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.bossMusic);
     }
 
     private void PickEnemyAppearPosition()

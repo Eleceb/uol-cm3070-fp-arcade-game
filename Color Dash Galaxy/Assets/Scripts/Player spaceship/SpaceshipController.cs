@@ -30,21 +30,11 @@ public class SpaceshipController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            currentColorMode++;
-
-            if (currentColorMode == colorModes.Length)
-            {
-                currentColorMode = 0;
-            }
-
-            ChangeColorMode(0.2f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Space))
         {
             Vector2 bulletOffset = new Vector2(-Mathf.Sin(currentRotationAngle), Mathf.Cos(currentRotationAngle)) * bulletOffsetMultiplier;
+
+            AudioManager.Instance.PlaySound(AudioManager.Instance.shootingSound);
 
             GameObject colorBullet = Instantiate(
                 colorBullets[currentColorMode],
@@ -54,6 +44,21 @@ public class SpaceshipController : MonoBehaviour
 
             colorBullet.GetComponent<BulletManager>().bulletColorMode = currentColorMode;
             colorBullet.GetComponent<BulletManager>().SetBulletShootingAngle(currentRotationAngle);
+        }
+
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.R))
+        {
+            currentColorMode++;
+
+            if (currentColorMode == colorModes.Length)
+            {
+                currentColorMode = 0;
+            }
+
+            /*AudioManager.Instance.PlaySound(AudioManager.Instance.shootingSound);*/
+            AudioManager.Instance.PlaySound(AudioManager.Instance.changeColorSound);
+
+            ChangeColorMode(0.2f);
         }
     }
     
