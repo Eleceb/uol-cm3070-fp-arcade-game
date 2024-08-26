@@ -24,6 +24,11 @@ public class InGameMenus : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
+    public void PressButton()
+    {
+        AudioManager.Instance.PlaySound(AudioManager.Instance.buttonPressSound);
+    }
+
     public void QuitApplication()
     {
 #if UNITY_EDITOR

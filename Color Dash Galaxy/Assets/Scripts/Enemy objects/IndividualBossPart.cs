@@ -75,6 +75,8 @@ public class IndividualBossPart : MonoBehaviour
                             Quaternion.identity
                         );
 
+                        AudioManager.Instance.PlaySound(AudioManager.Instance.explosionSound);
+
                         Destroy(explosionEffect, 1f);
                     }
                     else
@@ -120,6 +122,9 @@ public class IndividualBossPart : MonoBehaviour
                 collision.transform.position,
                 Quaternion.identity
             );
+
+            AudioManager.Instance.PlaySound(AudioManager.Instance.explosionSound);
+
             Destroy(explosionEffect, 1f);
             Destroy(collision.gameObject);
 

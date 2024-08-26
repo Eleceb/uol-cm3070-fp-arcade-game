@@ -36,6 +36,7 @@ public class MainMenuScreen : MonoBehaviour
     {
         mainMenu.SetActive(false);
         settingsMenu.SetActive(true);
+        settingsMenuDefaultButton.GetComponent<ButtonSelect>().isFirstDefaultButtonSelection = true;
         settingsMenuDefaultButton.Select();
     }
 
@@ -43,6 +44,7 @@ public class MainMenuScreen : MonoBehaviour
     {
         mainMenu.SetActive(true);
         settingsMenu.SetActive(false);
+        mainMenuDefaultButton.GetComponent<ButtonSelect>().isFirstDefaultButtonSelection = true;
         mainMenuDefaultButton.Select();
     }
 
@@ -77,6 +79,11 @@ public class MainMenuScreen : MonoBehaviour
         AudioListener.volume = value;
 
         PlayerPrefs.SetFloat("MasterVolume", AudioListener.volume);
+    }
+
+    public void PressButton()
+    {
+        AudioManager.Instance.PlaySound(AudioManager.Instance.buttonPressSound);
     }
 
     public void QuitApplication()

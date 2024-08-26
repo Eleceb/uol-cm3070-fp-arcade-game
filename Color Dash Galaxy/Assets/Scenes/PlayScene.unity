@@ -1583,6 +1583,7 @@ GameObject:
   - component: {fileID: 926214663}
   - component: {fileID: 926214662}
   - component: {fileID: 926214661}
+  - component: {fileID: 926214664}
   m_Layer: 5
   m_Name: Quit button
   m_TagString: Untagged
@@ -1683,6 +1684,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 664432901}
+        m_MethodName: PressButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!222 &926214663
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1691,6 +1703,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926214659}
   m_CullTransparentMesh: 0
+--- !u!114 &926214664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926214659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45fec2784d410849891e1c398f0a2f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFirstDefaultButtonSelection: 0
 --- !u!1 &970490526
 GameObject:
   m_ObjectHideFlags: 0
@@ -2442,6 +2467,7 @@ GameObject:
   - component: {fileID: 1280868053}
   - component: {fileID: 1280868051}
   - component: {fileID: 1280868052}
+  - component: {fileID: 1280868055}
   m_Layer: 5
   m_Name: Main Menu button
   m_TagString: Untagged
@@ -2503,6 +2529,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 664432901}
+        m_MethodName: PressButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!95 &1280868052
 Animator:
   serializedVersion: 3
@@ -2550,6 +2587,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -70}
   m_SizeDelta: {x: 250, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1280868055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280868050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45fec2784d410849891e1c398f0a2f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFirstDefaultButtonSelection: 0
 --- !u!1 &1291610756
 GameObject:
   m_ObjectHideFlags: 0
@@ -3625,7 +3675,7 @@ PrefabInstance:
     - target: {fileID: 8095368212471330168, guid: c5e3df402e07aa14996367c7cafb550c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8913585037925498810, guid: c5e3df402e07aa14996367c7cafb550c,
         type: 3}
@@ -3774,6 +3824,7 @@ GameObject:
   - component: {fileID: 1730790106}
   - component: {fileID: 1730790104}
   - component: {fileID: 1730790105}
+  - component: {fileID: 1730790108}
   m_Layer: 5
   m_Name: Play Again button
   m_TagString: Untagged
@@ -3834,7 +3885,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
+      - m_Target: {fileID: 664432901}
+        m_MethodName: PressButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!95 &1730790105
 Animator:
   serializedVersion: 3
@@ -3882,6 +3944,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 250, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1730790108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730790103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45fec2784d410849891e1c398f0a2f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFirstDefaultButtonSelection: 0
 --- !u!1 &1740817863
 GameObject:
   m_ObjectHideFlags: 0
@@ -4014,6 +4089,21 @@ PrefabInstance:
       propertyPath: ambience1
       value: 
       objectReference: {fileID: 8300000, guid: 6025ff1e20e9f174d8febbbc2bd1c472, type: 3}
+    - target: {fileID: 1386336951926641196, guid: 44658360d646dd5428dd355ce6a51661,
+        type: 3}
+      propertyPath: bossMusic
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386336951926641196, guid: 44658360d646dd5428dd355ce6a51661,
+        type: 3}
+      propertyPath: gameMusic
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386336951926641196, guid: 44658360d646dd5428dd355ce6a51661,
+        type: 3}
+      propertyPath: menuMusic
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1386336951926641196, guid: 44658360d646dd5428dd355ce6a51661,
         type: 3}
       propertyPath: backgroundMusic
@@ -4890,6 +4980,7 @@ GameObject:
   - component: {fileID: 7550804557079272499}
   - component: {fileID: 7550804557075517875}
   - component: {fileID: 7550804557075191703}
+  - component: {fileID: 7550804557065839700}
   m_Layer: 5
   m_Name: Main Menu button
   m_TagString: Untagged
@@ -4897,6 +4988,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7550804557065839700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7550804557065839699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45fec2784d410849891e1c398f0a2f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFirstDefaultButtonSelection: 0
 --- !u!1 &7550804557065839701
 GameObject:
   m_ObjectHideFlags: 0
@@ -4997,6 +5101,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7550804557872739814}
         m_MethodName: MainMenuButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 7550804557872739814}
+        m_MethodName: PressButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5246,6 +5361,7 @@ GameObject:
   - component: {fileID: 7550804557096085825}
   - component: {fileID: 7550804557125887169}
   - component: {fileID: 7550804557125559013}
+  - component: {fileID: 7550804557116199202}
   m_Layer: 5
   m_Name: Try Again button
   m_TagString: Untagged
@@ -5253,6 +5369,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7550804557116199202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7550804557116199201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45fec2784d410849891e1c398f0a2f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFirstDefaultButtonSelection: 0
 --- !u!1 &7550804557116199205
 GameObject:
   m_ObjectHideFlags: 0
@@ -5361,7 +5490,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
+      - m_Target: {fileID: 7550804557872739814}
+        m_MethodName: PressButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &7550804557125887173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5735,6 +5875,7 @@ GameObject:
   - component: {fileID: 7550804557569553287}
   - component: {fileID: 7550804557591887367}
   - component: {fileID: 7550804557590640675}
+  - component: {fileID: 7550804557581143016}
   m_Layer: 5
   m_Name: Quit button
   m_TagString: Untagged
@@ -5742,6 +5883,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7550804557581143016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7550804557581143015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45fec2784d410849891e1c398f0a2f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFirstDefaultButtonSelection: 0
 --- !u!95 &7550804557590640675
 Animator:
   serializedVersion: 3
@@ -5868,6 +6022,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7550804557872739814}
         m_MethodName: QuitApplication
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 7550804557872739814}
+        m_MethodName: PressButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

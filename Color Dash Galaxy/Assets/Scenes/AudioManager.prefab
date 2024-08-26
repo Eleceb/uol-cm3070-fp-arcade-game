@@ -43,15 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3060654a4bb0554a9de812762d2b9c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundMusic: {fileID: 0}
-  bossMusic: {fileID: 0}
+  menuMusic: {fileID: 8300000, guid: c5d5f02d6b51a5c4393c878376a5954d, type: 3}
+  gameMusic: {fileID: 8300000, guid: 87f1f894dc08cce4191d1260bf086a22, type: 3}
+  bossMusic: {fileID: 8300000, guid: 6025ff1e20e9f174d8febbbc2bd1c472, type: 3}
   winMusic: {fileID: 0}
   gameOverMusic: {fileID: 0}
   shootingSound: {fileID: 8300000, guid: 2afbfc20c20cca944a1b188692d375ef, type: 3}
   changeColorSound: {fileID: 8300000, guid: c3709ee9d1462de4a8bd4c77549f415f, type: 3}
-  explosionSound: {fileID: 0}
+  explosionSound: {fileID: 8300000, guid: c533afb7555b9404c937b6e79d80d513, type: 3}
+  spacejunkExplosionSound: {fileID: 8300000, guid: a88159a865e25bd4e9cee09d437b2567,
+    type: 3}
   explodingSound: {fileID: 8300000, guid: 80db8eef9be3c534e9a11539a39d5aef, type: 3}
-  bigExplosionSound: {fileID: 8300000, guid: c533afb7555b9404c937b6e79d80d513, type: 3}
-  bossGetHitSound: {fileID: 0}
-  buttonSelectSound: {fileID: 0}
-  buttonPressSound: {fileID: 0}
+  bigExplosionSound: {fileID: 8300000, guid: bf074914172f1ba41aef5ab3d8e6d08e, type: 3}
+  buttonSelectSound: {fileID: 8300000, guid: 55dfb460d4a15824bb514d5f18d670e4, type: 3}
+  buttonPressSound: {fileID: 8300000, guid: 86ea1a28665d38e438c0f636ea678f85, type: 3}

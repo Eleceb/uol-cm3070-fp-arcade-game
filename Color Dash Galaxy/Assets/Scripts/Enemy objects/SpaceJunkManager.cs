@@ -154,6 +154,8 @@ public class SpaceJunkManager : MonoBehaviour
                     Quaternion.identity
                 );
 
+                AudioManager.Instance.PlaySound(AudioManager.Instance.spacejunkExplosionSound);
+
                 Destroy(explosionEffect, 1f);
 
                 Destroy(gameObject);
@@ -166,6 +168,9 @@ public class SpaceJunkManager : MonoBehaviour
                 collision.transform.position,
                 Quaternion.identity
             );
+
+            AudioManager.Instance.PlaySound(AudioManager.Instance.explosionSound);
+
             Destroy(explosionEffect, 1f);
             Destroy(collision.gameObject);
 

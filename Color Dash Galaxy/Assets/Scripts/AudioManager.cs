@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
     [Header("Music Tracks")]
-    public AudioClip backgroundMusic;
+    public AudioClip menuMusic;
+    public AudioClip gameMusic;
     public AudioClip bossMusic;
     public AudioClip winMusic;
     public AudioClip gameOverMusic;
@@ -15,9 +17,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip shootingSound;
     public AudioClip changeColorSound;
     public AudioClip explosionSound;
+    public AudioClip spacejunkExplosionSound;
     public AudioClip explodingSound;
     public AudioClip bigExplosionSound;
-    public AudioClip bossGetHitSound;
 
     [Header("Button Sounds")]
     public AudioClip buttonSelectSound;
@@ -43,11 +45,40 @@ public class AudioManager : MonoBehaviour
         sfxSource = gameObject.AddComponent<AudioSource>();
         explodingSource = gameObject.AddComponent<AudioSource>();
         explodingSource.clip = explodingSound;
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     void Start()
     {
-        PlayMusic(backgroundMusic);
+        StartPlayMusic(SceneManager.GetActiveScene());
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartPlayMusic(scene);
+    }
+
+    private void StartPlayMusic(Scene scene)
+    {
+        if (scene.name == "Menu")
+        {
+            PlayMusic(menuMusic);
+        }
+        else if (scene.name == "PlayScene")
+        {
+            PlayMusic(gameMusic);
+        }
     }
 
     public void PlayMusic(AudioClip clip)

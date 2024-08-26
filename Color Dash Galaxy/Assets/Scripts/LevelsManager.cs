@@ -234,6 +234,8 @@ public class LevelsManager : MonoBehaviour
 
         gameOverMenu.SetActive(true);
 
+        gameOverMenuDefaultButton.GetComponent<ButtonSelect>().isFirstDefaultButtonSelection = true;
+
         gameOverMenuDefaultButton.Select();
 
         StopAllCoroutines();
@@ -248,6 +250,8 @@ public class LevelsManager : MonoBehaviour
         scoreText.gameObject.SetActive(false);
 
         winMenu.SetActive(true);
+
+        winMenuDefaultButton.GetComponent<ButtonSelect>().isFirstDefaultButtonSelection = true;
 
         winMenuDefaultButton.Select();
 

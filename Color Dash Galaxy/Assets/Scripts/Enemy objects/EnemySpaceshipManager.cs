@@ -250,6 +250,8 @@ public class EnemySpaceshipManager : MonoBehaviour
                     levelManager.WinGame(2f);
                 }
 
+                AudioManager.Instance.PlaySound(AudioManager.Instance.explosionSound);
+
                 Destroy(explosionEffect, 1f);
 
                 Destroy(gameObject);
@@ -262,6 +264,9 @@ public class EnemySpaceshipManager : MonoBehaviour
                 collision.transform.position,
                 Quaternion.identity
             );
+
+            AudioManager.Instance.PlaySound(AudioManager.Instance.explosionSound);
+
             Destroy(explosionEffect, 1f);
             Destroy(collision.gameObject);
 

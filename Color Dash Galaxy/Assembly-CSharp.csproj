@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\LevelsManager.cs" />
     <Compile Include="Assets\Scripts\Player spaceship\BulletManager.cs" />
     <Compile Include="Assets\Scripts\Player spaceship\SpaceshipController.cs" />
+    <Compile Include="Assets\Scripts\UI\ButtonSelect.cs" />
     <Compile Include="Assets\Scripts\UI\InGameMenus.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenuScreen.cs" />
   </ItemGroup>
