@@ -4,14 +4,17 @@ using UnityEngine.UI;
 
 public class InGameMenus : MonoBehaviour
 {
-    [SerializeField] Text finalScoreText;
+    [SerializeField] Text scoreText;
+    [SerializeField] Text timeText;
+    [SerializeField] Text inGameTimeText;
 
     LevelsManager levelManager;
 
     private void OnEnable()
     {
         levelManager = FindObjectOfType<LevelsManager>();
-        finalScoreText.text = "Final Score: " + levelManager.score.ToString();
+        scoreText.text = "Score: " + levelManager.score.ToString();
+        timeText.text = inGameTimeText.text;
     }
 
     public void PlayAgainButtonPressed()

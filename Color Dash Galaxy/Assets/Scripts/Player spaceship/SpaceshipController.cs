@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class SpaceshipController : MonoBehaviour
@@ -18,14 +21,20 @@ public class SpaceshipController : MonoBehaviour
     [SerializeField] float accelerationForce, turningTorque, dragCoefficient, bulletOffsetMultiplier;
 
     private float currentRotationAngle;
+    private bool isTouchingSameColor = false;
     private SpriteRenderer sr;
     private Rigidbody2D rb2d;
+
+    private List<Collider2D> collidingObjects = new List<Collider2D>();
+
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -141,6 +150,29 @@ public class SpaceshipController : MonoBehaviour
         else
         {
             thursters[1].gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!collidingObjects.Contains(collision))
+            collidingObjects.Add(collision);
+
+        if (!isTouchingSameColor || animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            animator.Play("TransparentAnimation");
+            isTouchingSameColor = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        collidingObjects.Remove(collision);
+
+        if (isTouchingSameColor && collidingObjects.Count == 0)
+        {
+            animator.Play("TransparentBackAnimation");
+            isTouchingSameColor = false;
         }
     }
 

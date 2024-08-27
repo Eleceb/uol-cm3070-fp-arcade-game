@@ -55,5 +55,5 @@ MonoBehaviour:
     type: 3}
   explodingSound: {fileID: 8300000, guid: 80db8eef9be3c534e9a11539a39d5aef, type: 3}
   bigExplosionSound: {fileID: 8300000, guid: bf074914172f1ba41aef5ab3d8e6d08e, type: 3}
-  buttonSelectSound: {fileID: 8300000, guid: 55dfb460d4a15824bb514d5f18d670e4, type: 3}
-  buttonPressSound: {fileID: 8300000, guid: 86ea1a28665d38e438c0f636ea678f85, type: 3}
+  buttonSelectSound: {fileID: 8300000, guid: 64bc38006951d824cb84a5d13c576315, type: 3}
+  buttonPressSound: {fileID: 8300000, guid: e5accda87d89b824884281f9c8a0beb3, type: 3}

@@ -271,6 +271,7 @@ public class LevelsManager : MonoBehaviour
         timeCountScript.enabled = false;
 
         scoreText.gameObject.SetActive(false);
+        timeCountScript.gameObject.SetActive(false);
 
         gameOverMenu.SetActive(true);
 
@@ -293,6 +294,7 @@ public class LevelsManager : MonoBehaviour
         timeCountScript.enabled = false;
 
         scoreText.gameObject.SetActive(false);
+        timeCountScript.gameObject.SetActive(false);
 
         winMenu.SetActive(true);
 
