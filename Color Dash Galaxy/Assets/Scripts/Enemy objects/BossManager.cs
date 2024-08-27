@@ -35,7 +35,7 @@ public class BossManager : MonoBehaviour
 
     LevelsManager levelManager;
 
-    [SerializeField] List<GameObject> bossParts;
+    public List<GameObject> bossParts;
 
     // Start is called before the first frame update
     void Start()
@@ -125,7 +125,6 @@ public class BossManager : MonoBehaviour
             if (transform.position.x >= 0)
             {
                 float xTargetCoordinate = Random.Range(-7f, 0f);
-                transform.localScale = new Vector2(-transFormScale, transFormScale);
                 stoppingTimeElapsed = 0;
                 while (transform.position.x > xTargetCoordinate)
                 {
@@ -144,7 +143,6 @@ public class BossManager : MonoBehaviour
             else
             {
                 float xTargetCoordinate = Random.Range(0f, 7f);
-                transform.localScale = new Vector2(transFormScale, transFormScale);
                 stoppingTimeElapsed = 0;
                 while (transform.position.x < xTargetCoordinate)
                 {

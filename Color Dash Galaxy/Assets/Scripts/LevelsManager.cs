@@ -15,6 +15,7 @@ public class LevelsManager : MonoBehaviour
     [SerializeField] GameObject gameOverMenu, winMenu;
     [SerializeField] Button gameOverMenuDefaultButton, winMenuDefaultButton;
     [SerializeField] Text scoreText;
+    [SerializeField] TimeCount timeCountScript;
 
     int enemyAppearSide;
     Vector2 enemyAppearPosition;
@@ -36,23 +37,23 @@ public class LevelsManager : MonoBehaviour
     {
         ["Easy"] = new Dictionary<string, float>
         {
-            ["junkTime"] = 30,
+            ["junkTime"] = 45,
             ["bossAppearingTime"] = 150, // Boss will spawn at 2:30 after level begun
-            ["minJunkPeriod"] = 1,
-            ["maxJunkPeriod"] = 2,
-            ["minEnemyShipPeriod"] = 2,
-            ["maxEnemyShipPeriod"] = 4,
+            ["minJunkPeriod"] = 2,
+            ["maxJunkPeriod"] = 4,
+            ["minEnemyShipPeriod"] = 3,
+            ["maxEnemyShipPeriod"] = 6,
             ["minEnemyShipProbability"] = 0.3f,
             ["maxEnemyShipProbability"] = 0.7f,
             ["minJunkSpd"] = 1,
-            ["maxJunkSpd"] = 5,
+            ["maxJunkSpd"] = 4,
             ["minEnemyShipSpd"] = 2,
             ["maxEnemyShipSpd"] = 5,
-            ["minEnemyShootingPeriod"] = 0.5f,
+            ["minEnemyShootingPeriod"] = 1,
             ["maxEnemyShootingPeriod"] = 3,
             ["bossPartHP"] = 5,
-            ["minBossShootingPeriod"] = 1f,
-            ["maxBossShootingPeriod"] = 2f,
+            ["minBossShootingPeriod"] = 3f,
+            ["maxBossShootingPeriod"] = 5f,
             ["minBossMovementPeriod"] = 7.5f,
             ["maxBossMovementPeriod"] = 15f,
         },
@@ -62,43 +63,43 @@ public class LevelsManager : MonoBehaviour
             ["bossAppearingTime"] = 150, // Boss will spwan at 2:30 after level begun
             ["minJunkPeriod"] = 1,
             ["maxJunkPeriod"] = 2,
-            ["minEnemyShipPeriod"] = 10,
-            ["maxEnemyShipPeriod"] = 20,
-            ["minEnemyShipProbability"] = 10,
-            ["maxEnemyShipProbability"] = 20,
-            ["minJunkSpd"] = 10,
-            ["maxJunkSpd"] = 20,
-            ["minEnemyShipSpd"] = 10,
-            ["maxEnemyShipSpd"] = 20,
-            ["minEnemyShootingPeriod"] = 10,
-            ["maxEnemyShootingPeriod"] = 20,
-            ["bossPartHP"] = 100,
-            ["minBossShootingPeriod"] = 0.5f,
+            ["minEnemyShipPeriod"] = 2.5f,
+            ["maxEnemyShipPeriod"] = 5,
+            ["minEnemyShipProbability"] = 0.3f,
+            ["maxEnemyShipProbability"] = 0.7f,
+            ["minJunkSpd"] = 1.5f,
+            ["maxJunkSpd"] = 4.5f,
+            ["minEnemyShipSpd"] = 2.5f,
+            ["maxEnemyShipSpd"] = 6,
+            ["minEnemyShootingPeriod"] = 1,
+            ["maxEnemyShootingPeriod"] = 2,
+            ["bossPartHP"] = 10,
+            ["minBossShootingPeriod"] = 2f,
             ["maxBossShootingPeriod"] = 3,
-            ["minBossMovementPeriod"] = 7.5f,
-            ["maxBossMovementPeriod"] = 15f,
+            ["minBossMovementPeriod"] = 6f,
+            ["maxBossMovementPeriod"] = 10f,
         },
         ["Hard"] = new Dictionary<string, float>
         {
             ["junkTime"] = 30,
             ["bossAppearingTime"] = 150, // Boss will spwan at 2:30 after level begun
-            ["minJunkPeriod"] = 1,
-            ["maxJunkPeriod"] = 2,
-            ["minEnemyShipPeriod"] = 10,
-            ["maxEnemyShipPeriod"] = 20,
-            ["minEnemyShipProbability"] = 10,
-            ["maxEnemyShipProbability"] = 20,
-            ["minJunkSpd"] = 10,
-            ["maxJunkSpd"] = 20,
-            ["minEnemyShipSpd"] = 10,
-            ["maxEnemyShipSpd"] = 20,
-            ["minEnemyShootingPeriod"] = 10,
-            ["maxEnemyShootingPeriod"] = 20,
-            ["bossPartHP"] = 100,
-            ["minBossShootingPeriod"] = 0.5f,
-            ["maxBossShootingPeriod"] = 3,
-            ["minBossMovementPeriod"] = 7.5f,
-            ["maxBossMovementPeriod"] = 15f,
+            ["minJunkPeriod"] = 0.5f,
+            ["maxJunkPeriod"] = 1.5f,
+            ["minEnemyShipPeriod"] = 2,
+            ["maxEnemyShipPeriod"] = 3,
+            ["minEnemyShipProbability"] = 0.3f,
+            ["maxEnemyShipProbability"] = 0.7f,
+            ["minJunkSpd"] = 2,
+            ["maxJunkSpd"] = 5,
+            ["minEnemyShipSpd"] = 2.5f,
+            ["maxEnemyShipSpd"] = 6.5f,
+            ["minEnemyShootingPeriod"] = 0.5f,
+            ["maxEnemyShootingPeriod"] = 1.5f,
+            ["bossPartHP"] = 20,
+            ["minBossShootingPeriod"] = 1f,
+            ["maxBossShootingPeriod"] = 2,
+            ["minBossMovementPeriod"] = 4f,
+            ["maxBossMovementPeriod"] = 6f,
         },
     };
 
@@ -179,6 +180,43 @@ public class LevelsManager : MonoBehaviour
         bossManager.appearSide = enemyAppearSide;
 
         AudioManager.Instance.PlayMusic(AudioManager.Instance.bossMusic);
+
+        while (!isBossDestroyed)
+        {
+            if (gameDifficulty == GameDifficulty.Hard)
+            {
+                // Choose appear spacejunk or enemy spaceship
+                if (Random.Range(0f, 1f) > 0.5f)
+                {
+                    nextEnemyAppearTime = Random.Range(levelParameters[gameDifficulty.ToString()]["minEnemyShipPeriod"], levelParameters[gameDifficulty.ToString()]["maxEnemyShipPeriod"]);
+                    yield return new WaitForSeconds(nextEnemyAppearTime);
+
+                    int enemyShipColor = Random.Range(0, enemySpaceships.Length); // Pick enemy spaceship color
+                    PickEnemyAppearPosition();
+                    enemySpaceshipManager = Instantiate(enemySpaceships[enemyShipColor], enemyAppearPosition, Quaternion.identity).GetComponent<EnemySpaceshipManager>();
+                    enemySpaceshipManager.appearSide = enemyAppearSide;
+                    enemySpaceshipManager.thisColor = enemyShipColor;
+                }
+                else
+                {
+                    nextEnemyAppearTime = Random.Range(levelParameters[gameDifficulty.ToString()]["minJunkPeriod"], levelParameters[gameDifficulty.ToString()]["maxJunkPeriod"]);
+                    yield return new WaitForSeconds(nextEnemyAppearTime);
+
+                    PickEnemyAppearPosition();
+                    spaceJunkManager = Instantiate(spacejunk, enemyAppearPosition, Quaternion.identity).GetComponent<SpaceJunkManager>();
+                    spaceJunkManager.appearSide = enemyAppearSide;
+                }
+            }
+            else if (gameDifficulty == GameDifficulty.Normal)
+            {
+                nextEnemyAppearTime = Random.Range(levelParameters[gameDifficulty.ToString()]["minJunkPeriod"], levelParameters[gameDifficulty.ToString()]["maxJunkPeriod"]);
+                yield return new WaitForSeconds(nextEnemyAppearTime);
+
+                PickEnemyAppearPosition();
+                spaceJunkManager = Instantiate(spacejunk, enemyAppearPosition, Quaternion.identity).GetComponent<SpaceJunkManager>();
+                spaceJunkManager.appearSide = enemyAppearSide;
+            }
+        }
     }
 
     private void PickEnemyAppearPosition()
@@ -230,6 +268,8 @@ public class LevelsManager : MonoBehaviour
 
     private void GameOverActions()
     {
+        timeCountScript.enabled = false;
+
         scoreText.gameObject.SetActive(false);
 
         gameOverMenu.SetActive(true);
@@ -247,6 +287,11 @@ public class LevelsManager : MonoBehaviour
     }
     private void WinGameActions()
     {
+        player.GetComponent<SpaceshipController>().enabled = false;
+        player.GetComponent<CircleCollider2D>().enabled = false;
+
+        timeCountScript.enabled = false;
+
         scoreText.gameObject.SetActive(false);
 
         winMenu.SetActive(true);

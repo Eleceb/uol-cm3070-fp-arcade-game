@@ -54,6 +54,8 @@ public class IndividualBossPart : MonoBehaviour
 
             if (collision.GetComponent<BulletManager>().bulletColorMode == thisColor && thisPartHP > 0) // The condition of "thisPartHP > 0" avoid multiple explosion effects
             {
+                BossManager bossManager = GetComponentInParent<BossManager>();
+
                 thisPartHP -= 1;
 
                 if (thisPartHP <= 0)
@@ -61,19 +63,34 @@ public class IndividualBossPart : MonoBehaviour
                     animator.Play("DamageFlashAnimation");
 
                     // Make boss cannot fire the spacejunk of this color
-                    GetComponentInParent<BossManager>().bossRemainingColor.Remove(thisColor);
+                    bossManager.bossRemainingColor.Remove(thisColor);
                     spriteRenderer.material = grayscaleMaterial;
                     spriteRenderer.sprite = bossPartSprites[0];
 
-                    if (GetComponentInParent<BossManager>().bossRemainingColor.Count > 0)
+                    if (bossManager.bossRemainingColor.Count > 0)
                     {
+                        Vector2 explosionPosition;
+                        if (gameObject == bossManager.bossParts[0]) {
+                            explosionPosition = new Vector2(-1.27f, 0.91f);
+                        }
+                        else if (gameObject == bossManager.bossParts[1])
+                        {
+                            explosionPosition = new Vector2(0f, -1.67f);
+                        }
+                        else
+                        {
+                            explosionPosition = new Vector2(1.27f, 0.91f);
+                        }
+
                         levelManager.UpdateScore(bossPartDestroyedScore);
 
                         GameObject explosionEffect = Instantiate(
                             bossPartExplosionEffect,
-                            transform.position,
-                            Quaternion.identity
+                            (Vector2)transform.position + explosionPosition,
+                            Quaternion.identity,
+                            transform.parent
                         );
+                        explosionEffect.transform.localScale = new Vector2(2.5f, 2.5f);
 
                         AudioManager.Instance.PlaySound(AudioManager.Instance.explosionSound);
 
@@ -81,11 +98,11 @@ public class IndividualBossPart : MonoBehaviour
                     }
                     else
                     {
-                        levelManager.UpdateScore(bossDestroyedScore + bossPartDestroyedScore);
+                        levelManager.UpdateScore(bossPartDestroyedScore);
 
                         levelManager.isBossDestroyed = true;
 
-                        transform.GetComponentInParent<BossManager>().StopAllCoroutines(); // Stop the boss's movements
+                        bossManager.StopAllCoroutines(); // Stop the boss's movements
 
                         // Play boss explosion effects
                         GameObject explosionEffect = Instantiate(
@@ -143,6 +160,8 @@ public class IndividualBossPart : MonoBehaviour
 
         AudioManager.Instance.StopExplodingSound();
         AudioManager.Instance.PlaySound(AudioManager.Instance.bigExplosionSound);
+
+        levelManager.UpdateScore(bossDestroyedScore);
 
         Destroy(transform.parent.gameObject);
 

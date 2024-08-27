@@ -185,6 +185,16 @@ public class EnemySpaceshipManager : MonoBehaviour
         thursters[1].gameObject.SetActive(false);
         thursters[2].gameObject.SetActive(false);
 
+        // Shoot the first bullet immediately after rotated
+        if (playerTransform)
+        {
+            Vector2 bulletOffset = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * transform.eulerAngles.z), Mathf.Cos(Mathf.Deg2Rad * transform.eulerAngles.z)) * bulletOffsetMultiplier;
+            spaceJunkShotOut = Instantiate(spaceJunk, transform.position + (Vector3)bulletOffset, transform.rotation);
+            spaceJunkShotOut.GetComponent<SpaceJunkManager>().isFromShip = true;
+            spaceJunkShotOut.GetComponent<SpaceJunkManager>().parentShipShootAngle = Mathf.Atan2(playerTransform.position.y - transform.position.y, playerTransform.position.x - transform.position.x);
+            spaceJunkShotOut.GetComponent<SpaceJunkManager>().junkColor = thisColor;
+        }
+
         // Keep shooting spacejunks
         while (true)
         {
