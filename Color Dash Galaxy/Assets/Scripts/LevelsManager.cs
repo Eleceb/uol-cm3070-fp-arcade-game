@@ -120,8 +120,6 @@ public class LevelsManager : MonoBehaviour
 
         score = 0;
 
-        AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume", 1);
-
         StartCoroutine(SpawnEnemies());
     }
 

@@ -11,7 +11,8 @@ public class MainMenuScreen : MonoBehaviour
     [SerializeField] Button mainMenuDefaultButton, settingsMenuDefaultButton;
     [SerializeField] Text difficultyText;
 
-    [SerializeField] Slider volumeSlider;
+    [SerializeField] Slider musicSlider;
+    [SerializeField] Slider soundEffectSlider;
 
     int difficultyInt; // 0: Easy, 1: Normal, 2: Hard
 
@@ -19,10 +20,12 @@ public class MainMenuScreen : MonoBehaviour
     {
         difficultyInt = PlayerPrefs.GetInt("Difficulty", 0);
         MatchDifficultyTextWithDifficultyInt();
-        AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume", 1);
-        volumeSlider.value = AudioListener.volume;
 
-        volumeSlider.onValueChanged.AddListener(OnSliderValueChanged);
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1);
+        soundEffectSlider.value = PlayerPrefs.GetFloat("SfxVolume", 1);
+
+        musicSlider.onValueChanged.AddListener(OnMusicSliderValueChanged);
+        soundEffectSlider.onValueChanged.AddListener(OnSoundEffectSliderValueChanged);
 
         GoToMainMenu();
     }
@@ -74,11 +77,19 @@ public class MainMenuScreen : MonoBehaviour
         }
     }
 
-    private void OnSliderValueChanged(float value)
+    private void OnMusicSliderValueChanged(float value)
     {
-        AudioListener.volume = value;
+        AudioManager.Instance.musicSource.volume = value;
 
-        PlayerPrefs.SetFloat("MasterVolume", AudioListener.volume);
+        PlayerPrefs.SetFloat("MusicVolume", AudioManager.Instance.musicSource.volume);
+    }
+
+    private void OnSoundEffectSliderValueChanged(float value)
+    {
+        AudioManager.Instance.sfxSource.volume = value;
+        AudioManager.Instance.explodingSource.volume = value;
+
+        PlayerPrefs.SetFloat("SfxVolume", AudioManager.Instance.sfxSource.volume);
     }
 
     public void PressButton()

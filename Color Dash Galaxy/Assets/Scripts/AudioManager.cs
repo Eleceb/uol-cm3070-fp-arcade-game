@@ -25,9 +25,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip buttonSelectSound;
     public AudioClip buttonPressSound;
 
-    private AudioSource musicSource;
-    private AudioSource sfxSource;
-    private AudioSource explodingSource;
+    [Header("Music Sources")]
+    public AudioSource musicSource;
+    public AudioSource sfxSource;
+    public AudioSource explodingSource;
 
     void Awake()
     {
@@ -44,6 +45,11 @@ public class AudioManager : MonoBehaviour
         musicSource = gameObject.AddComponent<AudioSource>();
         sfxSource = gameObject.AddComponent<AudioSource>();
         explodingSource = gameObject.AddComponent<AudioSource>();
+
+        musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
+        sfxSource.volume = PlayerPrefs.GetFloat("SfxVolume", 1);
+        explodingSource.volume = PlayerPrefs.GetFloat("SfxVolume", 1);
+
         explodingSource.clip = explodingSound;
 
         DontDestroyOnLoad(this.gameObject);
