@@ -102,18 +102,18 @@ public class EnemySpaceshipManager : MonoBehaviour
 
     private IEnumerator BehaviorCoroutine()
     {
-        if (thursters.Length == 3)
-        {
-            thursters[0].gameObject.SetActive(true);
-        }
-        else if (thursters.Length == 4)
-        {
-            thursters[0].gameObject.SetActive(true);
-            thursters[3].gameObject.SetActive(true);
-        }
-
         // Travel and stop
         while (speed > 0) {
+            if (thursters.Length == 3)
+            {
+                thursters[0].gameObject.SetActive(true);
+            }
+            else if (thursters.Length == 4)
+            {
+                thursters[0].gameObject.SetActive(true);
+                thursters[3].gameObject.SetActive(true);
+            }
+
             switch (appearSide)
             {
                 case 0:

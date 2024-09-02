@@ -79,18 +79,18 @@ public class AudioManager : MonoBehaviour
     {
         if (scene.name == "Menu")
         {
-            PlayMusic(menuMusic);
+            PlayMusic(menuMusic, true);
         }
         else if (scene.name == "PlayScene")
         {
-            PlayMusic(gameMusic);
+            PlayMusic(gameMusic, true);
         }
     }
 
-    public void PlayMusic(AudioClip clip)
+    public void PlayMusic(AudioClip clip, bool loop)
     {
         musicSource.clip = clip;
-        musicSource.loop = true;
+        musicSource.loop = loop;
         musicSource.Play();
     }
 

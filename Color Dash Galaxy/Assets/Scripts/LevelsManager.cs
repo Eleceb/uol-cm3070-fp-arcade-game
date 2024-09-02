@@ -38,7 +38,7 @@ public class LevelsManager : MonoBehaviour
         ["Easy"] = new Dictionary<string, float>
         {
             ["junkTime"] = 45,
-            ["bossAppearingTime"] = 30, // Boss will spawn at 2:30 after level begun
+            ["bossAppearingTime"] = 150, // Boss will spawn at 2:30 after level begun
             ["minJunkPeriod"] = 2,
             ["maxJunkPeriod"] = 4,
             ["minEnemyShipPeriod"] = 3,
@@ -127,6 +127,7 @@ public class LevelsManager : MonoBehaviour
     {
         float timePassed = 0f;
         float nextEnemyAppearTime;
+        bool hasLerpVolumeExecuted = false;
 
         SpaceJunkManager spaceJunkManager;
         EnemySpaceshipManager enemySpaceshipManager;
@@ -135,6 +136,12 @@ public class LevelsManager : MonoBehaviour
         // Generate only space junks
         while (timePassed < levelParameters[gameDifficulty.ToString()]["junkTime"])
         {
+            if (timePassed >= levelParameters[gameDifficulty.ToString()]["bossAppearingTime"] - 10f && !hasLerpVolumeExecuted)
+            {
+                StartCoroutine(LerpVolume());
+                hasLerpVolumeExecuted = true;
+            }
+
             nextEnemyAppearTime = Random.Range(levelParameters[gameDifficulty.ToString()]["minJunkPeriod"], levelParameters[gameDifficulty.ToString()]["maxJunkPeriod"]);
             yield return new WaitForSeconds(nextEnemyAppearTime);
 
@@ -148,6 +155,12 @@ public class LevelsManager : MonoBehaviour
         // Generate enemy spaceships and spacejunks according to the time passed and probability
         while (timePassed < levelParameters[gameDifficulty.ToString()]["bossAppearingTime"])
         {
+            if (timePassed >= levelParameters[gameDifficulty.ToString()]["bossAppearingTime"] - 10f && !hasLerpVolumeExecuted)
+            {
+                StartCoroutine(LerpVolume());
+                hasLerpVolumeExecuted = true;
+            }
+
             // Choose appear spacejunk or enemy spaceship
             if (enemyshipNotJunk(timePassed))
             {
@@ -170,11 +183,6 @@ public class LevelsManager : MonoBehaviour
                 spaceJunkManager.appearSide = enemyAppearSide;
             }
 
-            if (timePassed >= levelParameters[gameDifficulty.ToString()]["bossAppearingTime"] - 5)
-            {
-                AudioManager.Instance.musicSource.volume = Mathf.Lerp(AudioManager.Instance.musicSource.volume, 0f, 5f);
-            }
-
             timePassed += nextEnemyAppearTime;
         }
 
@@ -182,7 +190,8 @@ public class LevelsManager : MonoBehaviour
         bossManager = Instantiate(boss, enemyAppearPosition, Quaternion.identity).GetComponent<BossManager>();
         bossManager.appearSide = enemyAppearSide;
 
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.bossMusic);
+        AudioManager.Instance.musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.bossMusic, true);
 
         while (!isBossDestroyed)
         {
@@ -279,7 +288,7 @@ public class LevelsManager : MonoBehaviour
         gameOverMenu.SetActive(true);
 
         AudioManager.Instance.StopMusic();
-        AudioManager.Instance.PlaySound(AudioManager.Instance.gameOverMusic);
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.gameOverMusic, false);
 
         gameOverMenuDefaultButton.GetComponent<ButtonSelect>().isFirstDefaultButtonSelection = true;
         gameOverMenuDefaultButton.Select();
@@ -304,7 +313,7 @@ public class LevelsManager : MonoBehaviour
         winMenu.SetActive(true);
 
         AudioManager.Instance.StopMusic();
-        AudioManager.Instance.PlaySound(AudioManager.Instance.winMusic);
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.winMusic, false);
 
         winMenuDefaultButton.GetComponent<ButtonSelect>().isFirstDefaultButtonSelection = true;
         winMenuDefaultButton.Select();
@@ -317,5 +326,20 @@ public class LevelsManager : MonoBehaviour
         score += scoreToAdd;
 
         scoreText.text = "Score: " + score.ToString();
+    }
+
+    private IEnumerator LerpVolume()
+    {
+        float startVolume = AudioManager.Instance.musicSource.volume;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < 7.5f)
+        {
+            elapsedTime += Time.deltaTime;
+            AudioManager.Instance.musicSource.volume = Mathf.Lerp(startVolume, 0f, elapsedTime / 7.5f);
+            yield return null;
+        }
+
+        AudioManager.Instance.musicSource.volume = 0f;
     }
 }
