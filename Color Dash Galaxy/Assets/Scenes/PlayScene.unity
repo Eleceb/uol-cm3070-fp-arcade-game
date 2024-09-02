@@ -4266,21 +4266,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1386336951926641196, guid: 44658360d646dd5428dd355ce6a51661,
-        type: 3}
-      propertyPath: ambience1
-      value: 
-      objectReference: {fileID: 8300000, guid: 6025ff1e20e9f174d8febbbc2bd1c472, type: 3}
-    - target: {fileID: 1386336951926641196, guid: 44658360d646dd5428dd355ce6a51661,
-        type: 3}
-      propertyPath: backgroundMusic
-      value: 
-      objectReference: {fileID: 8300000, guid: 87f1f894dc08cce4191d1260bf086a22, type: 3}
-    - target: {fileID: 1386336951926641196, guid: 44658360d646dd5428dd355ce6a51661,
-        type: 3}
-      propertyPath: musicTrackIndex
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1657083335326722894, guid: 44658360d646dd5428dd355ce6a51661,
         type: 3}
       propertyPath: m_Name

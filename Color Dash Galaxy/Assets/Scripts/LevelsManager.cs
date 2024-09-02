@@ -38,7 +38,7 @@ public class LevelsManager : MonoBehaviour
         ["Easy"] = new Dictionary<string, float>
         {
             ["junkTime"] = 45,
-            ["bossAppearingTime"] = 150, // Boss will spawn at 2:30 after level begun
+            ["bossAppearingTime"] = 30, // Boss will spawn at 2:30 after level begun
             ["minJunkPeriod"] = 2,
             ["maxJunkPeriod"] = 4,
             ["minEnemyShipPeriod"] = 3,
@@ -170,6 +170,11 @@ public class LevelsManager : MonoBehaviour
                 spaceJunkManager.appearSide = enemyAppearSide;
             }
 
+            if (timePassed >= levelParameters[gameDifficulty.ToString()]["bossAppearingTime"] - 5)
+            {
+                AudioManager.Instance.musicSource.volume = Mathf.Lerp(AudioManager.Instance.musicSource.volume, 0f, 5f);
+            }
+
             timePassed += nextEnemyAppearTime;
         }
 
@@ -273,8 +278,10 @@ public class LevelsManager : MonoBehaviour
 
         gameOverMenu.SetActive(true);
 
-        gameOverMenuDefaultButton.GetComponent<ButtonSelect>().isFirstDefaultButtonSelection = true;
+        AudioManager.Instance.StopMusic();
+        AudioManager.Instance.PlaySound(AudioManager.Instance.gameOverMusic);
 
+        gameOverMenuDefaultButton.GetComponent<ButtonSelect>().isFirstDefaultButtonSelection = true;
         gameOverMenuDefaultButton.Select();
 
         StopAllCoroutines();
@@ -296,8 +303,10 @@ public class LevelsManager : MonoBehaviour
 
         winMenu.SetActive(true);
 
-        winMenuDefaultButton.GetComponent<ButtonSelect>().isFirstDefaultButtonSelection = true;
+        AudioManager.Instance.StopMusic();
+        AudioManager.Instance.PlaySound(AudioManager.Instance.winMusic);
 
+        winMenuDefaultButton.GetComponent<ButtonSelect>().isFirstDefaultButtonSelection = true;
         winMenuDefaultButton.Select();
 
         StopAllCoroutines();

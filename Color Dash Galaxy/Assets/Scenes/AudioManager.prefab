@@ -46,8 +46,8 @@ MonoBehaviour:
   menuMusic: {fileID: 8300000, guid: c5d5f02d6b51a5c4393c878376a5954d, type: 3}
   gameMusic: {fileID: 8300000, guid: 87f1f894dc08cce4191d1260bf086a22, type: 3}
   bossMusic: {fileID: 8300000, guid: 6025ff1e20e9f174d8febbbc2bd1c472, type: 3}
-  winMusic: {fileID: 0}
-  gameOverMusic: {fileID: 0}
+  winMusic: {fileID: 8300000, guid: 80db8eef9be3c534e9a11539a39d5aef, type: 3}
+  gameOverMusic: {fileID: 8300000, guid: 80db8eef9be3c534e9a11539a39d5aef, type: 3}
   shootingSound: {fileID: 8300000, guid: 2afbfc20c20cca944a1b188692d375ef, type: 3}
   changeColorSound: {fileID: 8300000, guid: c3709ee9d1462de4a8bd4c77549f415f, type: 3}
   explosionSound: {fileID: 8300000, guid: c533afb7555b9404c937b6e79d80d513, type: 3}
@@ -57,3 +57,6 @@ MonoBehaviour:
   bigExplosionSound: {fileID: 8300000, guid: bf074914172f1ba41aef5ab3d8e6d08e, type: 3}
   buttonSelectSound: {fileID: 8300000, guid: 64bc38006951d824cb84a5d13c576315, type: 3}
   buttonPressSound: {fileID: 8300000, guid: e5accda87d89b824884281f9c8a0beb3, type: 3}
+  musicSource: {fileID: 0}
+  sfxSource: {fileID: 0}
+  explodingSource: {fileID: 0}
