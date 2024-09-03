@@ -228,6 +228,10 @@ public class LevelsManager : MonoBehaviour
                 spaceJunkManager = Instantiate(spacejunk, enemyAppearPosition, Quaternion.identity).GetComponent<SpaceJunkManager>();
                 spaceJunkManager.appearSide = enemyAppearSide;
             }
+            else if (gameDifficulty == GameDifficulty.Easy)
+            {
+                break;
+            }
         }
     }
 

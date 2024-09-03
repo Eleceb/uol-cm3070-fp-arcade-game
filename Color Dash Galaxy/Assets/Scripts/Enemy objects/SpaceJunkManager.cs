@@ -148,31 +148,34 @@ public class SpaceJunkManager : MonoBehaviour
 
                 levelManager.UpdateScore(spaceJunkScore);
 
+                Destroy(gameObject);
+
                 GameObject explosionEffect = Instantiate(
                     spacejunkExplosion,
                     transform.position,
-                    Quaternion.identity
+                    Quaternion.identity,
+                    transform.parent
                 );
 
                 AudioManager.Instance.PlaySound(AudioManager.Instance.spacejunkExplosionSound);
 
                 Destroy(explosionEffect, 1f);
-
-                Destroy(gameObject);
             }
         }
         else if (collision.tag == "Player" && collision.GetComponent<SpaceshipController>().currentColorMode != junkColor)
         {
+            Destroy(collision.gameObject);
+
             GameObject explosionEffect = Instantiate(
                 playerExplosion,
                 collision.transform.position,
-                Quaternion.identity
+                Quaternion.identity,
+                transform.parent
             );
 
             AudioManager.Instance.PlaySound(AudioManager.Instance.explosionSound);
 
             Destroy(explosionEffect, 1f);
-            Destroy(collision.gameObject);
 
             levelManager.GameOver();
         }

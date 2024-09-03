@@ -246,12 +246,6 @@ public class EnemySpaceshipManager : MonoBehaviour
 
                 levelManager.UpdateScore(enemyShipScore);
 
-                GameObject explosionEffect = Instantiate(
-                    spaceshipExplosion,
-                    transform.position,
-                    Quaternion.identity
-                );
-
                 gameObject.tag = "Untagged";
 
                 // Check win condition
@@ -260,25 +254,34 @@ public class EnemySpaceshipManager : MonoBehaviour
                     levelManager.WinGame(2f);
                 }
 
+                Destroy(gameObject);
+
+                GameObject explosionEffect = Instantiate(
+                    spaceshipExplosion,
+                    transform.position,
+                    Quaternion.identity,
+                    transform.parent
+                );
+
                 AudioManager.Instance.PlaySound(AudioManager.Instance.explosionSound);
 
                 Destroy(explosionEffect, 1f);
-
-                Destroy(gameObject);
             }
         }
         else if (collision.tag == "Player" && collision.GetComponent<SpaceshipController>().currentColorMode != thisColor)
         {
+            Destroy(collision.gameObject);
+
             GameObject explosionEffect = Instantiate(
                 spaceshipExplosion,
                 collision.transform.position,
-                Quaternion.identity
+                Quaternion.identity,
+                transform.parent
             );
 
             AudioManager.Instance.PlaySound(AudioManager.Instance.explosionSound);
 
             Destroy(explosionEffect, 1f);
-            Destroy(collision.gameObject);
 
             levelManager.GameOver();
         }

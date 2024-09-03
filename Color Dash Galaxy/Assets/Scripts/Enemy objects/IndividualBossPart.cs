@@ -108,7 +108,8 @@ public class IndividualBossPart : MonoBehaviour
                         GameObject explosionEffect = Instantiate(
                             bossExplosionEffect,
                             transform.parent.position,
-                            Quaternion.identity
+                            Quaternion.identity,
+                            transform.parent
                         );
 
                         AudioManager.Instance.PlayExplodingSound();
@@ -134,6 +135,8 @@ public class IndividualBossPart : MonoBehaviour
         }
         else if (collision.tag == "Player" && !levelManager.isBossDestroyed)
         {
+            Destroy(collision.gameObject);
+
             GameObject explosionEffect = Instantiate(
                 playerExplosion,
                 collision.transform.position,
@@ -143,7 +146,6 @@ public class IndividualBossPart : MonoBehaviour
             AudioManager.Instance.PlaySound(AudioManager.Instance.explosionSound);
 
             Destroy(explosionEffect, 1f);
-            Destroy(collision.gameObject);
 
             levelManager.GameOver();
         }
