@@ -10,6 +10,8 @@ public class IndividualBossPart : MonoBehaviour
 
     public List<Sprite> bossPartSprites;
 
+    GameObject player;
+
     [SerializeField] GameObject playerExplosion, bossPartExplosionEffect, bossExplosionEffect, bossFinalExplosionEffect;
 
     [SerializeField] int bossPartHitScore, bossPartDestroyedScore, bossDestroyedScore;
@@ -27,6 +29,8 @@ public class IndividualBossPart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
         levelManager = FindObjectOfType<LevelsManager>();
 
         thisPartHP = (int)levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["bossPartHP"];
@@ -122,6 +126,8 @@ public class IndividualBossPart : MonoBehaviour
                         // Check win condition
                         if (levelManager.isBossDestroyed && GameObject.FindGameObjectsWithTag("EnemiesMustBeGoneBeforeWin").Length == 0)
                         {
+                            player.GetComponent<SpaceshipController>().enabled = false;
+                            player.GetComponent<CircleCollider2D>().enabled = false;
                             levelManager.WinGame(7f);
                         }
                     }

@@ -43,11 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3060654a4bb0554a9de812762d2b9c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuMusic: {fileID: 8300000, guid: c5d5f02d6b51a5c4393c878376a5954d, type: 3}
-  gameMusic: {fileID: 8300000, guid: 87f1f894dc08cce4191d1260bf086a22, type: 3}
-  bossMusic: {fileID: 8300000, guid: 6025ff1e20e9f174d8febbbc2bd1c472, type: 3}
-  winMusic: {fileID: 8300000, guid: 2afbfc20c20cca944a1b188692d375ef, type: 3}
-  gameOverMusic: {fileID: 8300000, guid: 2afbfc20c20cca944a1b188692d375ef, type: 3}
+  menuMusic: {fileID: 8300000, guid: 540ff8e5b6735934cac1ca898d208485, type: 3}
+  gameMusic: {fileID: 8300000, guid: 07ceecd5ad168b243a4d5a3e8e58dc73, type: 3}
+  bossMusic: {fileID: 8300000, guid: ddf1b595d30043e419d6c2fd74067d35, type: 3}
+  winMusic: {fileID: 8300000, guid: 28647be0a3aca0c48925b184194fea71, type: 3}
+  gameOverMusic: {fileID: 8300000, guid: a63d6a852002cbf418b7d379d7aaa28d, type: 3}
   shootingSound: {fileID: 8300000, guid: 2afbfc20c20cca944a1b188692d375ef, type: 3}
   changeColorSound: {fileID: 8300000, guid: c3709ee9d1462de4a8bd4c77549f415f, type: 3}
   explosionSound: {fileID: 8300000, guid: c533afb7555b9404c937b6e79d80d513, type: 3}

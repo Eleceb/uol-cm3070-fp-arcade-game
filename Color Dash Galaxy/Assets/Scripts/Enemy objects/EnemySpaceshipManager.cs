@@ -20,6 +20,8 @@ public class EnemySpaceshipManager : MonoBehaviour
 
     Camera mainCamera;
 
+    GameObject player;
+
     [SerializeField] float spacejunkSpreadAngleOneSide, bulletOffsetMultiplier;
     [SerializeField] GameObject spaceJunk;
     [SerializeField] GameObject spaceshipExplosion;
@@ -34,7 +36,9 @@ public class EnemySpaceshipManager : MonoBehaviour
     {
         levelManager = FindObjectOfType<LevelsManager>();
 
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        playerTransform = player.transform;
 
         CalculateStoppingPoint();
 
@@ -251,6 +255,8 @@ public class EnemySpaceshipManager : MonoBehaviour
                 // Check win condition
                 if (levelManager.isBossDestroyed && GameObject.FindGameObjectWithTag("EnemiesMustBeGoneBeforeWin") == null)
                 {
+                    player.GetComponent<SpaceshipController>().enabled = false;
+                    player.GetComponent<CircleCollider2D>().enabled = false;
                     levelManager.WinGame(2f);
                 }
 
