@@ -124,7 +124,7 @@ public class IndividualBossPart : MonoBehaviour
                         transform.parent.tag = "Untagged";
 
                         // Check win condition
-                        if (levelManager.isBossDestroyed && GameObject.FindGameObjectsWithTag("EnemiesMustBeGoneBeforeWin").Length == 0)
+                        if (PlayerPrefs.GetInt("IsSurvivalMode") == -1 && levelManager.isBossDestroyed && GameObject.FindGameObjectsWithTag("EnemiesMustBeGoneBeforeWin").Length == 0)
                         {
                             player.GetComponent<SpaceshipController>().enabled = false;
                             player.GetComponent<CircleCollider2D>().enabled = false;

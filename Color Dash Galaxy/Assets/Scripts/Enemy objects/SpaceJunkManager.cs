@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpaceJunkManager : MonoBehaviour
@@ -10,7 +11,10 @@ public class SpaceJunkManager : MonoBehaviour
 
     [SerializeField] int spaceJunkScore;
 
-    float speed, flyingDirection;
+    public float speed;
+    float flyingDirection;
+
+    Vector2 originalPosition;
 
     SpriteRenderer spriteRenderer;
 
@@ -26,15 +30,24 @@ public class SpaceJunkManager : MonoBehaviour
     {
         levelManager = FindObjectOfType<LevelsManager>();
 
-        speed = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minJunkSpd"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxJunkSpd"]);
+        if (speed == 0)
+            speed = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minJunkSpd"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxJunkSpd"]);
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
 
+        originalPosition = transform.position;
+
         PickColor();
 
         PickFlyingDirection();
+
+        // Spwan a row if random results in the probability range
+        if (!isFromShip && Random.Range(0f,1f) < levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["junkInRowProbability"])
+        {
+            StartCoroutine(SpawnRowCoroutine());            
+        }
     }
 
     private void PickColor()
@@ -182,6 +195,21 @@ public class SpaceJunkManager : MonoBehaviour
         else if (collision.tag == "BoundaryDestroyer")
         {
             Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator SpawnRowCoroutine()
+    {
+        int junkNumberInRow = Random.Range((int)levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minJunkRowSize"], (int)levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxJunkRowSize"]);
+        
+        for (int i = 0; i < junkNumberInRow; i++)
+        {
+            yield return new WaitForSeconds(0.8f * 1.2f / speed); // 0.8f is about the dimension size of a spacejunk, *1.2 give some space between the spacejunks
+            GameObject nextSpaceJunk = Instantiate(gameObject, originalPosition, Quaternion.identity);
+            nextSpaceJunk.GetComponent<SpaceJunkManager>().isFromShip = true;
+            nextSpaceJunk.GetComponent<SpaceJunkManager>().junkColor = junkColor;
+            nextSpaceJunk.GetComponent<SpaceJunkManager>().speed = speed;
+            nextSpaceJunk.GetComponent<SpaceJunkManager>().parentShipShootAngle = flyingDirection;
         }
     }
 }

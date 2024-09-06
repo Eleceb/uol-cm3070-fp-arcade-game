@@ -13,6 +13,7 @@ public class SpaceshipController : MonoBehaviour
         public Vector3[] positions, rotations;
     }
 
+    [SerializeField] Transform closeDodgeDetector;
     [SerializeField] Transform[] thursters;
     [SerializeField] ThrusterInformation[] thrusterInformation;
     [SerializeField] Sprite[] colorModes;
@@ -150,28 +151,39 @@ public class SpaceshipController : MonoBehaviour
         {
             thursters[1].gameObject.SetActive(false);
         }
+
+        if (closeDodgeDetector != null)
+        {
+            closeDodgeDetector.position = transform.position;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!collidingObjects.Contains(collision))
-            collidingObjects.Add(collision);
-
-        if (!isTouchingSameColor || animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        if (collision.tag != "Bullet" && collision.gameObject.layer != 9)
         {
-            animator.Play("TransparentAnimation");
-            isTouchingSameColor = true;
+            if (!collidingObjects.Contains(collision))
+                collidingObjects.Add(collision);
+
+            if (!isTouchingSameColor || animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            {
+                animator.Play("TransparentAnimation");
+                isTouchingSameColor = true;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collidingObjects.Remove(collision);
-
-        if (isTouchingSameColor && collidingObjects.Count == 0)
+        if (collision.tag != "Bullet" && collision.gameObject.layer != 9)
         {
-            animator.Play("TransparentBackAnimation");
-            isTouchingSameColor = false;
+            collidingObjects.Remove(collision);
+
+            if (isTouchingSameColor && collidingObjects.Count == 0)
+            {
+                animator.Play("TransparentBackAnimation");
+                isTouchingSameColor = false;
+            }
         }
     }
 

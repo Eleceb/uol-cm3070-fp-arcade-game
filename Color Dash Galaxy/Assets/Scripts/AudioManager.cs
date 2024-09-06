@@ -6,6 +6,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
+    public bool goToAnotherScreenInMenu = false;
+
     [Header("Music Tracks")]
     public AudioClip menuMusic;
     public AudioClip gameMusic;
@@ -77,7 +79,7 @@ public class AudioManager : MonoBehaviour
 
     private void StartPlayMusic(Scene scene)
     {
-        if (scene.name == "Menu")
+        if ((scene.name == "Menu" || scene.name == "Tutorial") && !goToAnotherScreenInMenu)
         {
             PlayMusic(menuMusic, true);
         }
@@ -85,6 +87,8 @@ public class AudioManager : MonoBehaviour
         {
             PlayMusic(gameMusic, true);
         }
+
+        goToAnotherScreenInMenu = false;
     }
 
     public void PlayMusic(AudioClip clip, bool loop)

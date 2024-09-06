@@ -41,6 +41,9 @@ public class LevelsManager : MonoBehaviour
             ["bossAppearingTime"] = 150, // Boss will spawn at 2:30 after level begun
             ["minJunkPeriod"] = 2,
             ["maxJunkPeriod"] = 4,
+            ["junkInRowProbability"] = 0.1f,
+            ["minJunkRowSize"] = 4,
+            ["maxJunkRowSize"] = 6,
             ["minEnemyShipPeriod"] = 3,
             ["maxEnemyShipPeriod"] = 6,
             ["minEnemyShipProbability"] = 0.3f,
@@ -63,6 +66,9 @@ public class LevelsManager : MonoBehaviour
             ["bossAppearingTime"] = 150, // Boss will spwan at 2:30 after level begun
             ["minJunkPeriod"] = 1,
             ["maxJunkPeriod"] = 2,
+            ["junkInRowProbability"] = 0.2f,
+            ["minJunkRowSize"] = 4,
+            ["maxJunkRowSize"] = 6,
             ["minEnemyShipPeriod"] = 2.5f,
             ["maxEnemyShipPeriod"] = 5,
             ["minEnemyShipProbability"] = 0.3f,
@@ -85,6 +91,9 @@ public class LevelsManager : MonoBehaviour
             ["bossAppearingTime"] = 150, // Boss will spwan at 2:30 after level begun
             ["minJunkPeriod"] = 0.5f,
             ["maxJunkPeriod"] = 1.5f,
+            ["junkInRowProbability"] = 0.25f,
+            ["minJunkRowSize"] = 4,
+            ["maxJunkRowSize"] = 6,
             ["minEnemyShipPeriod"] = 2,
             ["maxEnemyShipPeriod"] = 3,
             ["minEnemyShipProbability"] = 0.3f,
@@ -106,9 +115,10 @@ public class LevelsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        switch (PlayerPrefs.GetInt("Difficulty", 0)) { 
+        switch (PlayerPrefs.GetInt("Difficulty", 0))
+        {
             case 0:
-                gameDifficulty = GameDifficulty.Easy; 
+                gameDifficulty = GameDifficulty.Easy;
                 break;
             case 1:
                 gameDifficulty = GameDifficulty.Normal;
@@ -189,6 +199,7 @@ public class LevelsManager : MonoBehaviour
         PickBossAppearPosition();
         bossManager = Instantiate(boss, enemyAppearPosition, Quaternion.identity).GetComponent<BossManager>();
         bossManager.appearSide = enemyAppearSide;
+        isBossDestroyed = false;
 
         AudioManager.Instance.musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
         AudioManager.Instance.PlayMusic(AudioManager.Instance.bossMusic, true);
@@ -230,9 +241,12 @@ public class LevelsManager : MonoBehaviour
             }
             else if (gameDifficulty == GameDifficulty.Easy)
             {
-                break;
+                yield return new WaitForSeconds(1f);
             }
         }
+
+        if (PlayerPrefs.GetInt("IsSurvivalMode") == 1)
+            StartCoroutine(SpawnEnemies());
     }
 
     private void PickEnemyAppearPosition()

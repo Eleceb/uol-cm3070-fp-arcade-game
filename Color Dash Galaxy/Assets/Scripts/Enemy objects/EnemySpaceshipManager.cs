@@ -247,13 +247,12 @@ public class EnemySpaceshipManager : MonoBehaviour
 
             if (collision.GetComponent<BulletManager>().bulletColorMode == thisColor)
             {
-
                 levelManager.UpdateScore(enemyShipScore);
 
                 gameObject.tag = "Untagged";
 
                 // Check win condition
-                if (levelManager.isBossDestroyed && GameObject.FindGameObjectWithTag("EnemiesMustBeGoneBeforeWin") == null)
+                if (PlayerPrefs.GetInt("IsSurvivalMode") == -1 && levelManager.isBossDestroyed && GameObject.FindGameObjectWithTag("EnemiesMustBeGoneBeforeWin") == null)
                 {
                     player.GetComponent<SpaceshipController>().enabled = false;
                     player.GetComponent<CircleCollider2D>().enabled = false;

@@ -29,9 +29,16 @@ public class MainMenuScreen : MonoBehaviour
 
     public void StartGame()
     {
+        PlayerPrefs.SetInt("IsSurvivalMode", -1);
         SceneManager.LoadScene("PlayScene");
     }
-    
+
+    public void StartSurvivalMode()
+    {
+        PlayerPrefs.SetInt("IsSurvivalMode", 1);
+        SceneManager.LoadScene("PlayScene");
+    }
+
     public void GoToSettingsMenu()
     {
         mainMenu.SetActive(false);
@@ -87,6 +94,12 @@ public class MainMenuScreen : MonoBehaviour
         AudioManager.Instance.explodingSource.volume = value;
 
         PlayerPrefs.SetFloat("SfxVolume", AudioManager.Instance.sfxSource.volume);
+    }
+
+    public void HowToPlayButtonPressed()
+    {
+        AudioManager.Instance.goToAnotherScreenInMenu = true;
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void PressButton()
