@@ -34,6 +34,10 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
+#if !UNITY_EDITOR
+        Cursor.lockState = CursorLockMode.Locked;
+#endif
+
         if (Instance == null)
         {
             Instance = this;
