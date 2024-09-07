@@ -33,14 +33,14 @@ public class BossManager : MonoBehaviour
 
     GameObject spaceJunkShotOut, spaceShipDeployed;
 
-    LevelsManager levelManager;
+    LevelManager levelManager;
 
     public List<GameObject> bossParts;
 
     // Start is called before the first frame update
     void Start()
     {
-        levelManager = FindObjectOfType<LevelsManager>();
+        levelManager = FindObjectOfType<LevelManager>();
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 

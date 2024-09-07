@@ -6,11 +6,11 @@ public class CloseDodgeDetector : MonoBehaviour
 {
     [SerializeField] int closeDodgeScorePerSecond;
 
-    LevelsManager levelManager;
+    LevelManager levelManager;
 
     private void Start()
     {
-        levelManager = FindObjectOfType<LevelsManager>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

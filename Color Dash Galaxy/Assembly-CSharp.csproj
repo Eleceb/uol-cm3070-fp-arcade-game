@@ -73,7 +73,7 @@
     <Compile Include="Assets\Scripts\Enemy objects\EnemySpaceshipManager.cs" />
     <Compile Include="Assets\Scripts\Enemy objects\IndividualBossPart.cs" />
     <Compile Include="Assets\Scripts\Enemy objects\SpaceJunkManager.cs" />
-    <Compile Include="Assets\Scripts\LevelsManager.cs" />
+    <Compile Include="Assets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Player spaceship\BulletManager.cs" />
     <Compile Include="Assets\Scripts\Player spaceship\CloseDodgeDetector.cs" />
     <Compile Include="Assets\Scripts\Player spaceship\SpaceshipController.cs" />
@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Tutorial\TouchGoMainMenu.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonSelect.cs" />
     <Compile Include="Assets\Scripts\UI\InGameMenus.cs" />
+    <Compile Include="Assets\Scripts\UI\KeepButtonSelected.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenuScreen.cs" />
     <Compile Include="Assets\Scripts\UI\TimeCount.cs" />
   </ItemGroup>

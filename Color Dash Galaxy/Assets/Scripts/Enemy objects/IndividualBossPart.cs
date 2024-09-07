@@ -24,14 +24,14 @@ public class IndividualBossPart : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
-    LevelsManager levelManager;
+    LevelManager levelManager;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
-        levelManager = FindObjectOfType<LevelsManager>();
+        levelManager = FindObjectOfType<LevelManager>();
 
         thisPartHP = (int)levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["bossPartHP"];
 

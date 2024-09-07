@@ -9,7 +9,8 @@ ScriptsOnlyBuild:
     - EnemySpaceshipManager
     - InGameMenus
     - IndividualBossPart
-    - LevelsManager
+    - KeepButtonSelected
+    - LevelManager
     - MainMenuScreen
     - SpaceJunkManager
     - SpaceJunkManager_tutorial
@@ -64,10 +65,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -213,6 +212,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 17458}
     - Class: 114
       Script: {instanceID: 17466}
+    - Class: 114
+      Script: {instanceID: 19356}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -316,6 +317,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 17234}
     - Class: 114
       Script: {instanceID: 17248}
+    - Class: 114
+      Script: {instanceID: 19356}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -411,6 +414,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 17234}
     - Class: 114
       Script: {instanceID: 17248}
+    - Class: 114
+      Script: {instanceID: 19356}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1381,7 +1386,7 @@ ScriptsOnlyBuild:
       Hash: b281ead8c059e69904ab01edb56972d2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: LevelsManager
+    className: LevelManager
   - hash:
       serializedVersion: 2
       Hash: bb6b9a25e695d7981ce2d853a697a828
@@ -1478,6 +1483,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 1eb248475099961baf4f6478f7a22b40
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: KeepButtonSelected
   platform: 19
   scenePathNames:
   - Assets/Scenes/Menu.unity

@@ -23,12 +23,12 @@ public class SpaceJunkManager : MonoBehaviour
     [SerializeField] GameObject spacejunkExplosion, playerExplosion;
     [SerializeField] Sprite[] spaceJunkSpritesRed, spaceJunkSpritesBlue, spaceJunkSpritesYellow;
 
-    LevelsManager levelManager;
+    LevelManager levelManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        levelManager = FindObjectOfType<LevelsManager>();
+        levelManager = FindObjectOfType<LevelManager>();
 
         if (speed == 0)
             speed = Random.Range(levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["minJunkSpd"], levelManager.levelParameters[levelManager.gameDifficulty.ToString()]["maxJunkSpd"]);

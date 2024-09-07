@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelsManager : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] GameObject spacejunk;

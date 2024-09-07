@@ -29,12 +29,12 @@ public class EnemySpaceshipManager : MonoBehaviour
 
     GameObject spaceJunkShotOut;
 
-    LevelsManager levelManager;
+    LevelManager levelManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        levelManager = FindObjectOfType<LevelsManager>();
+        levelManager = FindObjectOfType<LevelManager>();
 
         player = GameObject.FindGameObjectWithTag("Player");
 

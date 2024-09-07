@@ -8,11 +8,11 @@ public class InGameMenus : MonoBehaviour
     [SerializeField] Text timeText;
     [SerializeField] Text inGameTimeText;
 
-    LevelsManager levelManager;
+    LevelManager levelManager;
 
     private void OnEnable()
     {
-        levelManager = FindObjectOfType<LevelsManager>();
+        levelManager = FindObjectOfType<LevelManager>();
         scoreText.text = "Score: " + levelManager.score.ToString();
         timeText.text = inGameTimeText.text;
     }

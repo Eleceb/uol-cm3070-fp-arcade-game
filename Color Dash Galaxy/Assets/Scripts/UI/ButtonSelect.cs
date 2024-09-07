@@ -7,6 +7,13 @@ public class ButtonSelect : MonoBehaviour, ISelectHandler
 {
     public bool isFirstDefaultButtonSelection = false;
 
+    KeepButtonSelected keepButtonSelected;
+
+    void Start()
+    {
+        keepButtonSelected = FindObjectOfType<KeepButtonSelected>();
+    }
+
     public void OnSelect(BaseEventData eventData)
     {
         if (isFirstDefaultButtonSelection)
@@ -15,6 +22,9 @@ public class ButtonSelect : MonoBehaviour, ISelectHandler
             return;
         }
 
-        AudioManager.Instance.PlaySound(AudioManager.Instance.buttonSelectSound);
+        if (!keepButtonSelected.isMouseClicked)
+            AudioManager.Instance.PlaySound(AudioManager.Instance.buttonSelectSound);
+
+        keepButtonSelected.isMouseClicked = false;
     }
 }
