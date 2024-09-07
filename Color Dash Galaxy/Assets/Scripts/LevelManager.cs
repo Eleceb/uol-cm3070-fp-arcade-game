@@ -306,10 +306,11 @@ public class LevelManager : MonoBehaviour
         gameOverMenu.SetActive(true);
 
         AudioManager.Instance.StopMusic();
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.gameOverMusic, false);
+        AudioManager.Instance.PlayWinLoseSound(AudioManager.Instance.gameOverSound);
 
         gameOverMenuDefaultButton.GetComponent<ButtonSelect>().isFirstDefaultButtonSelection = true;
         gameOverMenuDefaultButton.Select();
+        FindObjectOfType<KeepButtonSelected>().isMouseClicked = false;
 
         StopAllCoroutines();
     }
@@ -331,10 +332,11 @@ public class LevelManager : MonoBehaviour
         winMenu.SetActive(true);
 
         AudioManager.Instance.StopMusic();
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.winMusic, false);
+        AudioManager.Instance.PlayWinLoseSound(AudioManager.Instance.winSound);
 
         winMenuDefaultButton.GetComponent<ButtonSelect>().isFirstDefaultButtonSelection = true;
         winMenuDefaultButton.Select();
+        FindObjectOfType<KeepButtonSelected>().isMouseClicked = false;
 
         StopAllCoroutines();
     }

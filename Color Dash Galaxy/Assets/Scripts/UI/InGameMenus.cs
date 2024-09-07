@@ -30,7 +30,7 @@ public class InGameMenus : MonoBehaviour
     public void PressButton()
     {
         AudioManager.Instance.PlaySound(AudioManager.Instance.buttonPressSound);
-        AudioManager.Instance.StopMusic();
+        AudioManager.Instance.StopWinLoseSound();
     }
 
     public void QuitApplication()

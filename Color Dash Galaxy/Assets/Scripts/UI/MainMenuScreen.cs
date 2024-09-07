@@ -124,6 +124,7 @@ public class MainMenuScreen : MonoBehaviour
     private void OnSoundEffectSliderValueChanged(float value)
     {
         AudioManager.Instance.sfxSource.volume = value;
+        AudioManager.Instance.winLoseSource.volume = value;
         AudioManager.Instance.explodingSource.volume = value;
 
         PlayerPrefs.SetFloat("SfxVolume", AudioManager.Instance.sfxSource.volume);

@@ -21,11 +21,8 @@ public class SpaceJunkManager_tutorial : MonoBehaviour
         speed = 0;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = junkSprites[Random.Range(0, junkSprites.Length)];
 
-        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
-
-        FitPolygonCollider();
+        RandomSpaceJunk();
     }
 
     private void FitPolygonCollider()
@@ -114,8 +111,19 @@ public class SpaceJunkManager_tutorial : MonoBehaviour
         playerSpaceship.GetComponent<CircleCollider2D>().enabled = true;
     }
 
+    private void RandomSpaceJunk()
+    {
+        spriteRenderer.sprite = junkSprites[Random.Range(0, junkSprites.Length)];
+
+        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
+
+        FitPolygonCollider();
+    }
+
     private void RespawnObject()
     {
+        RandomSpaceJunk();
+
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<PolygonCollider2D>().enabled = true;
     }

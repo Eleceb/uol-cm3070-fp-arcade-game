@@ -12,8 +12,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip menuMusic;
     public AudioClip gameMusic;
     public AudioClip bossMusic;
-    public AudioClip winMusic;
-    public AudioClip gameOverMusic;
 
     [Header("Game Sounds")]
     public AudioClip shootingSound;
@@ -22,6 +20,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip spacejunkExplosionSound;
     public AudioClip explodingSound;
     public AudioClip bigExplosionSound;
+    public AudioClip winSound;
+    public AudioClip gameOverSound;
 
     [Header("Button Sounds")]
     public AudioClip buttonSelectSound;
@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour
     [Header("Music Sources")]
     public AudioSource musicSource;
     public AudioSource sfxSource;
+    public AudioSource winLoseSource;
     public AudioSource explodingSource;
 
     void Awake()
@@ -46,10 +47,12 @@ public class AudioManager : MonoBehaviour
         // Initialize music and SFX audio sources
         musicSource = gameObject.AddComponent<AudioSource>();
         sfxSource = gameObject.AddComponent<AudioSource>();
+        winLoseSource = gameObject.AddComponent<AudioSource>();
         explodingSource = gameObject.AddComponent<AudioSource>();
 
         musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1);
         sfxSource.volume = PlayerPrefs.GetFloat("SfxVolume", 1);
+        winLoseSource.volume = PlayerPrefs.GetFloat("SfxVolume", 1);
         explodingSource.volume = PlayerPrefs.GetFloat("SfxVolume", 1);
 
         explodingSource.clip = explodingSound;
@@ -91,10 +94,10 @@ public class AudioManager : MonoBehaviour
         goToAnotherScreenInMenu = false;
     }
 
-    public void PlayMusic(AudioClip clip, bool loop)
+    public void PlayMusic(AudioClip clip, bool isLoop)
     {
         musicSource.clip = clip;
-        musicSource.loop = loop;
+        musicSource.loop = isLoop;
         musicSource.Play();
     }
 
@@ -106,6 +109,16 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
+    }
+
+    public void PlayWinLoseSound(AudioClip clip)
+    {
+        winLoseSource.PlayOneShot(clip);
+    }
+
+    public void StopWinLoseSound()
+    {
+        winLoseSource.Stop();
     }
 
     public void PlayExplodingSound()
