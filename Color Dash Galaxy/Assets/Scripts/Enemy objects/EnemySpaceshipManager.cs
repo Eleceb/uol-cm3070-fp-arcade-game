@@ -252,7 +252,7 @@ public class EnemySpaceshipManager : MonoBehaviour
                 gameObject.tag = "Untagged";
 
                 // Check win condition
-                if (PlayerPrefs.GetInt("IsSurvivalMode") == -1 && levelManager.isBossDestroyed && GameObject.FindGameObjectWithTag("EnemiesMustBeGoneBeforeWin") == null)
+                if (PlayerPrefs.GetInt("IsSurvivalMode", -1) == -1 && levelManager.isBossDestroyed && GameObject.FindGameObjectWithTag("EnemiesMustBeGoneBeforeWin") == null)
                 {
                     player.GetComponent<SpaceshipController>().enabled = false;
                     player.GetComponent<CircleCollider2D>().enabled = false;

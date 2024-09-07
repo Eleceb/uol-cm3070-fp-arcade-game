@@ -245,7 +245,7 @@ public class LevelsManager : MonoBehaviour
             }
         }
 
-        if (PlayerPrefs.GetInt("IsSurvivalMode") == 1)
+        if (PlayerPrefs.GetInt("IsSurvivalMode", -1) == 1)
             StartCoroutine(SpawnEnemies());
     }
 

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -709,7 +709,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.7
-  m_Text: 4. Press "Z" to shoot and destroy objects that has the same color as your
+  m_Text: 4. Press "Z" to shoot and destroy objects that have the same color as your
     spaceship
 --- !u!222 &560315190
 CanvasRenderer:
@@ -1654,6 +1654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentColorMode: 0
+  closeDodgeDetector: {fileID: 0}
   thursters:
   - {fileID: 1340385041}
   - {fileID: 1374773046}
@@ -1857,6 +1858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentColorMode: 0
+  closeDodgeDetector: {fileID: 0}
   thursters:
   - {fileID: 2075427933}
   - {fileID: 1367890123}
@@ -2769,6 +2771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentColorMode: 0
+  closeDodgeDetector: {fileID: 0}
   thursters:
   - {fileID: 1038455224}
   - {fileID: 588802450}

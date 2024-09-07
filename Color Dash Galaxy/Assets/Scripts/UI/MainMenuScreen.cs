@@ -7,16 +7,21 @@ public class MainMenuScreen : MonoBehaviour
     [SerializeField] GameObject mainMenu, settingsMenu;
     [SerializeField] Button mainMenuDefaultButton, settingsMenuDefaultButton;
     [SerializeField] Text difficultyText;
+    [SerializeField] Text survivalModeOnOffText;
 
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider soundEffectSlider;
 
     int difficultyInt; // 0: Easy, 1: Normal, 2: Hard
+    int survivalInt; // -1: Off, 2: On
 
     private void Start()
     {
         difficultyInt = PlayerPrefs.GetInt("Difficulty", 0);
         MatchDifficultyTextWithDifficultyInt();
+
+        survivalInt = PlayerPrefs.GetInt("IsSurvivalMode", -1);
+        MatchSurvivalTextWithSurvivalInt();
 
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1);
         soundEffectSlider.value = PlayerPrefs.GetFloat("SfxVolume", 1);
@@ -29,14 +34,13 @@ public class MainMenuScreen : MonoBehaviour
 
     public void StartGame()
     {
-        PlayerPrefs.SetInt("IsSurvivalMode", -1);
         SceneManager.LoadScene("PlayScene");
     }
 
-    public void StartSurvivalMode()
+    public void HowToPlayButtonPressed()
     {
-        PlayerPrefs.SetInt("IsSurvivalMode", 1);
-        SceneManager.LoadScene("PlayScene");
+        AudioManager.Instance.goToAnotherScreenInMenu = true;
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void GoToSettingsMenu()
@@ -81,6 +85,35 @@ public class MainMenuScreen : MonoBehaviour
         }
     }
 
+    public void SurvivalModeOnOff()
+    {   
+        if (survivalInt == -1)
+        {
+            survivalInt = 1;
+            MatchSurvivalTextWithSurvivalInt();
+            PlayerPrefs.SetInt("IsSurvivalMode", survivalInt);
+        }
+        else if (survivalInt == 1)
+        {
+            survivalInt = -1;
+            MatchSurvivalTextWithSurvivalInt();
+            PlayerPrefs.SetInt("IsSurvivalMode", survivalInt);
+        }
+    }
+
+    private void MatchSurvivalTextWithSurvivalInt()
+    {
+        switch (survivalInt)
+        {
+            case -1:
+                survivalModeOnOffText.text = "Off";
+                break;
+            case 1:
+                survivalModeOnOffText.text = "On";
+                break;
+        }
+    }
+
     private void OnMusicSliderValueChanged(float value)
     {
         AudioManager.Instance.musicSource.volume = value;
@@ -94,12 +127,6 @@ public class MainMenuScreen : MonoBehaviour
         AudioManager.Instance.explodingSource.volume = value;
 
         PlayerPrefs.SetFloat("SfxVolume", AudioManager.Instance.sfxSource.volume);
-    }
-
-    public void HowToPlayButtonPressed()
-    {
-        AudioManager.Instance.goToAnotherScreenInMenu = true;
-        SceneManager.LoadScene("Tutorial");
     }
 
     public void PressButton()
