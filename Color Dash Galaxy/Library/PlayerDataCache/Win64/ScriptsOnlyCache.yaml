@@ -27,6 +27,13 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
+    Unity.Recorder.Editor.dll:
+    - UnityEditor.Recorder.ImageRecorderEditor
+    - UnityEditor.Recorder.ImageRecorderSettings
+    - UnityEditor.Recorder.MovieRecorderEditor
+    - UnityEditor.Recorder.MovieRecorderSettings
+    - UnityEditor.Recorder.RecorderControllerSettings
+    - UnityEditor.Recorder.RecorderSettingsPrefsEditor
     Unity.RenderPipelines.Core.Runtime.dll:
     - UnityEngine.Rendering.UI.DebugUIHandlerBitField
     - UnityEngine.Rendering.UI.DebugUIHandlerButton
@@ -65,8 +72,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -149,71 +158,71 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13032}
     - Class: 114
-      Script: {instanceID: 13122}
+      Script: {instanceID: 13046}
     - Class: 114
-      Script: {instanceID: 13140}
+      Script: {instanceID: 13124}
     - Class: 114
-      Script: {instanceID: 13148}
+      Script: {instanceID: 13142}
     - Class: 114
-      Script: {instanceID: 13336}
+      Script: {instanceID: 13150}
     - Class: 114
-      Script: {instanceID: 13524}
+      Script: {instanceID: 13338}
     - Class: 114
-      Script: {instanceID: 13860}
+      Script: {instanceID: 13526}
     - Class: 114
-      Script: {instanceID: 13932}
+      Script: {instanceID: 13862}
     - Class: 114
-      Script: {instanceID: 14030}
+      Script: {instanceID: 13934}
     - Class: 114
-      Script: {instanceID: 14182}
+      Script: {instanceID: 14032}
     - Class: 114
-      Script: {instanceID: 14214}
+      Script: {instanceID: 14184}
     - Class: 114
-      Script: {instanceID: 14426}
+      Script: {instanceID: 14216}
     - Class: 114
-      Script: {instanceID: 14688}
+      Script: {instanceID: 14428}
     - Class: 114
-      Script: {instanceID: 14726}
+      Script: {instanceID: 14690}
     - Class: 114
-      Script: {instanceID: 14954}
+      Script: {instanceID: 14728}
     - Class: 114
-      Script: {instanceID: 15190}
+      Script: {instanceID: 14956}
     - Class: 114
-      Script: {instanceID: 15298}
+      Script: {instanceID: 15192}
     - Class: 114
-      Script: {instanceID: 15328}
+      Script: {instanceID: 15300}
     - Class: 114
-      Script: {instanceID: 15516}
+      Script: {instanceID: 15330}
     - Class: 114
-      Script: {instanceID: 15568}
+      Script: {instanceID: 15518}
     - Class: 114
-      Script: {instanceID: 15584}
+      Script: {instanceID: 15570}
     - Class: 114
-      Script: {instanceID: 16042}
+      Script: {instanceID: 15586}
     - Class: 114
-      Script: {instanceID: 16154}
+      Script: {instanceID: 16044}
     - Class: 114
-      Script: {instanceID: 16538}
+      Script: {instanceID: 16156}
     - Class: 114
-      Script: {instanceID: 16826}
+      Script: {instanceID: 16540}
     - Class: 114
-      Script: {instanceID: 16890}
+      Script: {instanceID: 16828}
     - Class: 114
-      Script: {instanceID: 17190}
+      Script: {instanceID: 16892}
     - Class: 114
-      Script: {instanceID: 17194}
+      Script: {instanceID: 17192}
     - Class: 114
-      Script: {instanceID: 17248}
+      Script: {instanceID: 17196}
     - Class: 114
-      Script: {instanceID: 17282}
+      Script: {instanceID: 17250}
     - Class: 114
-      Script: {instanceID: 17334}
+      Script: {instanceID: 17284}
     - Class: 114
-      Script: {instanceID: 17458}
+      Script: {instanceID: 17336}
     - Class: 114
-      Script: {instanceID: 17466}
+      Script: {instanceID: 17460}
     - Class: 114
-      Script: {instanceID: 19356}
+      Script: {instanceID: 17468}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -267,8 +276,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 82
-      Script: {instanceID: 0}
     - Class: 83
       Script: {instanceID: 0}
     - Class: 91
@@ -288,37 +295,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12972}
     - Class: 114
-      Script: {instanceID: 13140}
+      Script: {instanceID: 13046}
     - Class: 114
-      Script: {instanceID: 13336}
+      Script: {instanceID: 13142}
     - Class: 114
-      Script: {instanceID: 13826}
+      Script: {instanceID: 13338}
     - Class: 114
-      Script: {instanceID: 13894}
+      Script: {instanceID: 13828}
     - Class: 114
-      Script: {instanceID: 14018}
+      Script: {instanceID: 13896}
     - Class: 114
-      Script: {instanceID: 14182}
+      Script: {instanceID: 14020}
     - Class: 114
-      Script: {instanceID: 14396}
+      Script: {instanceID: 14184}
     - Class: 114
-      Script: {instanceID: 14416}
+      Script: {instanceID: 14398}
     - Class: 114
-      Script: {instanceID: 14688}
+      Script: {instanceID: 14418}
     - Class: 114
-      Script: {instanceID: 15530}
+      Script: {instanceID: 14690}
     - Class: 114
-      Script: {instanceID: 15570}
+      Script: {instanceID: 15532}
     - Class: 114
-      Script: {instanceID: 16670}
+      Script: {instanceID: 15572}
     - Class: 114
-      Script: {instanceID: 17184}
+      Script: {instanceID: 16672}
     - Class: 114
-      Script: {instanceID: 17234}
+      Script: {instanceID: 17186}
     - Class: 114
-      Script: {instanceID: 17248}
+      Script: {instanceID: 17236}
     - Class: 114
-      Script: {instanceID: 19356}
+      Script: {instanceID: 17250}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -372,8 +379,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 82
-      Script: {instanceID: 0}
     - Class: 83
       Script: {instanceID: 0}
     - Class: 91
@@ -391,31 +396,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12972}
     - Class: 114
-      Script: {instanceID: 13140}
+      Script: {instanceID: 13046}
     - Class: 114
-      Script: {instanceID: 13336}
+      Script: {instanceID: 13142}
     - Class: 114
-      Script: {instanceID: 13772}
+      Script: {instanceID: 13338}
     - Class: 114
-      Script: {instanceID: 13826}
+      Script: {instanceID: 13774}
     - Class: 114
-      Script: {instanceID: 13868}
+      Script: {instanceID: 13828}
     - Class: 114
-      Script: {instanceID: 14018}
+      Script: {instanceID: 13870}
     - Class: 114
-      Script: {instanceID: 14416}
+      Script: {instanceID: 14020}
     - Class: 114
-      Script: {instanceID: 15530}
+      Script: {instanceID: 14418}
     - Class: 114
-      Script: {instanceID: 15570}
+      Script: {instanceID: 15532}
     - Class: 114
-      Script: {instanceID: 17184}
+      Script: {instanceID: 15572}
     - Class: 114
-      Script: {instanceID: 17234}
+      Script: {instanceID: 17186}
     - Class: 114
-      Script: {instanceID: 17248}
+      Script: {instanceID: 17236}
     - Class: 114
-      Script: {instanceID: 19356}
+      Script: {instanceID: 17250}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -753,6 +758,12 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
+      Hash: 1eb248475099961baf4f6478f7a22b40
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: KeepButtonSelected
+  - hash:
+      serializedVersion: 2
       Hash: caa533b001ae39b864ba8425019e2268
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -765,7 +776,7 @@ ScriptsOnlyBuild:
     className: MainMenuScreen
   - hash:
       serializedVersion: 2
-      Hash: fc487fbd21075bfca127f1920055d15b
+      Hash: b9de8735de01b70a52a104cc0141c138
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AudioManager
@@ -1483,15 +1494,9 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 1eb248475099961baf4f6478f7a22b40
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: KeepButtonSelected
   platform: 19
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/PlayScene.unity
   - Assets/Scenes/Tutorial.unity
-  playerPath: "C:/Users/User/Desktop/\u65B0\u589E\u8CC7\u6599\u593E/Color Dash Galaxy.exe"
+  playerPath: C:/Users/User/Desktop/Game Build/Color Dash Galaxy.exe

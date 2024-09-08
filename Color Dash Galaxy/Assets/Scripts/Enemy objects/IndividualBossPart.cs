@@ -167,6 +167,7 @@ public class IndividualBossPart : MonoBehaviour
         bigExplosion.transform.localScale = new Vector2 ( 4f, 4f );
 
         AudioManager.Instance.StopExplodingSound();
+        AudioManager.Instance.StopMusic();
         AudioManager.Instance.PlaySound(AudioManager.Instance.bigExplosionSound);
 
         levelManager.UpdateScore(bossDestroyedScore);

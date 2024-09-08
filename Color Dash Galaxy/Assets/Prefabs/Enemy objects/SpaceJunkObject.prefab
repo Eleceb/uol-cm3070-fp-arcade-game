@@ -109,8 +109,8 @@ MonoBehaviour:
   spaceJunkSpritesRed:
   - {fileID: 21300000, guid: e583f7b0c286b89419e591a7b8d29eb7, type: 3}
   - {fileID: 21300000, guid: 16f0633587dbdf24e89434adb0d5a118, type: 3}
-  - {fileID: 21300000, guid: 6f4198c8d2c02a142a7c05e020141e6f, type: 3}
-  - {fileID: 21300000, guid: be62b1c58432cf74286bbcf0b3ef7aa9, type: 3}
+  - {fileID: 21300000, guid: acc286948cc8f334c91c71e0ad6fc3bb, type: 3}
+  - {fileID: 21300000, guid: 51662d5c9e7929146b76cc329a16b020, type: 3}
   - {fileID: 21300000, guid: 4c888fd00e0c0494daee1f58f870d4cf, type: 3}
   - {fileID: 21300000, guid: 1c50b840a07004b41a5d64cb67317f95, type: 3}
   spaceJunkSpritesBlue:

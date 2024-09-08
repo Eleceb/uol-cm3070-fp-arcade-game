@@ -245,6 +245,11 @@ public class LevelManager : MonoBehaviour
             }
         }
 
+        if (PlayerPrefs.GetInt("IsSurvivalMode", -1) == 1 || GameObject.FindGameObjectWithTag("EnemiesMustBeGoneBeforeWin") != null)
+        {
+            Invoke("PlayGameMusic", 6f);
+        }
+
         if (PlayerPrefs.GetInt("IsSurvivalMode", -1) == 1)
             StartCoroutine(SpawnEnemies());
     }
@@ -361,5 +366,10 @@ public class LevelManager : MonoBehaviour
         }
 
         AudioManager.Instance.musicSource.volume = 0f;
+    }
+
+    private void PlayGameMusic()
+    {
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.gameMusic, true);
     }
 }
