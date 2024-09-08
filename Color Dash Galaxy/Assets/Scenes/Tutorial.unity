@@ -2535,7 +2535,7 @@ SpriteRenderer:
   m_SortingLayerID: 1493054829
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 88411409d421ffe49bcc4ca8b0631a69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c11071f8de9850946b137e3ab96345c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3359,7 +3359,7 @@ SpriteRenderer:
   m_SortingLayerID: 1493054829
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 88411409d421ffe49bcc4ca8b0631a69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f6201a86d5379849902d76ac509ee7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4538,7 +4538,7 @@ SpriteRenderer:
   m_SortingLayerID: 1493054829
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 88411409d421ffe49bcc4ca8b0631a69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 16f0633587dbdf24e89434adb0d5a118, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4589,12 +4589,12 @@ MonoBehaviour:
   playerExplosion: {fileID: 5376455531186091334, guid: 99d2dd9857c98634c88e34e7b6c6fd20,
     type: 3}
   junkSprites:
-  - {fileID: 21300000, guid: 7de8676fbb2df6b47bd1e02c91532ca4, type: 3}
-  - {fileID: 21300000, guid: 88411409d421ffe49bcc4ca8b0631a69, type: 3}
-  - {fileID: 21300000, guid: acc286948cc8f334c91c71e0ad6fc3bb, type: 3}
-  - {fileID: 21300000, guid: 51662d5c9e7929146b76cc329a16b020, type: 3}
-  - {fileID: 21300000, guid: eead177c2d49a1945b2459ca1f7a4962, type: 3}
-  - {fileID: 21300000, guid: ecc8d76ea34e745439f9e543582337de, type: 3}
+  - {fileID: 21300000, guid: e583f7b0c286b89419e591a7b8d29eb7, type: 3}
+  - {fileID: 21300000, guid: 16f0633587dbdf24e89434adb0d5a118, type: 3}
+  - {fileID: 21300000, guid: 6f4198c8d2c02a142a7c05e020141e6f, type: 3}
+  - {fileID: 21300000, guid: be62b1c58432cf74286bbcf0b3ef7aa9, type: 3}
+  - {fileID: 21300000, guid: 4c888fd00e0c0494daee1f58f870d4cf, type: 3}
+  - {fileID: 21300000, guid: 1c50b840a07004b41a5d64cb67317f95, type: 3}
 --- !u!224 &7550804557479209426
 RectTransform:
   m_ObjectHideFlags: 0
