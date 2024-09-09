@@ -39,7 +39,7 @@ public class SpaceshipController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             Vector2 bulletOffset = new Vector2(-Mathf.Sin(currentRotationAngle), Mathf.Cos(currentRotationAngle)) * bulletOffsetMultiplier;
 
@@ -55,7 +55,7 @@ public class SpaceshipController : MonoBehaviour
             colorBullet.GetComponent<BulletManager>().SetBulletShootingAngle(currentRotationAngle);
         }
 
-        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             currentColorMode++;
 
